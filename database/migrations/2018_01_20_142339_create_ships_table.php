@@ -17,12 +17,20 @@ class CreateShipsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('cannons');
+            $table->integer('gunports');
+
+            $table->string('class');
+            $table->string('type');
+
+            $table->enum('cannon_caliber', ['4 pounder', '6 pounder', '9 pounder', '12 pounder', '18 pounder', '24 pounder', '32 pounder', '42 pounder']);
+
             $table->integer('total_hold');
 
             $table->integer('constructed_at');
             $table->longText('story');
 
             $table->integer('min_sailors');
+            $table->integer('current_sailors');
             $table->integer('max_sailors');
 
             $table->integer('max_speed');
