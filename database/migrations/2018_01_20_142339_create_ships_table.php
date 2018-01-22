@@ -19,6 +19,9 @@ class CreateShipsTable extends Migration
             $table->integer('cannons');
             $table->integer('gunports');
 
+            // owned by
+            $table->integer('user_id')->default(1);
+
             $table->string('class');
             $table->string('type');
 

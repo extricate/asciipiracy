@@ -13,6 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         factory('App\Ship', 50)->create();
         $this->command->info('Ships seeded');
-        // $this->call(UsersTableSeeder::class);
+
+        factory('App\Person', 750)->create();
+        $this->command->info('People created');
+
+        DB::Table('users')->insert([
+            'name' => 'herman',
+            'email' => 'hsfnelissen@gmail.com',
+            'password' => bcrypt('secret'),
+        ]);
     }
 }

@@ -13,7 +13,7 @@
                         @foreach ($person as $people)
                             <article>
                                 <h4>
-                                    <a href="/ships/{{ $people->id  }}">
+                                    <a href="/people/{{ $people->id  }}">
                                         {{ $people->name }}
                                     </a>
                                     <div class="text-right">

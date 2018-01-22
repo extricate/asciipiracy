@@ -13,7 +13,7 @@ $factory->define(App\Person::class, function (Faker $faker) {
     $charisma = $faker->numberBetween($min = 15, $max = $level * 5);
 
     return [
-        'name' => $faker->firstName,
+        'name' => $faker->unique()->name,
         'level' => $level,
 
         // attributes

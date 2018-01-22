@@ -10,4 +10,14 @@ class Person extends Model
     {
         return '/people/' . $this->id;
     }
+
+    /**
+     * People serve on ships
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function servesOn()
+    {
+        return $this->belongsTo(Ship::class, 'ship_id');
+    }
 }

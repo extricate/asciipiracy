@@ -19,6 +19,9 @@ class CreatePeopleTable extends Migration
             $table->integer('level')->default(1);
             $table->integer('experience')->default(0);
 
+            // serves on
+            $table->integer('ships_id')->default(1);
+
             // attributes
             $table->integer('strength')->default(15);
             $table->integer('dexterity')->default(15);

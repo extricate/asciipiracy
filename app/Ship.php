@@ -13,6 +13,26 @@ class Ship extends Model
         return '/ships/' . $this->id;
     }
 
+    /**
+     * A ship has an owner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * A ship has crew.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function crew()
+    {
+        return $this->hasMany(Person::class, 'people_id');
+    }
+
     public function draw(Ship $ship)
     {
         $decks = $ship->decks;

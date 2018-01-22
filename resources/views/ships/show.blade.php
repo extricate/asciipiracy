@@ -16,11 +16,14 @@
                         <div class="body">
                             <h2>Ship attributes</h2>
                             <p>
-                                The ship has <b>{{ $ship->decks }}</b> deck(s) and <b>{{ $ship->masts }}</b> mast(s), bearing a total amount of <b>{{ $ship->propulsion }} m²</b> of sails. The ships' length is <b>{{ $ship->length }} feet</b>, bearing a draught of <b>{{ $ship->draught }} feet</b> and a beam of <b>{{ $ship->beam }} feet</b>.
+                                The ship has <b>{{ $ship->decks }}</b> deck(s) and <b>{{ $ship->masts }}</b> mast(s),
+                                bearing a total amount of <b>{{ $ship->propulsion }} m²</b> of sails. The ships' length
+                                is <b>{{ $ship->length }} feet</b>, bearing a draught of <b>{{ $ship->draught }}
+                                    feet</b> and a beam of <b>{{ $ship->beam }} feet</b>.
                             </p>
 
+                            <h3>Combat characteristics: </h3>
                             <p>
-                                <h3>Combat characteristics: </h3>
                                 <ul>
                                     <li>Cannons: {{ $ship->cannons }}, bearing {{ $ship->cannon_caliber }} shot</li>
                                     <li>Gunports: {{ $ship->gunports }}</li>
@@ -34,12 +37,18 @@
                                     <li>Total hold: {{ $ship->total_hold }} pound.</li>
                                 </ul>
 
-
                                 <h3>Random characteristics</h3>
                                 <ul>
                                     <li>Construction date: {{ $ship->constructed_at }}</li>
                                     <li>Story: {{ $ship->story }}</li>
                                 </ul>
+                            </p>
+
+                            <p>
+                                {{ $ship->user_id }}
+                            </p>
+
+
                         </div>
                     </div>
                 </div>
