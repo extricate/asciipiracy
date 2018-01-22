@@ -53,8 +53,9 @@ class Ship extends Model
                 {
                     echo "|" . str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", ($beam/5) +1) . "|<br>";
 
-                    if ($b >= 0 && $masts >= 2)
+                    if ($b == 0 && $masts >= 2)
                     {
+                        // add some masts
                         echo str_repeat("------", $beam/10) . "[*]" . str_repeat("------", $beam/10) . "<br>";
                         $masts--;
                     }
