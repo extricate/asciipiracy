@@ -19,6 +19,7 @@ class Ship extends Model
         $length = $ship->length;
         $masts = $ship->masts;
         $beam = $ship->beam;
+        $cannons = $ship->cannons;
 
         // draw the bow of the ship
         $row = 0;

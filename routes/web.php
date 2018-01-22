@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ships', 'ShipsController@index')->name('ships');
 Route::get('/ships/{ship}', 'ShipsController@show');
 
+Route::get('/people', 'PeopleController@index')->name('people');
+Route::get('/people/{person}', 'PeopleController@show');
+

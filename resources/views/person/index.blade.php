@@ -7,17 +7,17 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">A list of all ships</div>
+                    <div class="panel-heading">A list of all people</div>
 
                     <div class="panel-body">
-                        @foreach ($ships as $ship)
+                        @foreach ($person as $people)
                             <article>
                                 <h4>
-                                    <a href="/ships/{{ $ship->id  }}">
-                                        {{ $ship->name }}
+                                    <a href="/ships/{{ $people->id  }}">
+                                        {{ $people->name }}
                                     </a>
                                     <div class="text-right">
-                                        {{ $ship->length }} footer
+                                        {{ $people->level }}
                                     </div>
                                 </h4>
                             </article>

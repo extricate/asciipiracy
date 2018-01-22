@@ -11,15 +11,17 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     $propulsion = $masts * $faker->numberBetween($min = 40, $max = 200);
 
     $decks = $faker->numberBetween($min = 1, $max = 4);
-    $beam = $faker->numberBetween($min = 10, $max = 60);
-    $draught = ($decks + ($beam / 100)) * $faker->numberBetween($min = 3, $max = 6);
+    $beam = $faker->numberBetween($min = 20, $max = 70);
+    $draught = ($decks + ($beam / 100)) * $faker->numberBetween($min = 5, $max = 10);
     $length = $decks * $faker->numberBetween($min = 20, $max = 250);
-    if ($length >= 500) $masts++;
+    if ($length >= 300) $masts++;
     if ($masts > 4) $masts--;
 
     $gunports = $decks * $faker->numberBetween($min = 0, $max = 42);
-    // Make max_cannons amount an even amount
+    // Make gunports amount an even amount
     if ($gunports % 2 == 1) $gunports++;
+    $cannons = $faker->numberBetween($min = 0, $gunports);
+    if ($cannons % 2 == 1) $cannons++;
 
     $cannon_caliber = $faker->numberBetween($min = 1, $max = 3);
     if ($gunports >= 50) $cannon_caliber++;
@@ -31,7 +33,7 @@ $factory->define(App\Ship::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'cannons' => $faker->numberBetween($min = 0, $gunports),
+        'cannons' => $cannons,
         'gunports' => $gunports,
         'class' => $faker->name,
         'type' => $faker->name,
