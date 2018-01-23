@@ -13,9 +13,14 @@
                         @foreach ($ships as $ship)
                             <article>
                                 <h4>
-                                    <a href="/ships/{{ $ship->id  }}">
-                                        {{ $ship->name }}, captained by {{ $ship->owner->name }}
+                                    <a href="{{ $ship->path() }}">
+                                        {{ $ship->name }}
                                     </a>
+                                    <i>captained by</i>
+                                    <a href="{{ $ship->owner->path() }}">
+                                        {{ $ship->owner->name }}
+                                    </a>
+
                                     <div class="text-right">
                                         She's a {{ $ship->length }} footer with {{ $ship->crew->count() }} sailors
                                     </div>
