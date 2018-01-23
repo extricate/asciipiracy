@@ -8,8 +8,8 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="#">{{ $ship->id }}</a>
-                        {{ $ship->name }}
+                        <a href="{{ $ship->path() }}">#{{ $ship->id }}</a>
+                        {{ $ship->name }}, owned by player {{ $ship->owner->name }}
                     </div>
 
                     <div class="panel-body">
@@ -28,7 +28,7 @@
                                     <li>Cannons: {{ $ship->cannons }}, bearing {{ $ship->cannon_caliber }} shot</li>
                                     <li>Gunports: {{ $ship->gunports }}</li>
                                     <li>Minimum sailors: {{ $ship->min_sailors }}</li>
-                                    <li>Current sailors: {{ $ship->current_sailors }}</li>
+                                    <li>Current sailors: {{ $ship->crew->count() }}</li>
                                     <li>Maximum sailors: {{ $ship->max_sailors }}</li>
                                 </ul>
 
@@ -44,8 +44,11 @@
                                 </ul>
                             </p>
 
+                            <h3>Crew</h3>
                             <p>
-                                {{ $ship->user_id }}
+                                @foreach ($ship->crew as $crewmember)
+                                    <a href="{{ $crewmember->path() }}">{{ $crewmember->name }}</a>
+                                @endforeach
                             </p>
 
 

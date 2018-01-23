@@ -8,14 +8,15 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="#">{{ $person->id }}</a>
-                        {{ $person->name }}
+                        <a href="{{ $person->path() }}">{{ $person->id }}</a>
+                        {{ $person->rank }} {{ $person->name }}
                     </div>
 
                     <div class="panel-body">
                         <div class="body">
                             <h2>Attributes</h2>
 
+                            Serves on the: <a href="{{ $person->servesOn->path() }}">{{ $person->servesOn->name }}</a>
                             <h3>Random characteristics</h3>
 
                         </div>

@@ -30,7 +30,7 @@ class Ship extends Model
      */
     public function crew()
     {
-        return $this->hasMany(Person::class, 'people_id');
+        return $this->hasMany(Person::class, 'ships_id');
     }
 
     public function draw(Ship $ship)
@@ -61,7 +61,6 @@ class Ship extends Model
                     $masts--;
                 }
             }
-
         }
 
         // draw the midship
@@ -103,11 +102,6 @@ class Ship extends Model
             }
         }
         echo str_repeat("---", ($beam/5) +1);
-    }
-
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function fireCannons()

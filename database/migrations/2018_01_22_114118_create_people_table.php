@@ -18,9 +18,10 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->integer('level')->default(1);
             $table->integer('experience')->default(0);
+            $table->string('rank')->default('Sailor');
 
             // serves on
-            $table->integer('ships_id')->default(1);
+            $table->integer('ships_id');
 
             // attributes
             $table->integer('strength')->default(15);

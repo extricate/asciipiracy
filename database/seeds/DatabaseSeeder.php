@@ -11,16 +11,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Ship', 50)->create();
-        $this->command->info('Ships seeded');
 
-        factory('App\Person', 750)->create();
-        $this->command->info('People created');
+        self::createAShip();
 
         DB::Table('users')->insert([
             'name' => 'herman',
             'email' => 'hsfnelissen@gmail.com',
             'password' => bcrypt('secret'),
         ]);
+    }
+    function createAShip()
+    {
+        $ship = factory('App\Ship')->create();
+        $generateSailorAmount = $ship->min_sailors;
+
+        factory('App\Person', $generateSailorAmount)->create(['ships_id' => $ship->id]);
+
+        $this->command->info('Ship created');
     }
 }

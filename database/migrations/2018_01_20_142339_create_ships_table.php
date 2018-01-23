@@ -15,12 +15,12 @@ class CreateShipsTable extends Migration
     {
         Schema::create('ships', function (Blueprint $table) {
             $table->increments('id');
+            // owned by
+            $table->integer('user_id')->default(1);
+
             $table->string('name');
             $table->integer('cannons');
             $table->integer('gunports');
-
-            // owned by
-            $table->integer('user_id')->default(1);
 
             $table->string('class');
             $table->string('type');
@@ -33,7 +33,6 @@ class CreateShipsTable extends Migration
             $table->longText('story');
 
             $table->integer('min_sailors');
-            $table->integer('current_sailors');
             $table->integer('max_sailors');
 
             $table->integer('max_speed');

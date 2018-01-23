@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;<li><a href="{{ route('ships') }}">Ships</a></li>
+                        <li><a href="{{ route('people') }}">People</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

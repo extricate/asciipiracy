@@ -13,8 +13,8 @@
                         @foreach ($person as $people)
                             <article>
                                 <h4>
-                                    <a href="/people/{{ $people->id  }}">
-                                        {{ $people->name }}
+                                    <a href="{{ $people->path() }}">
+                                    {{ $people->rank }} {{ $people->name }}
                                     </a>
                                     <div class="text-right">
                                         {{ $people->level }}

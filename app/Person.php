@@ -8,6 +8,7 @@ class Person extends Model
 {
     public function path()
     {
+        #return '/people/' . str_replace(' ', '-', $this->name) . '-' . $this->id;
         return '/people/' . $this->id;
     }
 
@@ -18,6 +19,6 @@ class Person extends Model
      */
     public function servesOn()
     {
-        return $this->belongsTo(Ship::class, 'ship_id');
+        return $this->belongsTo(Ship::class, 'ships_id');
     }
 }

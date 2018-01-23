@@ -6,6 +6,7 @@ $factory->define(App\Ship::class, function (Faker $faker) {
 
     $minSailors = $faker->numberBetween($min = 20, $max = 240);
     $maxSailors = $minSailors + $faker->numberBetween($min = 20, $max = 240);
+    $generateSailorAmount = $faker->numberBetween($minSailors, $maxSailors);
 
     $masts = $faker->numberBetween($min = 1, $max = 4);
     $propulsion = $masts * $faker->numberBetween($min = 40, $max = 200);
@@ -40,9 +41,8 @@ $factory->define(App\Ship::class, function (Faker $faker) {
         'cannon_caliber' => $cannon_caliber,
         'total_hold' => $faker->numberBetween($min = 0, $max = 20000),
         'constructed_at' => $faker->numberBetween($min = 1530, $max = 1640),
-        'story' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+        'story' => $faker->realText($maxNbChars = 100, $indexSize = 2),
         'min_sailors' => $minSailors,
-        'current_sailors' => $faker->numberBetween($minSailors, $maxSailors),
         'max_sailors' => $maxSailors,
         'max_speed' => $maxSpeed,
         'masts' => $masts,
@@ -51,6 +51,6 @@ $factory->define(App\Ship::class, function (Faker $faker) {
         'length' => $length,
         'draught' => $draught,
         'beam' => $beam,
-        'maneuverability' => $faker->numberBetween($min = 1, $max = 20)
+        'maneuverability' => $faker->numberBetween($min = 1, $max = 20),
     ];
 });
