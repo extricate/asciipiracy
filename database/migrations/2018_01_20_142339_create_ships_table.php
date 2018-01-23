@@ -19,6 +19,10 @@ class CreateShipsTable extends Migration
             $table->integer('user_id')->default(1);
 
             $table->string('name');
+
+            $table->integer('current_health')->default(100);
+            $table->integer('maximum_health')->default(100);
+
             $table->integer('cannons');
             $table->integer('gunports');
 

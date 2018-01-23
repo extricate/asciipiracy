@@ -14,7 +14,7 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     $decks = $faker->numberBetween($min = 1, $max = 4);
     $beam = $faker->numberBetween($min = 20, $max = 70);
     $draught = ($decks + ($beam / 100)) * $faker->numberBetween($min = 5, $max = 10);
-    $length = $decks * $faker->numberBetween($min = 20, $max = 250);
+    $length = $decks * $faker->numberBetween($min = 40, $max = 100);
     if ($length >= 300) $masts++;
     if ($masts > 4) $masts--;
 
@@ -32,14 +32,18 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     $hull_speed = (1.34 * sqrt($length));
     $maxSpeed = $hull_speed;
 
+    $maximumHealth = (100 * $decks) + (0.5 * $length) + (20 * $masts);
+
     return [
         'name' => $faker->name,
+        'maximum_health' => $maximumHealth,
+        'current_health' => $maximumHealth,
         'cannons' => $cannons,
         'gunports' => $gunports,
         'class' => $faker->name,
         'type' => $faker->name,
         'cannon_caliber' => $cannon_caliber,
-        'total_hold' => $faker->numberBetween($min = 0, $max = 20000),
+        'total_hold' => $faker->numberBetween($min = 2000, $max = 20000),
         'constructed_at' => $faker->numberBetween($min = 1530, $max = 1640),
         'story' => $faker->realText($maxNbChars = 100, $indexSize = 2),
         'min_sailors' => $minSailors,

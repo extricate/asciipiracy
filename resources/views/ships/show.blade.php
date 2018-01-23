@@ -24,6 +24,9 @@
 
                             <h3>Combat characteristics: </h3>
                             <p>
+                            <ul>
+                                <li>Health: {{ $ship->current_health }}/{{ $ship->maximum_health }}</li>
+                                <li>Attack: {{ $ship->attackStatistics($ship) }}</li>
                                 <ul>
                                     <li>Cannons: {{ $ship->cannons }}, bearing {{ $ship->cannon_caliber }} shot</li>
                                     <li>Gunports: {{ $ship->gunports }}</li>
@@ -31,17 +34,24 @@
                                     <li>Current sailors: {{ $ship->crew->count() }}</li>
                                     <li>Maximum sailors: {{ $ship->max_sailors }}</li>
                                 </ul>
-
-                                <h3>Trade characteristics: </h3>
+                                <li>Escape: {{ $ship->escapeStatistics($ship) }}</li>
                                 <ul>
-                                    <li>Total hold: {{ $ship->total_hold }} pound.</li>
+                                    <li>Maneuverability: {{ $ship->maneuverability }}</li>
+                                    <li>Maximum speed: {{ $ship->max_speed }} knots</li>
                                 </ul>
 
-                                <h3>Random characteristics</h3>
-                                <ul>
-                                    <li>Construction date: {{ $ship->constructed_at }}</li>
-                                    <li>Story: {{ $ship->story }}</li>
-                                </ul>
+                            </ul>
+
+                            <h3>Trade characteristics: </h3>
+                            <ul>
+                                <li>Total hold: {{ $ship->total_hold }} pound.</li>
+                            </ul>
+
+                            <h3>Random characteristics</h3>
+                            <ul>
+                                <li>Construction date: {{ $ship->constructed_at }}</li>
+                                <li>Story: {{ $ship->story }}</li>
+                            </ul>
                             </p>
 
                             <h3>Crew</h3>

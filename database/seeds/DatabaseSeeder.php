@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
 
         self::createAShip();
 
-        // only create admin user if it doesn't exist already
-        if (DB::Table('users')->where(['name' => 'herman']) == false)
+        /*
+        if (DB::Table('users')->where(['name' => 'herman']) == true)
         {
             DB::Table('users')->insert([
                 'name' => 'herman',
@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('secret'),
             ]);
         }
+        */
 
     }
     function createAShip()

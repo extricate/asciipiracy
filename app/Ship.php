@@ -104,8 +104,27 @@ class Ship extends Model
         echo str_repeat("---", ($beam/5) +1);
     }
 
-    public function fireCannons()
+    public function attackStatistics(Ship $ship)
     {
+        $current_health = $this->current_health;
+        $maximum_health = $this->maximum_health;
 
+        // Attacking
+        $cannons = $this->cannons;
+        $crew_count = $this->crew->count();
+
+        $attack = $cannons * $crew_count;
+
+        return $attack;
+    }
+
+    public function escapeStatistics(Ship $ship)
+    {
+        // Escaping
+        $max_speed = $this->max_speed;
+        $maneuverability = $this->maneuverability;
+        $escape = $max_speed * $maneuverability;
+
+        return $escape;
     }
 }
