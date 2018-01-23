@@ -14,11 +14,16 @@ class DatabaseSeeder extends Seeder
 
         self::createAShip();
 
-        DB::Table('users')->insert([
-            'name' => 'herman',
-            'email' => 'hsfnelissen@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
+        // only create admin user if it doesn't exist already
+        if (DB::Table('users')->where(['name' => 'herman']) == false)
+        {
+            DB::Table('users')->insert([
+                'name' => 'herman',
+                'email' => 'hsfnelissen@gmail.com',
+                'password' => bcrypt('secret'),
+            ]);
+        }
+
     }
     function createAShip()
     {

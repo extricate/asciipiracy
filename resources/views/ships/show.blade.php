@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="{{ $ship->path() }}">#{{ $ship->id }}</a>
-                        {{ $ship->name }}, owned by player {{ $ship->owner->name }}
+                        {{ $ship->name }}, captained by player {{ $ship->owner->name }}
                     </div>
 
                     <div class="panel-body">

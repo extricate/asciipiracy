@@ -14,10 +14,10 @@
                             <article>
                                 <h4>
                                     <a href="/ships/{{ $ship->id  }}">
-                                        {{ $ship->name }}
+                                        {{ $ship->name }}, captained by {{ $ship->owner->name }}
                                     </a>
                                     <div class="text-right">
-                                        {{ $ship->length }} footer
+                                        She's a {{ $ship->length }} footer with {{ $ship->crew->count() }} sailors
                                     </div>
                                 </h4>
                             </article>
