@@ -123,7 +123,8 @@ class Ship extends Model
         // Escaping
         $max_speed = $this->max_speed;
         $maneuverability = $this->maneuverability;
-        $escape = $max_speed * $maneuverability;
+        $propulsion = $this->propulsion;
+        $escape = $max_speed * $maneuverability * round(($propulsion / 10), 0);
 
         return $escape;
     }

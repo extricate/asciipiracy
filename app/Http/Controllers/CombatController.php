@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ship;
 use Illuminate\Http\Request;
 
 class CombatController extends Controller
@@ -10,15 +11,14 @@ class CombatController extends Controller
     {
         // to attack we line up a broadside
         // and then we shoot
-        // then we reload
         // and then another attack is available
     }
 
     public function escape()
     {
         // to escape we first move towards the wind
-        // then we race
-        // and then we end the combat scenario
+        // then the ships race based on their escape stat and certain random events
+        // if the escape is successful, the escape ends the combat scenario immediately (no win or lose) with endCombat()
     }
 
     public function surrender()
@@ -28,9 +28,10 @@ class CombatController extends Controller
 
     public function board()
     {
-        // to board we first approach
-        // then we grapple
-        // then we fight on deck
+        // to board we first approach for 1 turn
+        // then we grapple for 1 turn
+        // then we fight on deck for 2 turns,
+        // during which we get to choose to retreat and end the boarding and return to the combat (based on escape stat and random events)
         // then the winner gets to claim the other ship
     }
 
@@ -44,12 +45,12 @@ class CombatController extends Controller
     // End scenario's, these all end with endCombat().
     public function win()
     {
-        // to win the opponent must either: surrender, sink or escape
+        // to win the opponent must either: surrender or sink
     }
 
     public function lose()
     {
-        // to lose you must either: surrender, sink or escape
+        // to lose you must either: surrender or sink
     }
 
     public function capture()

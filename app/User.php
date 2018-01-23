@@ -11,7 +11,7 @@ class User extends Authenticatable
 
     public function path()
     {
-        return '/player/' . $this->id;
+        return '/users/' . $this->name;
     }
 
     /**
