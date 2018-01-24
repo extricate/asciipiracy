@@ -83,7 +83,7 @@ class ShipsController extends Controller
         $ship = Ship::findOrFail($id);
         $ship_id = $ship->id;
 
-        $crew = Person::findOrFail($ship_id);
+        $crew = Person::findOrFail($ship_id)->first();
 
         $ship->delete();
         $crew->delete();

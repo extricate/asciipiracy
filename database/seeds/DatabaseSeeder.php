@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         if (DB::Table('users')->where(['name' => 'Herman']) == true)
         {
             DB::Table('users')->insert([
-                'name' => 'a NPC',
+                'name' => 'NPC',
                 'email' => 'npc@asciipiracy.com',
                 'password' => bcrypt('secret'),
                 'gold' => '10000',

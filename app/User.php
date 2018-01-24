@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'goods', 'gold'
     ];
 
     /**
@@ -50,5 +50,48 @@ class User extends Authenticatable
     public function activeShip()
     {
         return $this->hasOne(Ship::class)->first();
+    }
+
+    /**
+     * Go explore
+     *
+     * @param  User $user
+     * @return \Response
+     */
+    public function goExplore(User $user)
+    {
+        // Get the user ID so that it can be used to update the database
+        $id = $user->id;
+        // Primary things that can change for users are created local
+        $goods = $user->goods;
+        $gold = $user->gold;
+
+        $explorationCost = 10;
+
+        if ($user->goods >= $explorationCost) {
+            // Update the users goods to deduct the price of the exploration
+            // Which will eventually be based on both the duration of the exploration and the size of the ship/crew
+            $user = User::findOrFail($id);
+            $user->goods = $goods - $explorationCost;
+            $user->save();
+
+            // Generate the event
+            $event = (object)array(
+                'id' => '1',
+                'title' => 'Treasure found!',
+                'body' => 'You sell the booty for some gold!',
+                'effect' => $gold + 100,
+            );
+            return view('explore.show', compact('event'));
+        }
+        else {
+            $event = (object)array(
+                'id' => '0',
+                'title' => 'Not enough goods!',
+                'body' => 'You cannot travel without goods, you will surely perish!',
+                'effect' => null
+            );
+            return view('explore.index', compact('event'));
+        }
     }
 }

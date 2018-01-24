@@ -16,25 +16,26 @@ class CreatePeopleTable extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('level')->default(1);
-            $table->integer('experience')->default(0);
+            $table->string('slug')->unique()->nullable();
+            $table->unsignedInteger('level')->default(1);
+            $table->unsignedInteger('experience')->default(0);
             $table->string('rank')->default('Sailor');
 
             // serves on
-            $table->integer('ships_id')->onDelete('cascade');
+            $table->unsignedInteger('ships_id')->onDelete('cascade');
 
             // attributes
-            $table->integer('strength')->default(15);
-            $table->integer('dexterity')->default(15);
-            $table->integer('intelligence')->default(15);
-            $table->integer('stamina')->default(15);
-            $table->integer('charisma')->default(15);
+            $table->unsignedInteger('strength')->default(15);
+            $table->unsignedInteger('dexterity')->default(15);
+            $table->unsignedInteger('intelligence')->default(15);
+            $table->unsignedInteger('stamina')->default(15);
+            $table->unsignedInteger('charisma')->default(15);
 
-            $table->integer('doubloons')->default(0);
-            $table->integer('renown')->default(0);
-            $table->integer('nationality')->default(0);
-            $table->integer('personality')->default(0);
-            $table->integer('health')->default(100);
+            $table->unsignedInteger('doubloons')->default(0)->nullable();
+            $table->unsignedInteger('renown')->default(0)->nullable();
+            $table->unsignedInteger('nationality')->default(0)->nullable();
+            $table->unsignedInteger('personality')->default(0)->nullable();
+            $table->unsignedInteger('health')->default(100)->nullable();
 
             $table->timestamps();
         });

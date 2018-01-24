@@ -16,38 +16,44 @@ class CreateShipsTable extends Migration
         Schema::create('ships', function (Blueprint $table) {
             $table->increments('id');
             // owned by
-            $table->integer('user_id')->default(1)->onDelete('cascade');
+            $table->unsignedInteger('user_id')->default(1);
+
+            /*$table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');*/
 
             $table->string('name');
+            $table->string('slug')->unique()->nullable();
 
-            $table->integer('current_health')->default(100);
-            $table->integer('maximum_health')->default(100);
+            $table->unsignedInteger('current_health')->default(100);
+            $table->unsignedInteger('maximum_health')->default(100);
 
-            $table->integer('cannons');
-            $table->integer('gunports');
+            $table->unsignedInteger('cannons');
+            $table->unsignedInteger('gunports');
 
             $table->string('class');
             $table->string('type');
 
             $table->enum('cannon_caliber', ['4 pounder', '6 pounder', '9 pounder', '12 pounder', '18 pounder', '24 pounder', '32 pounder', '42 pounder']);
 
-            $table->integer('total_hold');
+            $table->unsignedInteger('total_hold');
 
-            $table->integer('constructed_at');
+            $table->unsignedInteger('constructed_at');
             $table->longText('story')->nullable();
 
-            $table->integer('min_sailors');
-            $table->integer('max_sailors');
+            $table->unsignedInteger('min_sailors');
+            $table->unsignedInteger('max_sailors');
 
-            $table->integer('max_speed');
-            $table->integer('masts');
-            $table->integer('propulsion');
-            $table->integer('decks');
-            $table->integer('length');
-            $table->integer('draught');
-            $table->integer('beam');
+            $table->unsignedInteger('max_speed');
+            $table->unsignedInteger('masts');
+            $table->unsignedInteger('propulsion');
+            $table->unsignedInteger('decks');
+            $table->unsignedInteger('length');
+            $table->unsignedInteger('draught');
+            $table->unsignedInteger('beam');
 
-            $table->integer('maneuverability');
+            $table->unsignedInteger('maneuverability');
 
             $table->date('updated_at');
             $table->date('created_at');

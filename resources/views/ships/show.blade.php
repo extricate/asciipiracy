@@ -22,9 +22,11 @@
                                     Upgrade
                                 </a>
 
+                            <p>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['ship_destroy', $ship->id]]) }}
-                                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-group']) }}
                                 {{ Form::close() }}
+                            </p>
 
                             @elseif (Auth::check())
                                 <a href="{{ $ship->path() }}/upgrade" class="btn btn-danger">

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Ship;
 use App\Person;
 use App\User;
-use App\Eventslist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExplorationController extends Controller
 {
@@ -25,15 +25,66 @@ class ExplorationController extends Controller
         return view('explore.index', compact('event', 'user'));
     }
 
-    public function goExplore(User $user, Ship $ship)
+    /**
+     * Go explore
+     *
+     * @param  User $user
+     * @return \Response
+     */
+    public function goExplore()
     {
+        // Get the user ID so that it can be used to update the database
+
+        $user = Auth::user();
+
+        $id = $user->id;
+        // Primary things that can change for users are created local
+        $goods = $user->goods;
         $gold = $user->gold;
-        $event = (object)array(
-            'id' => '1',
-            'title' => 'Treasure found!',
-            'body' => 'You sell the booty for some gold!',
-            'effect' => $gold + 100,
+
+        $explorationCost = 10;
+
+        if ($user->goods >= $explorationCost) {
+            // Update the users goods to deduct the price of the exploration
+            // Which will eventually be based on both the duration of the exploration and the size of the ship/crew
+            $user = User::findOrFail($id);
+            $user->goods = $goods - $explorationCost;
+            $user->save();
+
+            // Generate the event
+            $event = (object)array(
+                'id' => '1',
+                'title' => 'Treasure found!',
+                'body' => 'You sell the booty for some gold!',
+                'effect_on' => 'gold',
+                'effect' => $gold + 100,
             );
-        return view('explore.index', compact('event', 'user', 'ship'));
+
+            if ($event->effect_on == 'gold') {
+                $user->gold = $event->effect;
+                $user->save();
+            }
+
+            elseif ($event->effect_on == 'goods') {
+                $user->goods = $event->effect;
+                $user->save();
+            }
+
+            else {
+
+            }
+
+
+
+            return view('explore.show', compact('event'));
+        } else {
+            $event = (object)array(
+                'id' => '0',
+                'title' => 'Not enough goods!',
+                'body' => 'You cannot travel without goods, you will surely perish!',
+                'effect' => null
+            );
+            return view('explore.index', compact('event'));
+        }
     }
 }

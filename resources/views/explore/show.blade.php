@@ -1,3 +1,7 @@
+@extends('explore.index')
+
 @section('exploration')
-    {{ $event }}
+    {{ $event->title }}
+    {{ $event->body }}
+    {{ $event->effect }}
 @endsection

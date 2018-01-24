@@ -41,7 +41,7 @@
                     @endif
                         @if ($user->myShips()->count() == 0)
                             You have no ships.
-                            {{ Form::open(['method' => 'GET', 'route' => ['ship_create', $user->user_id]]) }}
+                            {{ Form::open(['method' => 'PUT', 'route' => ['ship_create', $user->user_id]]) }}
                             {{ Form::submit('Create ship', ['class' => 'btn btn-danger']) }}
                             {{ Form::close() }}
                         @else

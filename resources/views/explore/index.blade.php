@@ -2,6 +2,11 @@
 
 @section('title', 'Upgrade ship')
 
+@php
+    $user = auth()->user();
+    $active = $user->activeShip();
+@endphp
+
 @section('content')
     <div class="container">
         <div class="row">
