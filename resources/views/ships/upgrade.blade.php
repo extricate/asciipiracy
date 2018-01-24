@@ -1,22 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Upgrade ship')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Upgrade your ships</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <h2>Here is a list of your ships:</h2>
+                    <div class="panel-body">
                         @php
                             $user = auth()->user()
                         @endphp
@@ -24,14 +17,14 @@
                             You have no ships.
                         @else
                             @foreach ($user->myShips() as $ship)
-                                <li>
+                                <option>
                                     <a href="{{ $ship->path() }}">{{ $ship->name }}</a>, a {{ $ship->length }} footer with {{ $ship->decks }} decks and {{ $ship->crew()->count() }} sailors.
-                                </li>
+                                </option>
                             @endforeach
                         @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

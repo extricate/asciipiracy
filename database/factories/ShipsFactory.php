@@ -45,7 +45,6 @@ $factory->define(App\Ship::class, function (Faker $faker) {
         'cannon_caliber' => $cannon_caliber,
         'total_hold' => $faker->numberBetween($min = 2000, $max = 20000),
         'constructed_at' => $faker->numberBetween($min = 1530, $max = 1640),
-        'story' => $faker->realText($maxNbChars = 100, $indexSize = 2),
         'min_sailors' => $minSailors,
         'max_sailors' => $maxSailors,
         'max_speed' => $maxSpeed,

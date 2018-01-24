@@ -11,7 +11,7 @@ class User extends Authenticatable
 
     public function path()
     {
-        return '/users/' . $this->name;
+        return '/users/' . $this->id;
     }
 
     /**
@@ -31,4 +31,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Fetch all ships owned by this user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function myShips()
+    {
+        return $this->hasMany(Ship::class)->getResults();
+    }
 }

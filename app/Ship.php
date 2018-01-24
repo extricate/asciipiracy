@@ -13,6 +13,13 @@ class Ship extends Model
         return '/ships/' . $this->id;
     }
 
+    public function shipOptions()
+    {
+        // Return all the options of what you can do with a ship
+        // Options for your own ships
+        // Options for other ships
+    }
+
     /**
      * A ship has an owner.
      *

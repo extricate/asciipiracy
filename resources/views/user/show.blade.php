@@ -11,14 +11,25 @@
                         <a href="{{ $user->path() }}">{{ $user->id }}</a>
                         {{ $user->name }}
                     </div>
+                    <div class="panel-body">
+                        Gold: {{ $user->gold }}
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                        Owner of the following ships:
                     </div>
                     <div class="panel-body">
                         <p class="text-center">
+                        <ul>
+                            @foreach ($user->myShips() as $ship)
+                            <li>
+                                <a href="{{ $ship->path() }}">{{ $ship->name }}</a>, a {{ $ship->length }} footer with {{ $ship->decks }} decks and {{ $ship->crew()->count() }} sailors.
+                            </li>
+                            @endforeach
+                        </ul>
                         </p>
                     </div>
                 </div>

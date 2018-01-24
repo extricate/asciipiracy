@@ -34,7 +34,7 @@ class CreateShipsTable extends Migration
             $table->integer('total_hold');
 
             $table->integer('constructed_at');
-            $table->longText('story');
+            $table->longText('story')->nullable();
 
             $table->integer('min_sailors');
             $table->integer('max_sailors');

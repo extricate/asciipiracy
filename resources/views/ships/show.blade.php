@@ -9,11 +9,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="{{ $ship->path() }}">#{{ $ship->id }}</a>
-                        {{ $ship->name }}, captained by player {{ $ship->owner->name }}
+                        {{ $ship->name }}, owned by player {{ $ship->owner->name }}
                     </div>
 
                     <div class="panel-body">
                         <div class="body">
+                            <a href="{{ $ship->path() }}/upgrade">
+                                <button class="btn btn-primary">Upgrade</button>
+                            </a>
+                            <button class="btn btn-primary">Sail</button>
                             <h2>Ship attributes</h2>
                             <p>
                                 The ship has <b>{{ $ship->decks }}</b> deck(s) and <b>{{ $ship->masts }}</b> mast(s),
@@ -57,7 +61,7 @@
                             <h3>Crew</h3>
                             <p>
                                 @foreach ($ship->crew as $crewmember)
-                                    <a href="{{ $crewmember->path() }}">{{ $crewmember->name }}</a>
+                                    <a href="{{ $crewmember->path() }}" class="label label-primary">{{ $crewmember->rank }} {{ $crewmember->name }}</a>
                                 @endforeach
                             </p>
 
