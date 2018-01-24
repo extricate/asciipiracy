@@ -14,11 +14,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    <p>Welcome back capt'n <b>{{ $user->name }}</b>. You're currently on the
-                        <a href="{{ $active->path() }}"><b>{{ $active->name }}</b></a>, and its {{ $active->crew->count() }} sailors are ready for your command.</p>
-                    <p class="text-center">
-                        {{ $active->draw($active) }}
-                    </p>
+                    @if ($active != null)
+                        <p>Welcome back capt'n <b>{{ $user->name }}</b>.
+                        You're currently on the
+                        <a href="{{ $active->path() }}"><b>{{ $active->name }}</b></a>, and its {{ $active->crew->count() }} sailors are ready for your command.
+                        </p>
+                        <p class="text-center">
+                            {{ $active->draw($active) }}
+                        </p>
+                    @else
+                        <p>Welcome back capt'n <b>{{ $user->name }}</b>. You currently have no active ship.
+                    @endif
 
                 </div>
             </div>
@@ -35,6 +41,9 @@
                     @endif
                         @if ($user->myShips()->count() == 0)
                             You have no ships.
+                            {{ Form::open(['method' => 'GET', 'route' => ['ship_create', $user->user_id]]) }}
+                            {{ Form::submit('Create ship', ['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
                         @else
                             @foreach ($user->myShips() as $ship)
                                 <li>

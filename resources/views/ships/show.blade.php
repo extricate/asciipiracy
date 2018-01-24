@@ -15,15 +15,20 @@
                     <div class="panel-body">
                         <div class="body">
                             @if ($ship->owner->id == Auth::user()->id)
-                                <a href="">
-                                    <button class="btn btn-primary">Sail</button>
+                                <a href="" class="btn btn-primary">
+                                    Sail
                                 </a>
-                                <a href="{{ $ship->path() }}/upgrade">
-                                    <button class="btn btn-primary">Upgrade</button>
+                                <a href="{{ $ship->path() }}/upgrade" class="btn btn-primary">
+                                    Upgrade
                                 </a>
+
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['ship_destroy', $ship->id]]) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                                {{ Form::close() }}
+
                             @elseif (Auth::check())
-                                <a href="{{ $ship->path() }}/upgrade">
-                                    <button class="btn btn-danger">Attack</button>
+                                <a href="{{ $ship->path() }}/upgrade" class="btn btn-danger">
+                                    Attack
                                 </a>
                             @endif
                             <h2>Ship attributes</h2>

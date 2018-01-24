@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('gold')->default(0);
+            $table->integer('goods')->default(100);
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('active_ship')->nullable();

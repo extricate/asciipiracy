@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ship;
+use App\Person;
 use Illuminate\Http\Request;
 
 class ShipsController extends Controller
@@ -19,13 +20,20 @@ class ShipsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Create a new ship
      *
+     * @param  int $user_id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user_id)
     {
-        return view('ships.create');
+        $ship = factory('App\Ship')->create([
+            'user_id' => $user_id
+        ]);
+        $generateSailorAmount = $ship->min_sailors;
+
+        factory('App\Person', $generateSailorAmount)->create(['ships_id' => $ship->id]);
+        return view('ships.index');
     }
 
      /**
@@ -59,17 +67,27 @@ class ShipsController extends Controller
      */
     public function update(Request $request, Ship $ship)
     {
-        //
+        $rules = array(
+            'gold' => 'numeric'
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Ship  $ship
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ship $ship)
+    public function destroy($id)
     {
-        //
+        $ship = Ship::findOrFail($id);
+        $ship_id = $ship->id;
+
+        $crew = Person::findOrFail($ship_id);
+
+        $ship->delete();
+        $crew->delete();
+
+        return redirect('home');
     }
 }

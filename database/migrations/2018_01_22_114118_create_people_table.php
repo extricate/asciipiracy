@@ -21,7 +21,7 @@ class CreatePeopleTable extends Migration
             $table->string('rank')->default('Sailor');
 
             // serves on
-            $table->integer('ships_id');
+            $table->integer('ships_id')->onDelete('cascade');
 
             // attributes
             $table->integer('strength')->default(15);

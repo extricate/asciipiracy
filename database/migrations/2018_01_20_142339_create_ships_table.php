@@ -16,7 +16,7 @@ class CreateShipsTable extends Migration
         Schema::create('ships', function (Blueprint $table) {
             $table->increments('id');
             // owned by
-            $table->integer('user_id')->default(1);
+            $table->integer('user_id')->default(1)->onDelete('cascade');
 
             $table->string('name');
 

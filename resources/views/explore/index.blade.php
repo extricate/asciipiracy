@@ -15,8 +15,6 @@
                             {{ $event->title }}
                             {{ $event->body }}
                             {{ $event->effect }}
-
-                            New gold: {{ Auth::user()->gold + $event->effect }}
                         </p>
                     </div>
                 </div>
