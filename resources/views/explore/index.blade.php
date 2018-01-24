@@ -13,14 +13,18 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Exploration
+                        Exploration <i class="fa fa-address-book"></i>
                     </div>
-                    <div class="panel-body">
-                        <p>
-                            {{ $event->title }}
-                            {{ $event->body }}
-                            {{ $event->effect }}
-                        </p>
+                    <div class="panel-body text-center">
+                        <h1>{{ $event->title }}</h1>
+                        <p>{{ $event->body }}</p>
+                        @if ($event->effect_on == 'gold')
+                            <span class="label label-success">{{ $event->effect_changed }}</span>
+                        @elseif ($event->effect_on == 'goods')
+                            <span class="label label-success">{{ $event->effect_changed }}</span>
+                        @else
+                        @endif
+
                     </div>
                 </div>
             </div>

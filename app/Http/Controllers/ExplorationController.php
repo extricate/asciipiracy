@@ -52,11 +52,14 @@ class ExplorationController extends Controller
             $user->save();
 
             // Generate the event
+            // Currently there is only one event
             $event = (object)array(
                 'id' => '1',
                 'title' => 'Treasure found!',
+                'frequency' => 1,
                 'body' => 'You sell the booty for some gold!',
                 'effect_on' => 'gold',
+                'effect_changed' => '+ 100 gold',
                 'effect' => $gold + 100,
             );
 
