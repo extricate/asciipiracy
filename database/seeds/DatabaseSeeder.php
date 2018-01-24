@@ -14,13 +14,13 @@ class DatabaseSeeder extends Seeder
 
         self::createAShip();
 
-
         if (DB::Table('users')->where(['name' => 'Herman']) == true)
         {
             DB::Table('users')->insert([
                 'name' => 'a NPC',
                 'email' => 'npc@asciipiracy.com',
                 'password' => bcrypt('secret'),
+                'gold' => '10000',
             ]);
 
             DB::Table('users')->insert([
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
 
     }
-    
+
     function createAShip()
     {
         $ship = factory('App\Ship')->create();

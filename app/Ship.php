@@ -18,6 +18,7 @@ class Ship extends Model
         // Return all the options of what you can do with a ship
         // Options for your own ships
         // Options for other ships
+        // Currently implemented in blade
     }
 
     /**

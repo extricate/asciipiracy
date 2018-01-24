@@ -29,4 +29,6 @@ Route::get('/ships/{ship}/upgrade', 'ShipsUpgradeController@show')->middleware('
 Route::get('/people', 'PeopleController@index')->name('people');
 Route::get('/people/{person}', 'PeopleController@show');
 
+Route::get('/explore', 'ExplorationController@index')->name('explore');
+Route::get('/explore/now', 'ExplorationController@goExplore')->name('explore_now');
 

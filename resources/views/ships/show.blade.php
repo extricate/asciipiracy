@@ -14,16 +14,23 @@
 
                     <div class="panel-body">
                         <div class="body">
-                            <a href="{{ $ship->path() }}/upgrade">
-                                <button class="btn btn-primary">Upgrade</button>
-                            </a>
-                            <button class="btn btn-primary">Sail</button>
+                            @if ($ship->owner->id == Auth::user()->id)
+                                <a href="">
+                                    <button class="btn btn-primary">Sail</button>
+                                </a>
+                                <a href="{{ $ship->path() }}/upgrade">
+                                    <button class="btn btn-primary">Upgrade</button>
+                                </a>
+                            @elseif (Auth::check())
+                                <a href="{{ $ship->path() }}/upgrade">
+                                    <button class="btn btn-danger">Attack</button>
+                                </a>
+                            @endif
                             <h2>Ship attributes</h2>
                             <p>
                                 The ship has <b>{{ $ship->decks }}</b> deck(s) and <b>{{ $ship->masts }}</b> mast(s),
                                 bearing a total amount of <b>{{ $ship->propulsion }} m²</b> of sails. The ships' length
-                                is <b>{{ $ship->length }} feet</b>, bearing a draught of <b>{{ $ship->draught }}
-                                    feet</b> and a beam of <b>{{ $ship->beam }} feet</b>.
+                                is <b>{{ $ship->length }} feet</b>, bearing a draught of <b>{{ $ship->draught }} feet</b> and a beam of <b>{{ $ship->beam }} feet</b>.
                             </p>
 
                             <h3>Combat characteristics: </h3>

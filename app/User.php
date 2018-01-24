@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ship::class)->getResults();
     }
+
+    /**
+     * Fetch the currently active ship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+     */
+    public function activeShip()
+    {
+        return $this->hasOne(Ship::class)->first();
+    }
 }
