@@ -77,14 +77,15 @@ class ExplorationController extends Controller
 
             }
 
-
-
             return view('explore.show', compact('event'));
         } else {
             $event = (object)array(
                 'id' => '0',
                 'title' => 'Not enough goods!',
+                'frequency' => 1,
                 'body' => 'You cannot travel without goods, you will surely perish!',
+                'effect_on' => '',
+                'effect_changed' => '',
                 'effect' => null
             );
             return view('explore.index', compact('event'));

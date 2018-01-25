@@ -16,14 +16,7 @@
                         <i class="fa fa-map-o"></i> Exploration
                     </div>
                     <div class="panel-body text-center">
-                        <h1>{{ $event->title }}</h1>
-                        <p>{{ $event->body }}</p>
-                        @if ($event->effect_on == 'gold')
-                            <span class="label label-success">{{ $event->effect_changed }}</span>
-                        @elseif ($event->effect_on == 'goods')
-                            <span class="label label-success">{{ $event->effect_changed }}</span>
-                        @else
-                        @endif
+                            @yield('exploration')
 
                     </div>
                 </div>
