@@ -11,51 +11,72 @@ class EventsSeeder extends Seeder
      */
     public function run()
     {
-
         DB::Table('events')->insert([
-            'id' => '0',
-            'title' => 'Not enough goods!',
-            'frequency' => 1,
-            'body' => 'You cannot travel without goods, you will surely perish!',
-            'effect_on' => '',
-            'effect_changed' => '',
-            'effect' => '',
+            'title' => 'No active ship!',
+            'frequency' => 0,
+            'body' => 'You don\'t have an active ship, dummy; what are you gonna do? Walk?',
+            'type' => 'system',
+            'affects' => 'system',
+            'effect_on' => 'nothing',
+            'effect_changed' => 'nothing',
+            'effect' => 'nothing',
         ]);
 
         DB::Table('events')->insert([
-            'id' => '2',
+            'title' => 'Not enough goods!',
+            'frequency' => 0,
+            'body' => 'You cannot travel without goods, you will surely perish!',
+            'type' => 'system',
+            'affects' => 'system',
+            'effect_on' => 'nothing',
+            'effect_changed' => 'nothing',
+            'effect' => 'nothing',
+        ]);
+
+        DB::Table('events')->insert([
+            'title' => 'Huge treasure found',
+            'frequency' => 1,
+            'body' => 'My that\'s a lot of gold...',
+            'type' => '+',
+            'affects' => 'user',
+            'effect_on' => 'gold',
+            'effect_changed' => '+ 1000 gold',
+            'effect' => '1000',
+        ]);
+
+        DB::Table('events')->insert([
             'title' => 'Treasure found!',
             'frequency' => 1,
             'body' => 'You sell the booty for some gold!',
+            'type' => '+',
+            'affects' => 'user',
             'effect_on' => 'gold',
             'effect_changed' => '+ 100 gold',
-            'effect' => '+100',
+            'effect' => '100',
         ]);
 
         DB::Table('events')->insert([
-            'id' => '3',
             'title' => 'Ship hit a reef',
             'frequency' => 1,
             'body' => 'Darn it, bloody navigator!',
-            'effect_on' => 'ship_hp',
+            'type' => '-',
+            'affects' => 'ship',
+            'effect_on' => 'current_health',
             'effect_changed' => '- 50 ship hp',
-            'effect' => '-50',
+            'effect' => '50',
         ]);
 
         DB::Table('events')->insert([
-            'id' => '4',
             'title' => 'Really good deal on goods!',
             'frequency' => 1,
             'body' => 'Let\'s explore some more!',
+            'type' => '+',
+            'affects' => 'user',
             'effect_on' => 'goods',
             'effect_changed' => '+ 110 goods',
-            'effect' => '+110',
+            'effect' => '110',
         ]);
 
-        DB::Table('events')->insert([
-            'name' => 'Herman',
-            'email' => 'hsfnelissen@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
+        $this->command->info('Events created');
     }
 }

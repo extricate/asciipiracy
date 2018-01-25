@@ -15,13 +15,14 @@ class Events extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
-            $table->string('frequency')->default(1);
-            $table->string('body')->nullable();
-            $table->string('type')->nullable();
-            $table->string('effect_on')->nullable();
-            $table->string('effect_changed')->nullable();
-            $table->string('effect')->nullable();
+            $table->string('title');
+            $table->unsignedInteger('frequency')->default(1);
+            $table->string('body');
+            $table->string('type');
+            $table->string('affects');
+            $table->string('effect_on');
+            $table->string('effect_changed');
+            $table->string('effect');
             $table->timestamps();
         });
     }

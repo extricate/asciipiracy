@@ -14,13 +14,18 @@ class DatabaseSeeder extends Seeder
 
         self::createAShip();
 
+        $this->call([
+            EventsSeeder::class,
+        ]);
+
         if (DB::Table('users')->where(['name' => 'Herman']) == true)
         {
             DB::Table('users')->insert([
                 'name' => 'NPC',
                 'email' => 'npc@asciipiracy.com',
                 'password' => bcrypt('secret'),
-                'gold' => '10000',
+                'gold' => '100000',
+                'goods' => '100000',
             ]);
 
             DB::Table('users')->insert([
@@ -29,8 +34,6 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('secret'),
             ]);
         }
-
-
     }
 
     function createAShip()
