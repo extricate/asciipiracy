@@ -31,6 +31,25 @@ class ShipsController extends Controller
     {
         // get the calling user's ID to associate the ship
         $user = Auth::user();
+        $ship = factory(App\Ship::class)->create([
+            'user_id' => $user->id
+        ]);
+        $generateSailorAmount = $ship->min_sailors;
+        // populate the ship with crew
+        factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
+
+        return redirect('home');
+    }
+
+    /**
+     * Create a new ship
+     *
+     * @return \Response
+     */
+    public function createBeginner()
+    {
+        // get the calling user's ID to associate the ship
+        $user = Auth::user();
 
         if ($user->myShips()->count() == 0) {
             $ship = factory(App\Ship::class)->create([
@@ -41,18 +60,15 @@ class ShipsController extends Controller
             factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
 
             return redirect('home');
-        }
-        else {
+        } else {
             return redirect('home');
         }
-
-
     }
 
-     /**
+    /**
      * Display the specified resource.
      *
-     * @param  \App\Ship  $ship
+     * @param  \App\Ship $ship
      * @return \Illuminate\Http\Response
      */
     public function show(Ship $ship)
@@ -63,7 +79,7 @@ class ShipsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Ship  $ship
+     * @param  \App\Ship $ship
      * @return \Illuminate\Http\Response
      */
     public function edit(Ship $ship)
@@ -74,8 +90,8 @@ class ShipsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ship  $ship
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Ship $ship
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Ship $ship)
