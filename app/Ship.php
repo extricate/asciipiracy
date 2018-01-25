@@ -41,6 +41,11 @@ class Ship extends Model
         return $this->hasMany(Person::class, 'ships_id');
     }
 
+    public function makeActiveShip()
+    {
+
+    }
+
     public function draw(Ship $ship)
     {
         $decks = $ship->decks;

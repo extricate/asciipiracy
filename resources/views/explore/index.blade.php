@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Exploration <i class="fa fa-address-book"></i>
+                        <i class="fa fa-map-o"></i> Exploration
                     </div>
                     <div class="panel-body text-center">
                         <h1>{{ $event->title }}</h1>
