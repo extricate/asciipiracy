@@ -31,14 +31,29 @@ class ShipsController extends Controller
     {
         // get the calling user's ID to associate the ship
         $user = Auth::user();
-        $ship = factory(App\Ship::class)->create([
-            'user_id' => $user->id
-        ]);
-        $generateSailorAmount = $ship->min_sailors;
-        // populate the ship with crew
-        factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
 
-        return redirect('home');
+        // get user gold and reduce by the correct amount; if the user has enough, continue the script
+        $shipPrice = 1000;
+        $gold = $user->gold;
+        if ($user->gold >= $shipPrice) {
+            $user->gold = $gold - $shipPrice;
+            $user->save();
+
+            // gold has been deducted, create the ship
+
+            $ship = factory(App\Ship::class)->create([
+                'user_id' => $user->id
+            ]);
+            $generateSailorAmount = $ship->min_sailors;
+            // populate the ship with crew
+            factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
+
+            return redirect('home');
+        }
+
+        else {
+            return redirect('home');
+        }
     }
 
     /**
@@ -53,7 +68,20 @@ class ShipsController extends Controller
 
         if ($user->myShips()->count() == 0) {
             $ship = factory(App\Ship::class)->create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'length' => 40,
+                'masts' => 2,
+                'min_sailors' => 10,
+                'max_sailors' => 20,
+                'decks' => 1,
+                'beam' => 20,
+                'draught' => 7,
+                'cannons' => 10,
+                'cannon_caliber' => 1,
+                'gunports' => 10,
+                'total_hold' => 2000,
+                'maneuverability' => 5,
+                'max_speed' => 12,
             ]);
             $generateSailorAmount = $ship->min_sailors;
             // populate the ship with crew

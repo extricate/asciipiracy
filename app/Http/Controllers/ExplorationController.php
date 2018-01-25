@@ -65,16 +65,12 @@ class ExplorationController extends Controller
                 $user->gold = $event->effect;
                 $user->save();
             }
-
             elseif ($event->effect_on == 'goods') {
                 $user->goods = $event->effect;
                 $user->save();
             }
-
             else {
-
             }
-
             return view('explore.show', compact('event'));
         } else {
             $event = (object)array(

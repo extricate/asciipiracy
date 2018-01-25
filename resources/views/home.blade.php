@@ -48,9 +48,12 @@
                             </div>
 
                         @else
-                            <div class="text-center">
+                            <p class="text-center">
                                 <a href="{{ route('ship_create') }}" class="btn btn-primary">Buy a new ship</a>
-                            </div>
+                            </p>
+                            <p>
+                                The ships are generated randomly and cost 1000 gold.
+                            </p>
                             <p>
                             @foreach ($user->myShips() as $ship)
                                 <li>
@@ -62,8 +65,8 @@
                                     <a href="" class="label label-info">Make active</a>
                                 </li>
                                 @endforeach
-                                </p>
-                                @endif
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>
