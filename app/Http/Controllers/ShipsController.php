@@ -126,9 +126,7 @@ class ShipsController extends Controller
      */
     public function update(Request $request, Ship $ship)
     {
-        $rules = array(
-            'gold' => 'numeric'
-        );
+        //
     }
 
     /**
@@ -140,13 +138,17 @@ class ShipsController extends Controller
     public function destroy($id)
     {
         $ship = Ship::findOrFail($id);
-        $ship_id = $ship->id;
 
-        $crew = Person::findOrFail($ship_id)->first();
-
+        // delete the ship
         $ship->delete();
-        $crew->delete();
 
         return redirect('home');
+    }
+
+    public function setActiveShip($id)
+    {
+        $user = Auth::user();
+        $user->active_ship = $id;
+        $user->save();
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -49,49 +51,25 @@ class User extends Authenticatable
      */
     public function activeShip()
     {
-        return $this->hasOne(Ship::class)->first();
+        $user = Auth::user();
+        return $this->hasOne('App\Ship')->find($user->active_ship);
     }
 
-    /**
-     * Go explore
-     *
-     * @param  User $user
-     * @return \Response
-     */
-    public function goExplore(User $user)
+    public function getActiveShip()
     {
-        // Get the user ID so that it can be used to update the database
-        $id = $user->id;
-        // Primary things that can change for users are created local
-        $goods = $user->goods;
-        $gold = $user->gold;
+        $user = Auth::user();
 
-        $explorationCost = 10;
+        $activeShipID = $user->active_ship;
 
-        if ($user->goods >= $explorationCost) {
-            // Update the users goods to deduct the price of the exploration
-            // Which will eventually be based on both the duration of the exploration and the size of the ship/crew
-            $user = User::findOrFail($id);
-            $user->goods = $goods - $explorationCost;
-            $user->save();
-
-            // Generate the event
-            $event = (object)array(
-                'id' => '1',
-                'title' => 'Treasure found!',
-                'body' => 'You sell the booty for some gold!',
-                'effect' => $gold + 100,
-            );
-            return view('explore.show', compact('event'));
+        if ($activeShipID >= 0) {
+            $activeShip = App\Ship::findOrFail($activeShipID);
         }
         else {
-            $event = (object)array(
-                'id' => '0',
-                'title' => 'Not enough goods!',
-                'body' => 'You cannot travel without goods, you will surely perish!',
-                'effect' => null
-            );
-            return view('explore.index', compact('event'));
+            return null;
         }
+
+
+        return $activeShip;
+
     }
 }

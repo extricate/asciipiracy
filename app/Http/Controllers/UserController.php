@@ -20,30 +20,6 @@ class UserController extends Controller
         return view('user.index', compact('user'));
     }
 
-    public function getActiveShip()
-    {
-        $user = Auth::user();
-
-        $activeShipID = $user->active_ship;
-
-        if ($activeShipID >= 0) {
-            $activeShip = App\Ship::findOrFail($activeShipID);
-        }
-        else {
-            return null;
-        }
-
-
-        return $activeShip;
-
-    }
-    public function makeActiveShip($ship)
-    {
-        $user = Auth::user();
-        $user->active_ship = $ship->id;
-        $user->save();
-    }
-
     /**
      * Display the specified resource.
      *

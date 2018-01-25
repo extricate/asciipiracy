@@ -38,7 +38,6 @@ class ExplorationController extends Controller
         // Primary things that can change for users are created local
         $goods = $user->goods;
         $gold = $user->gold;
-
         $explorationCost = 10;
 
         if ($user->goods >= $explorationCost) {

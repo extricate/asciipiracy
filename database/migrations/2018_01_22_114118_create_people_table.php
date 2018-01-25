@@ -23,6 +23,7 @@ class CreatePeopleTable extends Migration
 
             // serves on
             $table->unsignedInteger('ships_id')->onDelete('cascade');
+            $table->foreign('ships_id')->references('id')->on('ships')->onDelete('cascade');
 
             // attributes
             $table->unsignedInteger('strength')->default(15);
