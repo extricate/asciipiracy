@@ -31,14 +31,22 @@ class ShipsController extends Controller
     {
         // get the calling user's ID to associate the ship
         $user = Auth::user();
-        $ship = factory(App\Ship::class)->create([
-            'user_id' => $user->id
-        ]);
-        $generateSailorAmount = $ship->min_sailors;
-        // populate the ship with crew
-        factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
 
-        return redirect('home');
+        if ($user->myShips()->count() == 0) {
+            $ship = factory(App\Ship::class)->create([
+                'user_id' => $user->id
+            ]);
+            $generateSailorAmount = $ship->min_sailors;
+            // populate the ship with crew
+            factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
+
+            return redirect('home');
+        }
+        else {
+            return redirect('home');
+        }
+
+
     }
 
      /**
