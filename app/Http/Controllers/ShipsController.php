@@ -85,7 +85,9 @@ class ShipsController extends Controller
             ]);
             $generateSailorAmount = $ship->min_sailors;
             // populate the ship with crew
-            factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
+            factory(App\Person::class, $generateSailorAmount)->create([
+                'ships_id' => $ship->id
+            ]);
 
             return redirect('home');
         } else {

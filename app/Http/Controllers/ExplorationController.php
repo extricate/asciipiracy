@@ -35,7 +35,6 @@ class ExplorationController extends Controller
     {
         // Get the user ID so that it can be used to update the database
         $user = Auth::user();
-        $id = $user->id;
         // Primary things that can change for users are created local
         $goods = $user->goods;
         $gold = $user->gold;
@@ -45,7 +44,6 @@ class ExplorationController extends Controller
         if ($user->goods >= $explorationCost) {
             // Update the users goods to deduct the price of the exploration
             // Which will eventually be based on both the duration of the exploration and the size of the ship/crew
-            $user = User::findOrFail($id);
             $user->goods = $goods - $explorationCost;
             $user->save();
 
