@@ -49,7 +49,22 @@ class Ship extends Model
         $beam = $ship->beam;
         $cannons = $ship->cannons;
 
-        echo "<p class=\"text-center small\" style=\"font-size: 9px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        if ($length >= 100) {
+            echo "<p class=\"text-center small\" style=\"font-size: 8px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        }
+
+        elseif ($length >= 200) {
+            echo "<p class=\"text-center small\" style=\"font-size: 7px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        }
+
+        elseif ($length >= 300) {
+            echo "<p class=\"text-center small\" style=\"font-size: 6px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        }
+
+        else {
+            echo "<p class=\"text-center small\" style=\"font-size: 10px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        }
+
         // draw the bow of the ship
         $row = 0;
         for ($i = 0; $i < $beam / 5; $i++) {
@@ -66,6 +81,8 @@ class Ship extends Model
 
                     if ($row >= 4 && $masts >= 4) {
                         // add the foremast at the end of the bow if there's 4 masts
+                        echo
+                            str_repeat("~~~~~~~~", $beam / 8) . "<br>";
                         echo str_repeat("======", $beam / 10) . "[*]" . str_repeat("======", $beam / 10) . "<br>";
                         $masts--;
                     }
