@@ -107,9 +107,7 @@
                         This is what the ship looks like
                     </div>
                     <div class="panel-body">
-                        <p class="text-center small" style="font-family: 'Courier New', Courier, monospace">
-                            {{ $ship->draw($ship) }}
-                        </p>
+                        {{ $ship->draw($ship) }}
                     </div>
                 </div>
             </div>

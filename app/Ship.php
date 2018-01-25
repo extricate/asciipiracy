@@ -49,11 +49,15 @@ class Ship extends Model
         $beam = $ship->beam;
         $cannons = $ship->cannons;
 
+        echo "<p class=\"text-center small\" style=\"font-size: 9px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
         // draw the bow of the ship
         $row = 0;
         for ($i = 0; $i < $beam / 5; $i++) {
             if ($row == 0) {
                 echo "||<br>";
+                echo "||<br>";
+                echo "_||_<br>";
+                echo "||-||<br>";
                 $row++;
             } else {
                 if ($row >= 1) {
@@ -61,13 +65,16 @@ class Ship extends Model
                     $row++;
 
                     if ($row >= 4 && $masts >= 4) {
-                        // add the foremast on the last row if there are 4 or more masts
+                        // add the foremast at the end of the bow if there's 4 masts
                         echo str_repeat("======", $beam / 10) . "[*]" . str_repeat("======", $beam / 10) . "<br>";
                         $masts--;
                     }
                 }
             }
         }
+        // draw the end of the bow seperator
+        echo "| ||" . str_repeat("___", ($beam / 5) + 1) . "|| |<br>";
+        echo "| ||" . str_repeat("---", ($beam / 5) + 1) . "|| |<br>";
 
         // draw the midship
         for ($i = 0; $i < $decks; $i++) {
@@ -86,20 +93,38 @@ class Ship extends Model
                     if ($b == 0 && $masts >= 2) {
                         // add some masts
                         echo
-                            str_repeat("=========", $beam / 10) . "[*]" . str_repeat("=========", $beam / 10) . "<br>";
+                            str_repeat("~~~~~~~~", $beam / 5) . "<br>";
+                        echo
+                            str_repeat("=========", $beam / 10) . "[0]" . str_repeat("=========", $beam / 10) . "<br>";
                         $masts--;
                     }
                 }
 
                 // Echo the rowboat if the ship is large enough
                 if ($ship->length >= 120) {
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10) + 1) . '_' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10) + 1) . "|| |<br>";
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10) + 1) . '/_\\' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10) + 1) . "|| |<br>";
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '\'---\'' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '|___|' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '|---|' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '|___|' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
-                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '\'---\'' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                    echo "=| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;&nbsp;/_\\&nbsp;&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |=<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;\'---\'&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                    echo "=| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;|___|&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |=<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;|---|&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                    echo "=| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;|___|&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |=<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;\'---\'&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                }
+
+                // draw the single mast halfway the ship if the ship only has one mast
+                if ($ship->masts == 1) {
+                    echo
+                        str_repeat("~~~~~~~~", $beam / 5) . "<br>";
+                    echo
+                        str_repeat("=========", $beam / 10) . "[0]" . str_repeat("=========", $beam / 10) . "<br>";
+
+                    // and let's add a single hatch
+                    // let's also add a hatch
+                    echo
+                        "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 5) + 1) . "|| |<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;_____&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '|&nbsp;\'\'&nbsp;|' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                    echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;-----&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
                 }
 
                 // halfway the ship now, let's add the rest
@@ -115,33 +140,53 @@ class Ship extends Model
                                 ($beam / 5) + 1) . "|| |<span class='fa fa-1x'>=</span><br>";
 
                         if ($b == 0 && $masts >= 2) {
-                            // add some masts
+                            // add a mast if there's still 2 or more left
                             echo
-                                str_repeat("=========", $beam / 10) . "[*]" . str_repeat("=========", $beam / 10) . "<br>";
+                                str_repeat("~~~~~~~~", $beam / 4) . "<br>";
+                            echo
+                                str_repeat("=========", $beam / 8) . "[0]" . str_repeat("=========", $beam / 8) . "<br>";
+
                             $masts--;
+
+                            // let's also add a hatch
+                            echo
+                                "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 5) + 1) . "|| |<br>";
+                            echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;_____&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                            echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '|&nbsp;\'\'&nbsp;|' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
+                            echo "| ||" . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . '&nbsp;-----&nbsp;' . str_repeat("&nbsp;&nbsp;&nbsp;", ($beam / 10)) . "|| |<br>";
                         }
                     }
                     $i++;
 
                 }
             }
+            // draw the officers deck seperator
+            echo "| ||" . str_repeat("___", ($beam / 5) + 1) . "|| |<br>";
+            echo "| ||" . str_repeat("---", ($beam / 5) + 1) . "|| |<br>";
 
-            // draw the officers deck
-            for ($i = 0; $i < $decks; $i++) {
-                echo "\n";
-                echo "||" . str_repeat("===", ($beam / 5)) . "||<br>";
-                for ($i = 0; $i < $length / 20; $i++) {
-                    echo "||" . str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", ($beam / 4) + 1) . "||<br>";
-                    $i++;
+            // draw the officers deck if the ship is large enough for an officers deck
+            if ($ship->length >= 120) {
+                for ($i = 0; $i < $decks; $i++) {
+                    echo "\n";
+                    echo "||" . str_repeat("===", ($beam / 5)) . "||<br>";
+                    for ($i = 0; $i < $length / 20; $i++) {
+                        echo "||" . str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", ($beam / 4) + 1) . "||<br>";
+                        $i++;
 
-                    if ($i >= 0 && $masts >= 1) {
-                        echo str_repeat("========", $beam / 10) . "[*]" . str_repeat("========", $beam / 10) . "<br>";
-                        $masts--;
+                        if ($i >= 0 && $masts >= 1) {
+                            // draw the last mast if there's still one or more left
+                            echo
+                                str_repeat("~~~~~~~~", ($beam / 5)+1) . "<br>";
+                            echo str_repeat("========", $beam / 8) . "[0]" . str_repeat("========",
+                                    $beam / 8) . "<br>";
+                            $masts--;
+                        }
                     }
                 }
             }
-            echo "||" . str_repeat("===", ($beam / 6) + 1) . "o" . str_repeat("===", ($beam / 6) + 1) . "||";
+            echo "||" . str_repeat("===", ($beam / 8) + 1) . "o" . str_repeat("===", ($beam / 8) + 1) . "||";
         }
+        echo "</p>";
     }
 
     public function attackStatistics(Ship $ship)
