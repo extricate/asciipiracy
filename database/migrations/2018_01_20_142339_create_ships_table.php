@@ -17,11 +17,7 @@ class CreateShipsTable extends Migration
             $table->increments('id');
             // owned by
             $table->unsignedInteger('user_id')->default(1);
-
-            /*$table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');*/
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('name');
             $table->string('slug')->unique()->nullable();

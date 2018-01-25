@@ -137,6 +137,7 @@ class ShipsController extends Controller
      */
     public function destroy($id)
     {
+        // find the correct ship
         $ship = Ship::findOrFail($id);
 
         // delete the ship
@@ -145,10 +146,17 @@ class ShipsController extends Controller
         return redirect('home');
     }
 
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function setActiveShip($id)
     {
         $user = Auth::user();
         $user->active_ship = $id;
         $user->save();
+
+        return redirect('home');
     }
 }

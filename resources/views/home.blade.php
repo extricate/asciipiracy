@@ -24,7 +24,7 @@
                                 {{ $active->draw($active) }}
                             </p>
                         @else
-                            <p>Welcome back capt'n <b>{{ $user->name }}</b>. You currently have no active ship (id: {{ $user->active_ship }}).
+                            <p>Welcome back captain <b>{{ $user->name }}</b>. You currently have no active ship.
                         @endif
 
                     </div>
@@ -63,13 +63,18 @@
                                     a {{ $ship->length }} footer with {{ $ship->decks }} decks
                                     and {{ $ship->crew()->count() }} sailors.
 
-                                    {!! Form::open(['action' => 'ShipsController@setActiveShip']) !!}
-                                    {!! Form::number('id', $ship->id, ['class' => 'hidden']) !!}
-                                    {!! Form::submit('Make active', ['class' => 'btn btn-info']) !!}
-                                    {!! Form::close() !!}
+                                    @if ($ship->id == $user->active_ship)
+                                        {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
+                                        {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-info']) }}
+                                        {{ Form::close() }}
+                                    @else
+                                        {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
+                                        {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
+                                        {{ Form::close() }}
+                                    @endif
                                 </li>
-                                @endforeach
-                            </p>
+                            @endforeach
+                                </p>
                         @endif
                     </div>
                 </div>
