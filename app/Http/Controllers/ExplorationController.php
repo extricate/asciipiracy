@@ -34,9 +34,7 @@ class ExplorationController extends Controller
     public function goExplore()
     {
         // Get the user ID so that it can be used to update the database
-
         $user = Auth::user();
-
         $id = $user->id;
         // Primary things that can change for users are created local
         $goods = $user->goods;

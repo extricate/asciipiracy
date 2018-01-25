@@ -26,7 +26,7 @@ Route::get('/ships', 'ShipsController@index')->name('ships');
 Route::get('/ships/{ship}', 'ShipsController@show');
 Route::get('/ships/{ship}/upgrade', 'ShipsUpgradeController@show')->middleware('auth');
 Route::put('/ships/{ship}/update', 'ShipsController@update');
-Route::get('/ships/create', 'ShipsController@create')->name('ship_create');
+Route::get('/ships/create/beginner', 'ShipsController@create')->name('ship_create_beginner')->middleware('auth');
 Route::delete('/ships/{ship}', 'ShipsController@destroy')->name('ship_destroy');
 
 Route::get('/people', 'PeopleController@index')->name('people');

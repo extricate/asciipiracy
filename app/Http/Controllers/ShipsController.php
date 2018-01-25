@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Ship;
 use App\Person;
-use APp\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,17 +24,21 @@ class ShipsController extends Controller
 
     /**
      * Create a new ship
+     *
+     * @return \Response
      */
     public function create()
     {
+        // get the calling user's ID to associate the ship
         $user = Auth::user();
-
-        $ship = factory('App\Ship')->create([
+        $ship = factory(App\Ship::class)->create([
             'user_id' => $user->id
         ]);
         $generateSailorAmount = $ship->min_sailors;
+        // populate the ship with crew
+        factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
 
-        factory('App\Person', $generateSailorAmount)->create(['ships_id' => $ship->id]);
+        return redirect('home');
     }
 
      /**

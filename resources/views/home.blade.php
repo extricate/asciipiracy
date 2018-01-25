@@ -42,9 +42,7 @@
                         @if ($user->myShips()->count() == 0)
                             <p class="text-center">You have no ships.</p>
                             <div class="text-center">
-                                {{ Form::open(['method' => 'PUT', 'route' => ['ship_create', $user->user_id]]) }}
-                                {{ Form::submit('Create a beginner ship', ['class' => 'btn btn-primary']) }}
-                                {{ Form::close() }}
+                                <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a beginner ship</a>
                             </div>
 
                         @else
