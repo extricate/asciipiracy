@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-map-o"></i> Exploration
+                        <i class="ra ra-ocean-emblem"></i> Exploration
                     </div>
                     <div class="panel-body text-center">
                             @yield('exploration')

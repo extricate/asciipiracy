@@ -157,6 +157,6 @@ class ShipsController extends Controller
         $user->active_ship = $id;
         $user->save();
 
-        return redirect('home');
+        return back();
     }
 }

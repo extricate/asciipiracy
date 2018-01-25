@@ -2,6 +2,11 @@
 
 @section('title', $ship->name)
 
+@php
+    $user = auth()->user();
+    $active = $user->activeShip();
+@endphp
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -21,6 +26,18 @@
                                 <a href="{{ $ship->path() }}/upgrade" class="btn btn-primary">
                                     Upgrade
                                 </a>
+
+                            <p>
+                                @if ($ship->id == $user->active_ship)
+                                    {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
+                                    {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-info']) }}
+                                    {{ Form::close() }}
+                                @else
+                                    {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
+                                    {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
+                                    {{ Form::close() }}
+                                @endif
+                            </p>
 
                             <p>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['ship_destroy', $ship->id]]) }}
