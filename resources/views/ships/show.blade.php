@@ -30,18 +30,18 @@
                             <p>
                                 @if ($ship->id == $user->active_ship)
                                     {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
-                                    {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-info']) }}
+                                    {{ Form::submit('Active ship', ['class' => 'btn btn-primary']) }}
                                     {{ Form::close() }}
                                 @else
                                     {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
-                                    {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
+                                    {{ Form::submit('Make active', ['class' => 'btn btn-primary']) }}
                                     {{ Form::close() }}
                                 @endif
                             </p>
 
                             <p>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['ship_destroy', $ship->id]]) }}
-                                {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-group']) }}
+                                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                                 {{ Form::close() }}
                             </p>
 
@@ -60,8 +60,8 @@
                             <h3>Combat characteristics: </h3>
                             <p>
                             <ul>
-                                <li>Health: {{ $ship->current_health }}/{{ $ship->maximum_health }}</li>
-                                <li>Attack: {{ $ship->attackStatistics($ship) }}</li>
+                                <li><i class="ra ra-hearts ra-fw"></i> Health: {{ $ship->current_health }}/{{ $ship->maximum_health }}</li>
+                                <li><i class="ra ra-crossed-sabres ra-fw"></i> Attack: {{ $ship->attackStatistics($ship) }}</li>
                                 <ul>
                                     <li>Cannons: {{ $ship->cannons }}, bearing {{ $ship->cannon_caliber }} shot</li>
                                     <li>Gunports: {{ $ship->gunports }}</li>
@@ -69,7 +69,7 @@
                                     <li>Current sailors: {{ $ship->crew->count() }}</li>
                                     <li>Maximum sailors: {{ $ship->max_sailors }}</li>
                                 </ul>
-                                <li>Escape: {{ $ship->escapeStatistics($ship) }}</li>
+                                    <li><i class="ra ra-cog ra-fw"></i> Escape: {{ $ship->escapeStatistics($ship) }}</li>
                                 <ul>
                                     <li>Maneuverability: {{ $ship->maneuverability }}</li>
                                     <li>Maximum speed: {{ $ship->max_speed }} knots</li>
@@ -107,7 +107,7 @@
                         This is what the ship looks like
                     </div>
                     <div class="panel-body">
-                        <p class="text-center">
+                        <p class="text-center small" style="font-family: 'Courier New', Courier, monospace">
                             {{ $ship->draw($ship) }}
                         </p>
                     </div>

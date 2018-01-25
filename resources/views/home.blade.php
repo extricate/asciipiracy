@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
+                    <div class="panel-heading">Captain {{ $user->name }}'s quarters</div>
                     <div class="panel-body">
                         @if ($active != null)
                             <p>Welcome back capt'n <b>{{ $user->name }}</b>.

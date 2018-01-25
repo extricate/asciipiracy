@@ -69,7 +69,7 @@ class ShipsController extends Controller
         if ($user->myShips()->count() == 0) {
             $ship = factory(App\Ship::class)->create([
                 'user_id' => $user->id,
-                'length' => 40,
+                'length' => 80,
                 'masts' => 2,
                 'min_sailors' => 10,
                 'max_sailors' => 20,
@@ -82,6 +82,8 @@ class ShipsController extends Controller
                 'total_hold' => 2000,
                 'maneuverability' => 5,
                 'max_speed' => 12,
+                'current_health' => 100,
+                'maximum_health' => 100,
             ]);
             $generateSailorAmount = $ship->min_sailors;
             // populate the ship with crew
