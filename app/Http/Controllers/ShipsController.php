@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Ship;
 use App\Person;
+use APp\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShipsController extends Controller
 {
@@ -21,19 +23,17 @@ class ShipsController extends Controller
 
     /**
      * Create a new ship
-     *
-     * @param  int $user_id
-     * @return \Illuminate\Http\Response
      */
-    public function create($user_id)
+    public function create()
     {
+        $user = Auth::user();
+
         $ship = factory('App\Ship')->create([
-            'user_id' => $user_id
+            'user_id' => $user->id
         ]);
         $generateSailorAmount = $ship->min_sailors;
 
         factory('App\Person', $generateSailorAmount)->create(['ships_id' => $ship->id]);
-        return view('ships.index');
     }
 
      /**

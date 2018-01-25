@@ -17,7 +17,6 @@
                     </div>
                     <div class="panel-body text-center">
                             @yield('exploration')
-
                     </div>
                 </div>
             </div>
