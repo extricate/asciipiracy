@@ -10,5 +10,8 @@
         <p>{{ $event->body }}</p>
         <span class="label label-success">{{ $event->effect_changed }}</span>
     @else
+        <h1>{{ $event->title }}</h1>
+        <p>{{ $event->body }}</p>
+        <span class="label">{{ $event->effect_changed }}</span>
     @endif
 @endsection

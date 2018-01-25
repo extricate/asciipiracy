@@ -15,21 +15,26 @@ class ExplorationController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(User $user)
     {
         $event = (object)array(
+            'id' => '',
             'title' => 'Events will appear here',
-            'body' => '',
+            'body' => 'When you set out on an exploration, you will encounter random events here',
+            'effect_on' => '',
             'effect' => '',
+            'effect_changed' => '',
             );
-        return view('explore.index', compact('event', 'user'));
+        return view('explore.show', compact('event'));
     }
 
     /**
      * Go explore
-     *
-     * @param  User $user
-     * @return \Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function goExplore()
     {
@@ -46,17 +51,7 @@ class ExplorationController extends Controller
             $user->goods = $goods - $explorationCost;
             $user->save();
 
-            // Generate the event
-            // Currently there is only one event
-            $event = (object)array(
-                'id' => '1',
-                'title' => 'Treasure found!',
-                'frequency' => 1,
-                'body' => 'You sell the booty for some gold!',
-                'effect_on' => 'gold',
-                'effect_changed' => '+ 100 gold',
-                'effect' => $gold + 100,
-            );
+            $event = Exploration::latest()->get;
 
             if ($event->effect_on == 'gold') {
                 $user->gold = $event->effect;
@@ -65,6 +60,11 @@ class ExplorationController extends Controller
             elseif ($event->effect_on == 'goods') {
                 $user->goods = $event->effect;
                 $user->save();
+            }
+            elseif ($event->effect_on == 'ship_hp') {
+                $activeShip = $user->activeShip();
+                $activeShip->current_health = $event->effect;
+                $activeShip->save();
             }
             else {
             }
@@ -79,7 +79,7 @@ class ExplorationController extends Controller
                 'effect_changed' => '',
                 'effect' => null
             );
-            return view('explore.index', compact('event'));
+            return view('explore.show', compact('event'));
         }
     }
 }
