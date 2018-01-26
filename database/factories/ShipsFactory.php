@@ -12,9 +12,10 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     $propulsion = $masts * $faker->numberBetween($min = 40, $max = 200);
 
     $decks = $faker->numberBetween($min = 1, $max = 4);
-    $beam = $faker->numberBetween($min = 20, $max = 70);
-    $draught = ($decks + ($beam / 100)) * $faker->numberBetween($min = 5, $max = 10);
     $length = $decks * $faker->numberBetween($min = 40, $max = 100);
+    $beam = $faker->numberBetween($min = 10, $length/4);
+    $draught = ($decks + ($beam / 100)) * $faker->numberBetween($min = 5, $max = 10);
+
     if ($length >= 300) $masts++;
     if ($masts > 4) $masts--;
 

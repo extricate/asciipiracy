@@ -145,7 +145,7 @@ class Ship extends Model
                 }
 
                 // halfway the ship now, let's add the rest
-                for ($i = 0; $i < $length / 24; $i++) {
+                for ($i = 0; $i < $length / 14; $i++) {
                     for ($b = 0; $b < $masts; $b++) {
                         // create the first set of midship segments
                         echo
@@ -185,9 +185,9 @@ class Ship extends Model
             if ($ship->length >= 120) {
                 for ($i = 0; $i < $decks; $i++) {
                     echo "\n";
-                    echo "||" . str_repeat("===", ($beam / 5)) . "||<br>";
-                    for ($i = 0; $i < $length / 20; $i++) {
-                        echo "||" . str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", ($beam / 4) + 1) . "||<br>";
+                    echo "||" . str_repeat("===", ($beam / 4) +1) . "||<br>";
+                    for ($i = 0; $i < $length / 14; $i++) {
+                        echo "||" . str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;", ($beam / 5)) . "||<br>";
                         $i++;
 
                         if ($i >= 0 && $masts >= 1) {

@@ -71,13 +71,11 @@ class ExplorationController extends Controller
                 }
 
                 return view('explore.show', compact('event'));
-
             } else {
                 // return not enough goods event
                 $event = Events::find(['id' => '2'])->first();
 
                 return view('explore.show', compact('event'));
-
             }
         } else {
             // return no ship event
