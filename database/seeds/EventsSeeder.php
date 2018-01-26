@@ -77,6 +77,17 @@ class EventsSeeder extends Seeder
             'effect' => '110',
         ]);
 
+        DB::Table('events')->insert([
+            'title' => 'Pirates!',
+            'frequency' => 1,
+            'body' => 'Get ready for a fight!',
+            'type' => 'combat',
+            'affects' => 'ship',
+            'effect_on' => '',
+            'effect_changed' => '',
+            'effect' => '',
+        ]);
+
         $this->command->info('Events created');
     }
 }

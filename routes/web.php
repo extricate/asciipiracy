@@ -38,3 +38,6 @@ Route::get('/people/{person}', 'PeopleController@show');
 Route::get('/explore', 'ExplorationController@index')->name('explore');
 Route::get('/explore/now', 'ExplorationController@goExplore')->name('explore_now');
 
+Route::get('/combat', 'CombatController@index')->name('view_combat');
+Route::get('/combat/start', 'CombatController@startCombat')->name('start_combat');
+

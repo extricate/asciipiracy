@@ -7,6 +7,7 @@ use App\Ship;
 use App\Person;
 use App\User;
 use App\Events;
+use App\Http\Controllers\CombatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,8 @@ class ExplorationController extends Controller
             'id' => '',
             'title' => 'Events will appear here',
             'body' => 'When you set out on an exploration, you will encounter random events here',
+            'type' => '',
+            'affects' => '',
             'effect_on' => '',
             'effect' => '',
             'effect_changed' => '',
@@ -55,7 +58,7 @@ class ExplorationController extends Controller
                 $user->goods = $user->goods - $explorationCost;
                 $user->save();
 
-                // retrieve a random event
+                // retrieve a random event weighted by frequency
                 $event = Events::where('frequency', ">", 0)->orderByRaw("-LOG(RAND()) / Frequency")->first();
 
                 // analyse the event
@@ -63,6 +66,13 @@ class ExplorationController extends Controller
                 $effect_on = $event->effect_on;
                 $effect = $event->effect;
                 $type = $event->type;
+
+                // first check if the event is a combat event because then we want to initialize the combat scenario
+                if ($event->type == 'combat')
+                {
+                    app('App\Http\Controllers\CombatController')->startCombat($user, $ship);
+                    return redirect('combat_start');
+                }
 
                 if ($event->type != 'system')
                 {

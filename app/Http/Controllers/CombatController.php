@@ -2,11 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Ship;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CombatController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+
+        return view('combat.index', compact('enemy', 'user'));
+    }
+    public function startCombat()
+    {
+        $user = Auth::user();
+
+        // create the enemy
+        $enemy = factory(Ship::class)->create();
+        return view('combat.index', compact('enemy', 'user'));
+    }
+
     public function attack()
     {
         // to attack we line up a broadside
