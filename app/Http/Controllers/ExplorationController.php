@@ -56,16 +56,13 @@ class ExplorationController extends Controller
                 $user->save();
 
                 // retrieve a random event
-                $event = Events::where('frequency', 1)->inRandomOrder()->first();
+                $event = Events::where('frequency', ">", 0)->orderByRaw("-LOG(RAND()) / Frequency")->first();
 
                 // analyse the event
                 $affects = $event->affects;
                 $effect_on = $event->effect_on;
                 $effect = $event->effect;
                 $type = $event->type;
-
-                $currentUser = $user;
-                $currentShip = $ship;
 
                 if ($event->type != 'system')
                 {
