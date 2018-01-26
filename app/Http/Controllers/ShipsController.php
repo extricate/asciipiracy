@@ -71,7 +71,7 @@ class ShipsController extends Controller
                 'user_id' => $user->id,
                 'length' => 80,
                 'masts' => 2,
-                'min_sailors' => 10,
+                'min_sailors' => 20,
                 'max_sailors' => 20,
                 'decks' => 1,
                 'beam' => 20,

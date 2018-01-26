@@ -50,15 +50,19 @@ class Ship extends Model
         $cannons = $ship->cannons;
 
         if ($length >= 100) {
-            echo "<p class=\"text-center small\" style=\"font-size: 8px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
-        }
-
-        elseif ($length >= 200) {
             echo "<p class=\"text-center small\" style=\"font-size: 7px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
         }
 
-        elseif ($length >= 300) {
+        elseif ($beam >= 40) {
+            echo "<p class=\"text-center small\" style=\"font-size: 7px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        }
+
+        elseif ($length >= 200) {
             echo "<p class=\"text-center small\" style=\"font-size: 6px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
+        }
+
+        elseif ($length >= 300) {
+            echo "<p class=\"text-center small\" style=\"font-size: 5px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
         }
 
         else {
@@ -208,14 +212,41 @@ class Ship extends Model
 
     public function attackStatistics(Ship $ship)
     {
-        $current_health = $this->current_health;
-        $maximum_health = $this->maximum_health;
-
         // Attacking
         $cannons = $this->cannons;
-        $crew_count = $this->crew->count();
+        $cannon_caliber = $this->cannon_caliber;
 
-        $attack = $cannons * $crew_count;
+        // cannon caliber to damage modifier values
+        if ($this->cannon_caliber == '4 pounder')
+        {
+            $caliber_modifier = 4;
+        } elseif ($this->cannon_caliber == '6 pounder')
+        {
+            $caliber_modifier = 6;
+        } elseif ($this->cannon_caliber == '9 pounder')
+        {
+            $caliber_modifier = 9;
+        } elseif ($this->cannon_caliber == '12 pounder')
+        {
+            $caliber_modifier = 12;
+        } elseif ($this->cannon_caliber == '18 pounder')
+        {
+            $caliber_modifier = 18;
+        } elseif ($this->cannon_caliber == '24 pounder')
+        {
+            $caliber_modifier = 24;
+        } elseif ($this->cannon_caliber == '32 pounder')
+        {
+            $caliber_modifier = 32;
+        } elseif ($this->cannon_caliber == '42 pounder')
+        {
+            $caliber_modifier = 42;
+        } else {
+            $caliber_modifier = 1;
+        }
+
+        $attack = $cannons * $caliber_modifier;
+        $attack = round($attack, 0);
 
         return $attack;
     }
@@ -225,8 +256,8 @@ class Ship extends Model
         // Escaping
         $max_speed = $this->max_speed;
         $maneuverability = $this->maneuverability;
-        $propulsion = $this->propulsion;
-        $escape = $max_speed * $maneuverability * round(($propulsion / 10), 0);
+        $escape = $max_speed * $maneuverability;
+        $escape = round($escape, 0);
 
         return $escape;
     }

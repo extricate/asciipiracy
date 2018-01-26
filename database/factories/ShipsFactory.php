@@ -33,7 +33,7 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     $hull_speed = (1.34 * sqrt($length));
     $maxSpeed = $hull_speed;
 
-    $maximumHealth = (100 * $decks) + (0.5 * $length) + (20 * $masts);
+    $maximumHealth = (100 * $decks) + round((0.5 * $length), 0) + (20 * $masts);
 
     return [
         'name' => $faker->name,

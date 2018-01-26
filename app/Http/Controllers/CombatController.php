@@ -13,20 +13,23 @@ class CombatController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $ship = $user->activeShip();
 
         // you are your own worst enemy... show user for index as its own enemy if there is no actual combat
         $enemy = $user;
 
-        return view('combat.index', compact('enemy', 'user'));
+        return view('combat.index', compact('enemy', 'user', 'ship'));
     }
 
     public function log($action)
     {
         return view('combat.log', '$log');
     }
+
     public function startCombat()
     {
         $user = Auth::user();
+        $ship = $user->activeShip();
 
         // create the enemy
         $enemy = factory(Ship::class)->make();
@@ -36,11 +39,19 @@ class CombatController extends Controller
             'ships_id' => $enemy->id
         ]);
 
-        return view('combat.index', compact('enemy', 'user'));
+        return view('combat.show', compact('enemy', 'user', 'ship'));
     }
 
     public function attack()
     {
+        $accuracy = [
+            'grazes' => rand(0.500, 0.625),
+            'glances' => rand(0.625, 0.750),
+            'hits' => rand(0.750, 1.000),
+            'penetrates' => rand(1.000, 1.250),
+            'smashes' => rand(1.250, 1.490),
+            'wrecks' => 3.000
+        ];
         // to attack we line up a broadside
         // and then we shoot
         // and then another attack is available
