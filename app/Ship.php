@@ -104,8 +104,8 @@ class Ship extends Model
 
                     // add some cannons
                     echo
-                        "<span class='fa fa-1x'>=</span>| ||" . str_repeat("&nbsp;&nbsp;&nbsp;",
-                            ($beam / 5) + 1) . "|| |<span class='fa fa-1x'>=</span><br>";
+                        "=| ||" . str_repeat("&nbsp;&nbsp;&nbsp;",
+                            ($beam / 5) + 1) . "|| |=<br>";
 
                     if ($b == 0 && $masts >= 2) {
                         // add some masts
@@ -153,8 +153,8 @@ class Ship extends Model
 
                         // add some cannons
                         echo
-                            "<span class='fa fa-1x'>=</span>| ||" . str_repeat("&nbsp;&nbsp;&nbsp;",
-                                ($beam / 5) + 1) . "|| |<span class='fa fa-1x'>=</span><br>";
+                            "=| ||" . str_repeat("&nbsp;&nbsp;&nbsp;",
+                                ($beam / 5) + 1) . "|| |=<br>";
 
                         if ($b == 0 && $masts >= 2) {
                             // add a mast if there's still 2 or more left

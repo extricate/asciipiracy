@@ -14,6 +14,9 @@ class CombatController extends Controller
     {
         $user = Auth::user();
 
+        // you are your own worst enemy... show user for index as its own enemy if there is no actual combat
+        $enemy = $user;
+
         return view('combat.index', compact('enemy', 'user'));
     }
     public function startCombat()
@@ -22,6 +25,12 @@ class CombatController extends Controller
 
         // create the enemy
         $enemy = factory(Ship::class)->create();
+        $generateSailorAmount = $enemy->min_sailors;
+        // populate the enemy ship with crew
+        factory(App\Person::class, $generateSailorAmount)->create([
+            'ships_id' => $enemy->id
+        ]);
+
         return view('combat.index', compact('enemy', 'user'));
     }
 

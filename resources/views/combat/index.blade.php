@@ -4,11 +4,22 @@
 
 @php
     $ship = $user->activeShip();
-    $enemy = $ship;
 @endphp
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Combat log
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">
