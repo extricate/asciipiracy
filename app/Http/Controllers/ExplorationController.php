@@ -43,20 +43,20 @@ class ExplorationController extends Controller
     {
         // Get the user ID so that it can be used to update the database, same goes for the ship
         $user = Auth::user();
-        $ship = $user->getActiveShip();
+        $ship = $user->activeShip();
         // Primary things that can change for users are created local
         $explorationCost = 10;
 
         // check if the user has an active ship, else return the no ship event
-        if ($user->getActiveShip() == !null) {
+        if ($user->activeShip() == !null) {
             if ($user->goods >= $explorationCost) {
                 // update the users goods to deduct the price of the exploration
                 // which will eventually be based on both the duration of the exploration and the size of the ship/crew
                 $user->goods = $user->goods - $explorationCost;
                 $user->save();
 
-                // retrieve an event
-                $event = Events::find(['id' => '6'])->first();
+                // retrieve a random event
+                $event = Events::where('frequency', 1)->inRandomOrder()->first();
 
                 // analyse the event
                 $affects = $event->affects;
@@ -76,12 +76,14 @@ class ExplorationController extends Controller
                 return view('explore.show', compact('event'));
 
             } else {
+                // return not enough goods event
                 $event = Events::find(['id' => '2'])->first();
 
                 return view('explore.show', compact('event'));
 
             }
         } else {
+            // return no ship event
             $event = Events::find(['id' => '1'])->first();
 
             return view('explore.show', compact('event'));
@@ -89,6 +91,8 @@ class ExplorationController extends Controller
     }
 
     /**
+     * Process events
+     *
      * @param string $affects
      * @param string $effect_on
      * @param string $type
@@ -100,7 +104,9 @@ class ExplorationController extends Controller
         if ($affects == 'user') {
             $affects = Auth::user();
         } elseif ( $affects == 'ship' ) {
-            $affects == Auth::user()->getActiveShip();
+            $user = Auth::user();
+            $ship = $user->activeShip();
+            $affects = $ship;
         }
 
         // process the actual event
@@ -108,10 +114,15 @@ class ExplorationController extends Controller
             $affects->{$effect_on} = $affects->{$effect_on} + $effect;
             $affects->save();
         } elseif ($type == '-') {
-            $$affects->{$effect_on} = $affects->{$effect_on} - $effect;
+            $affects->{$effect_on} = $affects->{$effect_on} - $effect;
+            $affects->save();
+        } elseif ($type == '*') {
+            $$affects->{$effect_on} = $affects->{$effect_on} * $effect;
+            $$affects->save();
+        } elseif ($type == '/') {
+            $$affects->{$effect_on} = $affects->{$effect_on} / $effect;
             $$affects->save();
         }
-
         return;
     }
 }
