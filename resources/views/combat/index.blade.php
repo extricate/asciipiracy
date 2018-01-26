@@ -15,7 +15,7 @@
                         Combat log
                     </div>
                     <div class="panel-body">
-
+                        @yield('combat.log')
                     </div>
                 </div>
             </div>

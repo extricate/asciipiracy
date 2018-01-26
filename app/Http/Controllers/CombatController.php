@@ -19,15 +19,20 @@ class CombatController extends Controller
 
         return view('combat.index', compact('enemy', 'user'));
     }
+
+    public function log($action)
+    {
+        return view('combat.log', '$log');
+    }
     public function startCombat()
     {
         $user = Auth::user();
 
         // create the enemy
-        $enemy = factory(Ship::class)->create();
+        $enemy = factory(Ship::class)->make();
         $generateSailorAmount = $enemy->min_sailors;
         // populate the enemy ship with crew
-        factory(App\Person::class, $generateSailorAmount)->create([
+        factory(App\Person::class, $generateSailorAmount)->make([
             'ships_id' => $enemy->id
         ]);
 
