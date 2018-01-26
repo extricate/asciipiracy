@@ -41,6 +41,6 @@ Route::get('/explore/now', 'ExplorationController@goExplore')->name('explore_now
 Route::get('/combat', 'CombatController@index')->name('view_combat');
 Route::get('/combat/start', 'CombatController@startCombat')->name('start_combat');
 
-Route::get('/combat/attack', 'CombatController@attack')->name('combat_attack');
+Route::put('/combat/attack', 'CombatController@attack')->name('combat_attack');
 Route::get('/combat/escape', 'CombatController@escape')->name('combat_escape');
 

@@ -18,18 +18,33 @@ class CombatController extends Controller
         // you are your own worst enemy... show user for index as its own enemy if there is no actual combat
         $enemy = $user;
 
-        return view('combat.index', compact('enemy', 'user', 'ship'));
+        // check if user has an active ship, else show an error message
+        if ($user->activeShip() == null) {
+            $error = 'You do not have an active ship!';
+            return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
+        }
+
+        return view('combat.index', compact('user', 'ship', 'enemy'));
     }
 
     public function log($action)
     {
-        return view('combat.log', '$log');
+        // push the action to the log
+        array_push($logs, $action);
+
+        return view('combat.log', '$logs');
     }
 
     public function startCombat()
     {
         $user = Auth::user();
         $ship = $user->activeShip();
+
+        // check if user has an active ship, else show an error message
+        if ($user->activeShip() == null) {
+            $error = 'You do not have an active ship!';
+            return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
+        }
 
         // create the enemy
         $enemy = factory(Ship::class)->make();
@@ -39,11 +54,17 @@ class CombatController extends Controller
             'ships_id' => $enemy->id
         ]);
 
+        /* $action = 'You encounter an enemy!';
+        log($action); */
+
+
         return view('combat.show', compact('enemy', 'user', 'ship'));
     }
 
-    public function attack()
+    public function attack(Request $request, Ship $origin, Ship $target)
     {
+        $origin_attack = $origin->attackStatistics($origin);
+        $target_attack = $target->attackStatistics($target);
         $accuracy = [
             'grazes' => rand(0.500, 0.625),
             'glances' => rand(0.625, 0.750),
@@ -52,9 +73,8 @@ class CombatController extends Controller
             'smashes' => rand(1.250, 1.490),
             'wrecks' => 3.000
         ];
-        // to attack we line up a broadside
-        // and then we shoot
-        // and then another attack is available
+
+
     }
 
     public function escape()
@@ -88,12 +108,20 @@ class CombatController extends Controller
     // End scenario's, these all end with endCombat().
     public function win()
     {
+        $user = Auth::user();
+        $ship = $user->activeShip();
+
         // to win the opponent must either: surrender or sink
+        $user->combat_wins++;
     }
 
     public function lose()
     {
+        $user = Auth::user();
+        $ship = $user->activeShip();
+
         // to lose you must either: surrender or sink
+        $user->combat_wins++;
     }
 
     public function capture()

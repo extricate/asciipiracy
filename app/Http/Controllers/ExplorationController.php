@@ -71,7 +71,7 @@ class ExplorationController extends Controller
                 if ($event->type == 'combat')
                 {
                     app('App\Http\Controllers\CombatController')->startCombat($user, $ship);
-                    return redirect('combat_start');
+                    return redirect(route('start_combat'));
                 }
 
                 if ($event->type != 'system')
