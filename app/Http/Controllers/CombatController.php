@@ -57,24 +57,34 @@ class CombatController extends Controller
         /* $action = 'You encounter an enemy!';
         log($action); */
 
+        $error = 'You inflicted ' . $this->attack() . ' damage on the enemy!';
 
-        return view('combat.show', compact('enemy', 'user', 'ship'));
+
+        return view('combat.show', compact('enemy', 'user', 'ship', 'error'));
     }
 
-    public function attack(Request $request, Ship $origin, Ship $target)
+    public function attack()
     {
+        $user = Auth::user();
+        $origin = $user->activeShip();
+
         $origin_attack = $origin->attackStatistics($origin);
-        $target_attack = $target->attackStatistics($target);
-        $accuracy = [
+        //$target_attack = $target->attackStatistics($target);
+        $accuracy = array(
             'grazes' => rand(0.500, 0.625),
             'glances' => rand(0.625, 0.750),
             'hits' => rand(0.750, 1.000),
             'penetrates' => rand(1.000, 1.250),
             'smashes' => rand(1.250, 1.490),
             'wrecks' => 3.000
-        ];
+        );
 
+        $selected_accuracy = array_rand($accuracy, 1);
+        $actual_accuracy = $accuracy[$selected_accuracy];
 
+        $damage = $origin_attack * $actual_accuracy;
+
+        return $damage;
     }
 
     public function escape()

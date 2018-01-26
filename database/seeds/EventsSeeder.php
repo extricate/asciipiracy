@@ -14,7 +14,7 @@ class EventsSeeder extends Seeder
         DB::Table('events')->insert([
             'title' => 'No active ship!',
             'frequency' => 0,
-            'body' => 'You don\'t have an active ship, dummy; what are you gonna do? Walk?',
+            'body' => 'You don\'t have an active ship, dummy; what are you gonna do? Swim?',
             'type' => 'system',
             'affects' => 'system',
             'effect_on' => 'nothing',
@@ -35,7 +35,7 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Huge treasure found',
-            'frequency' => 1,
+            'frequency' => 0.1,
             'body' => 'My that\'s a lot of gold...',
             'type' => '+',
             'affects' => 'user',
@@ -51,8 +51,8 @@ class EventsSeeder extends Seeder
             'type' => '+',
             'affects' => 'user',
             'effect_on' => 'gold',
-            'effect_changed' => '+ 100 gold',
-            'effect' => '100',
+            'effect_changed' => '+ 200 gold',
+            'effect' => '200',
         ]);
 
         DB::Table('events')->insert([
@@ -79,7 +79,7 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Pirates!',
-            'frequency' => 1,
+            'frequency' => 0.2,
             'body' => 'Get ready for a fight!',
             'type' => 'combat',
             'affects' => 'ship',

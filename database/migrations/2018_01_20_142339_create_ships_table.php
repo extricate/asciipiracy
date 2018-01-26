@@ -22,7 +22,7 @@ class CreateShipsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique()->nullable();
 
-            $table->unsignedInteger('current_health')->default(100);
+            $table->integer('current_health')->default(100);
             $table->unsignedInteger('maximum_health')->default(100);
 
             $table->unsignedInteger('cannons');

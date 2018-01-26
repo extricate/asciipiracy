@@ -48,10 +48,10 @@ class ExplorationController extends Controller
         $user = Auth::user();
         $ship = $user->activeShip();
         // Primary things that can change for users are created local
-        $explorationCost = 10;
 
         // check if the user has an active ship, else return the no ship event
         if ($user->activeShip() == !null) {
+            $explorationCost = $ship->crew()->count();
             if ($user->goods >= $explorationCost) {
                 // update the users goods to deduct the price of the exploration
                 // which will eventually be based on both the duration of the exploration and the size of the ship/crew
@@ -105,6 +105,9 @@ class ExplorationController extends Controller
      */
     public function processEvent($affects, $effect_on, $type, $effect)
     {
+        $user = Auth::user();
+        $ship = $user->activeShip();
+
         // determine type of affects to localize the correct object
         if ($affects == 'user') {
             $affects = Auth::user();
@@ -128,6 +131,13 @@ class ExplorationController extends Controller
             $$affects->{$effect_on} = $affects->{$effect_on} / $effect;
             $$affects->save();
         }
+
+        // check if any special conditions apply now
+        if ($ship->current_health <= 0) {
+            // apparently the ship sank, tough luck
+            $ship->delete();
+        }
+
         return;
     }
 }
