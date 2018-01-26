@@ -13,7 +13,7 @@
                 </div>
                 <div class="panel-body text-center">
                     <div class="col-md-4">
-                        {{ Form::open(['method' => 'POST', 'class' => 'form-inline', 'route' => ['combat_attack', $ship, $enemy]]) }}
+                        {{ Form::open(['method' => 'POST', 'class' => 'form-inline', 'route' => ['combat_attack', $ship, $enemy->id]]) }}
                         {{ Form::submit('Fight!', ['class' => 'btn btn-danger']) }}
                         {{ Form::close() }}
                     </div>

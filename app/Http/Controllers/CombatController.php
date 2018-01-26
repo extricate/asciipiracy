@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CombatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -18,13 +23,15 @@ class CombatController extends Controller
         // you are your own worst enemy... show user for index as its own enemy if there is no actual combat
         $enemy = $user;
 
+        $error = 'You\'re currently not in a fight.';
+
         // check if user has an active ship, else show an error message
         if ($user->activeShip() == null) {
             $error = 'You do not have an active ship!';
             return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
         }
 
-        return view('combat.index', compact('user', 'ship', 'enemy'));
+        return view('combat.index', compact('user', 'ship', 'enemy', 'error'));
     }
 
     public function log($action)
@@ -46,27 +53,36 @@ class CombatController extends Controller
             return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
         }
 
-        // create the enemy
-        $enemy = factory(Ship::class)->make();
-        $generateSailorAmount = $enemy->min_sailors;
-        // populate the enemy ship with crew
-        factory(App\Person::class, $generateSailorAmount)->make([
-            'ships_id' => $enemy->id
-        ]);
+        // create the opponent for the combat scenario
+        $enemy = $this->createEnemy();
 
-        /* $action = 'You encounter an enemy!';
-        log($action); */
-
-        $error = 'You inflicted ' . $this->attack() . ' damage on the enemy!';
-
+        $error = 'You inflicted ' . $this->attack($enemy->id) . ' damage on the enemy!';
 
         return view('combat.show', compact('enemy', 'user', 'ship', 'error'));
     }
 
-    public function attack()
+    public function createEnemy()
+    {
+        // create the enemy
+        $enemy = factory(Ship::class)->create();
+        $generateSailorAmount = $enemy->min_sailors;
+        // populate the enemy ship with crew
+        factory(App\Person::class, $generateSailorAmount)->create([
+            'ships_id' => $enemy->id
+        ]);
+
+        return $enemy;
+    }
+
+    /**
+     * @param Ship $id
+     * @return mixed
+     */
+    public function attack($id)
     {
         $user = Auth::user();
         $origin = $user->activeShip();
+        $target = Ship::findOrFail($id);
 
         $origin_attack = $origin->attackStatistics($origin);
         //$target_attack = $target->attackStatistics($target);
@@ -83,6 +99,9 @@ class CombatController extends Controller
         $actual_accuracy = $accuracy[$selected_accuracy];
 
         $damage = $origin_attack * $actual_accuracy;
+
+        $target->current_hp - $damage;
+        $target->save();
 
         return $damage;
     }

@@ -54,27 +54,27 @@
                             <p>
                                 The ships are generated randomly and cost 1000 gold.
                             </p>
-                            <p>
-                            @foreach ($user->myShips() as $ship)
-                                <li>
-                                    <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-                                    <span class="label label-success">{{ $ship->current_health }}
-                                        /{{ $ship->maximum_health }}</span>,
-                                    a {{ $ship->length }} footer with {{ $ship->decks }} decks
-                                    and {{ $ship->crew()->count() }} sailors.
+                            <ul>
+                                @foreach ($user->myShips() as $ship)
+                                    <li>
+                                        <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
+                                        <span class="label label-success">{{ $ship->current_health }}
+                                            /{{ $ship->maximum_health }}</span>,
+                                        a {{ $ship->length }} footer with {{ $ship->decks }} decks
+                                        and {{ $ship->crew()->count() }} sailors.
 
-                                    @if ($ship->id == $user->active_ship)
-                                        {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
-                                        {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-info']) }}
-                                        {{ Form::close() }}
-                                    @else
-                                        {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
-                                        {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
-                                        {{ Form::close() }}
-                                    @endif
-                                </li>
-                            @endforeach
-                                </p>
+                                        @if ($ship->id == $user->active_ship)
+                                            {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
+                                            {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-info']) }}
+                                            {{ Form::close() }}
+                                        @else
+                                            {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
+                                            {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
+                                            {{ Form::close() }}
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
                         @endif
                     </div>
                 </div>
