@@ -26,7 +26,6 @@
                         @else
                             <p>Welcome back captain <b>{{ $user->name }}</b>. You currently have no active ship.
                         @endif
-
                     </div>
                 </div>
             </div>

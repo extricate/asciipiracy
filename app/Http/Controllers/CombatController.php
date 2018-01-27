@@ -96,6 +96,7 @@ class CombatController extends Controller
             $origin = $user->activeShip();
             $enemy = Ship::findOrFail($user->is_in_combat_with);
 
+            // accuracy logic
             $accuracy_types = array(
                 'grazes',
                 'glances',
@@ -105,22 +106,33 @@ class CombatController extends Controller
                 'wrecks'
             );
 
+            /**
+             * rand(0.500, 0.625),
+             * rand(0.625, 0.750),
+             * rand(0.750, 1.000),
+             * rand(1.000, 1.250),
+             * rand(1.250, 1.490),
+             */
             $accuracy_modifiers = array(
-                rand(0.500, 0.625),
-                rand(0.625, 0.750),
-                rand(0.750, 1.000),
-                rand(1.000, 1.250),
-                rand(1.250, 1.490),
+                0.625,
+                0.750,
+                1.000,
+                1.250,
+                1.490,
                 3
             );
 
+
+            // determine actual damage
             $selected_accuracy = array_rand($accuracy_types);
             $actual_accuracy = $accuracy_modifiers[$selected_accuracy];
             $damage = $origin->attackStatistics($origin) * $actual_accuracy;
+            $damage = round($damage, 0);
 
             $selected_accuracy_return = array_rand($accuracy_types);
             $actual_accuracy_return = $accuracy_modifiers[$selected_accuracy_return];
             $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy_return;
+            $return_damage = round($return_damage, 0);
 
             if ($enemy->current_health <= $damage) {
                 $this->win();
@@ -132,14 +144,16 @@ class CombatController extends Controller
 
             if ($origin->current_health <= $return_damage) {
                 $this->lose();
-                return redirect(route('combat_end'))->with('message', 'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
+                return redirect(route('combat_end'))->with('message',
+                    'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
             } else {
                 $origin->current_health = $origin->current_health - $return_damage;
                 $origin->save();
             }
 
             // return the damage message
-            return redirect(route('view_combat'))->with('message', 'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
+            return redirect(route('view_combat'))->with('message',
+                'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything

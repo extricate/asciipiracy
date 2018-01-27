@@ -35,8 +35,10 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Huge treasure found',
-            'frequency' => 0.1,
-            'body' => 'My that\'s a lot of gold...',
+            'icon_type' => 'ra',
+            'icon' => 'gold-bar',
+            'frequency' => 1,
+            'body' => 'An old captain in a nearby tavern drunkenly tells you about a chest he buried containing his legacy. He was too drunk to notice you scribbled down the majority of clues he left about its ',
             'type' => '+',
             'affects' => 'user',
             'effect_on' => 'gold',
@@ -46,8 +48,10 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Treasure found!',
-            'frequency' => 1,
-            'body' => 'You sell the booty for some gold!',
+            'icon_type' => 'ra',
+            'icon' => 'gold-bar',
+            'frequency' => 5,
+            'body' => 'You find a half-buried chest whilst hunting on a small island. Now that\'s lucky!',
             'type' => '+',
             'affects' => 'user',
             'effect_on' => 'gold',
@@ -57,7 +61,9 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Ship hit a reef',
-            'frequency' => 1,
+            'icon_type' => 'ra',
+            'icon' => 'anchor',
+            'frequency' => 2,
             'body' => 'Darn it, bloody navigator!',
             'type' => '-',
             'affects' => 'ship',
@@ -68,6 +74,8 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Really good deal on goods!',
+            'icon_type' => 'ra',
+            'icon' => 'scroll-unfurled',
             'frequency' => 1,
             'body' => 'Let\'s explore some more!',
             'type' => '+',
@@ -78,8 +86,23 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::Table('events')->insert([
+            'title' => 'You encountered a friendly trader!',
+            'icon_type' => 'ra',
+            'icon' => 'scroll-unfurled',
+            'frequency' => 1,
+            'body' => 'He was more than happy to trade some of his goods with you.',
+            'type' => '+',
+            'affects' => 'user',
+            'effect_on' => 'goods',
+            'effect_changed' => '+ 110 goods',
+            'effect' => '110',
+        ]);
+
+        DB::Table('events')->insert([
             'title' => 'Pirates!',
-            'frequency' => 100,
+            'icon_type' => 'ra',
+            'icon' => 'skull',
+            'frequency' => 1,
             'body' => 'Get ready for a fight!',
             'type' => 'combat',
             'affects' => 'ship',

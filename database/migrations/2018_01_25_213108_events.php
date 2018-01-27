@@ -16,13 +16,19 @@ class Events extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('icon_type')->nullable();
+            $table->longText('icon')->nullable();
             $table->unsignedInteger('frequency')->default(1);
             $table->string('body');
             $table->string('type');
             $table->string('affects');
             $table->string('effect_on');
             $table->string('effect_changed');
+            $table->string('secondary_affects')->nullable();
+            $table->string('secondary_effect_on')->nullable();
+            $table->string('secondary_effect_changed')->nullable();
             $table->string('effect');
+            $table->string('secondary_effect')->nullable();
             $table->timestamps();
         });
     }
