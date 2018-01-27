@@ -124,7 +124,6 @@ class CombatController extends Controller
              */
 
             $selected_accuracy = array_rand($accuracy_types);
-            $accuracy_name = array_search($selected_accuracy, $accuracy_modifiers);
             $actual_accuracy = $accuracy_modifiers[$selected_accuracy];
             $damage = $origin->attackStatistics($origin) * $actual_accuracy;
             $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy;
@@ -139,18 +138,18 @@ class CombatController extends Controller
 
             if ($origin->current_health <= $return_damage) {
                 $this->lose();
-                return redirect(route('combat_end'))->with('message', 'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day!');
+                return redirect(route('combat_end'))->with('message', 'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
             } else {
                 $origin->current_health = $origin->current_health - $return_damage;
                 $origin->save();
             }
-            $ship = $origin;
 
+            // return the damage message
             return redirect(route('view_combat'))->with('message', 'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>');
 
         } else {
-            // user is not in combat, redirect to the combat show without doing anything
-            return redirect(route('combat.show'));
+            // user is not in combat, redirect to the combat index without doing anything
+            return redirect(route('combat.index'));
         }
     }
 
@@ -210,8 +209,6 @@ class CombatController extends Controller
         $user->combat_losses++;
 
         $ship->delete();
-
-        return redirect(route('combat_end'))->reflash('message', 'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day!');
     }
 
     public function capture()
