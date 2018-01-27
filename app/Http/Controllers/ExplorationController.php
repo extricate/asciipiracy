@@ -132,10 +132,16 @@ class ExplorationController extends Controller
             $$affects->save();
         }
 
-        // check if any special conditions apply now
+        // check if any special conditions apply now and process or remedy them.
         if ($ship->current_health <= 0) {
             // apparently the ship sank, tough luck
             $ship->delete();
+        }
+
+        if ($ship->current_health > $ship->maximum_health) {
+            // apparently the ship has more health than the maximum now. Let's restore that.
+            $ship->current_health = $ship->maximum_health;
+            $ship->save();
         }
 
         return;

@@ -19,11 +19,12 @@ class Events extends Migration
             $table->string('icon_type')->nullable();
             $table->longText('icon')->nullable();
             $table->unsignedInteger('frequency')->default(1);
-            $table->string('body');
+            $table->longText('body');
             $table->string('type');
             $table->string('affects');
             $table->string('effect_on');
             $table->string('effect_changed');
+            $table->boolean('has_secondary_effect')->default(false);
             $table->string('secondary_affects')->nullable();
             $table->string('secondary_effect_on')->nullable();
             $table->string('secondary_effect_changed')->nullable();
