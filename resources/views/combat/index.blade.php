@@ -13,11 +13,11 @@
                     <div class="panel-body">
                         @if (!empty($message))
                             <div class="alert alert-warning">
-                                {{ $message }}
+                                {!! $message !!}
                             </div>
                         @endif
                         @if (session()->has('message'))
-                            {{ session('message') }}
+                            {!! session('message') !!}
                         @endif
                     </div>
                 </div>

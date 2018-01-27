@@ -96,30 +96,57 @@ class CombatController extends Controller
             $origin = $user->activeShip();
             $enemy = Ship::findOrFail($user->is_in_combat_with);
 
-            $accuracy = array(
-                'grazes' => rand(0.500, 0.625),
-                'glances' => rand(0.625, 0.750),
-                'hits' => rand(0.750, 1.000),
-                'penetrates' => rand(1.000, 1.250),
-                'smashes' => rand(1.250, 1.490),
-                'wrecks' => 3.000
+            $accuracy_types = array(
+                'grazes',
+                'glances',
+                'hits',
+                'penetrates',
+                'smashes',
+                'wrecks'
             );
 
-            $selected_accuracy = array_rand($accuracy, 1);
-            $actual_accuracy = $accuracy[$selected_accuracy];
+            $accuracy_modifiers = array(
+                rand(0.500, 0.625),
+                rand(0.625, 0.750),
+                rand(0.750, 1.000),
+                rand(1.000, 1.250),
+                rand(1.250, 1.490),
+                3
+            );
 
+            /**
+             * 'grazes' => rand(0.500, 0.625),
+            'glances' => rand(0.625, 0.750),
+            'hits' => rand(0.750, 1.000),
+            'penetrates' => rand(1.000, 1.250),
+            'smashes' => rand(1.250, 1.490),
+            'wrecks' => 3.000
+             */
+
+            $selected_accuracy = array_rand($accuracy_types);
+            $accuracy_name = array_search($selected_accuracy, $accuracy_modifiers);
+            $actual_accuracy = $accuracy_modifiers[$selected_accuracy];
             $damage = $origin->attackStatistics($origin) * $actual_accuracy;
+            $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy;
 
             if ($enemy->current_health <= $damage) {
-                $enemy->delete();
                 $this->win();
+                return redirect(route('combat_end'))->with('message', 'Congratulations, you win!');
             } else {
                 $enemy->current_health = $enemy->current_health - $damage;
                 $enemy->save();
             }
+
+            if ($origin->current_health <= $return_damage) {
+                $this->lose();
+                return redirect(route('combat_end'))->with('message', 'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day!');
+            } else {
+                $origin->current_health = $origin->current_health - $return_damage;
+                $origin->save();
+            }
             $ship = $origin;
 
-            return redirect(route('view_combat'))->with('message', 'You infliced ' . $damage . ' damage on the ' . $enemy->name);
+            return redirect(route('view_combat'))->with('message', 'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>');
 
         } else {
             // user is not in combat, redirect to the combat show without doing anything
@@ -171,7 +198,7 @@ class CombatController extends Controller
         $user->is_in_combat_with = 0;
         $user->save();
 
-        return redirect(route('combat_end'))->with('message', 'You win!');
+        return redirect(route('combat_end'))->with('message', 'Congratulations, you win!');
     }
 
     public function lose()
@@ -181,6 +208,10 @@ class CombatController extends Controller
 
         // to lose you must either: surrender or sink
         $user->combat_losses++;
+
+        $ship->delete();
+
+        return redirect(route('combat_end'))->reflash('message', 'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day!');
     }
 
     public function capture()
@@ -197,6 +228,6 @@ class CombatController extends Controller
         $user->is_in_combat_with = 0;
         $user->save();
 
-        return redirect(route('home'));
+        return view('combat.end');
     }
 }

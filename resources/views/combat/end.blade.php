@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        @yield('combat_status')
+                        The fight is over...
                     </div>
                     <div class="panel-body text-center">
                         @if (session()->has('message'))
