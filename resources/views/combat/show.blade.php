@@ -4,6 +4,10 @@
     $ship = $user->activeShip();
 @endphp
 
+@section('fight_title')
+    Combat log of the fight with {{ $enemy->name }}
+@endsection
+
 @section('commands')
     @include('combat.partials.commands')
 @endsection

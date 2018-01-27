@@ -20,12 +20,10 @@ class CombatController extends Controller
         $user = Auth::user();
         $ship = $user->activeShip();
 
-        $error = '';
-
         // check if user has an active ship, else show an error message and exit scenario
         if ($user->activeShip() == null) {
-            $error = 'You do not have an active ship!';
-            return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
+            $message = 'You do not have an active ship!';
+            return view('combat.index', compact('user', 'ship', '$enemy', 'message'));
         }
 
         if ($user->is_in_combat == false) {
@@ -34,11 +32,17 @@ class CombatController extends Controller
             $user->is_in_combat = true;
             $user->is_in_combat_with = $enemy->id;
             $user->save();
+
+            // show the message that the user encountered a new enemy
+            $message = 'You encounter an enemy pirate ship called ' . $enemy->name;
         } else {
             $enemy = $target = Ship::findOrFail($user->is_in_combat_with);
+
+            // show the message that the user encountered a new enemy
+            $message = 'You are fighting the ' . $enemy->name;
         }
 
-        return view('combat.show', compact('user', 'ship', 'enemy', 'error'));
+        return view('combat.show', compact('user', 'ship', 'enemy', 'message'));
     }
 
     public function log($action)
@@ -56,14 +60,14 @@ class CombatController extends Controller
 
         // check if user has an active ship, else show an error message
         if ($user->activeShip() == null) {
-            $error = 'You do not have an active ship!';
-            return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
+            $message = 'You do not have an active ship!';
+            return view('combat.index', compact('user', 'ship', '$enemy', 'message'));
         }
 
         // create the opponent for the combat scenario
         //$enemy = $this->createEnemy();
 
-        return view('combat.show', compact('enemy', 'user', 'ship', 'error'));
+        return view('combat.show', compact('enemy', 'user', 'ship', 'message'));
     }
 
     public function createEnemy()
@@ -80,35 +84,47 @@ class CombatController extends Controller
     }
 
     /**
-     * @param Ship $id
-     * @return mixed
+     * User attacks the ship it is in combat with
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function attack($id)
+    public function attack()
     {
         $user = Auth::user();
-        $origin = $user->activeShip();
-        $target = Ship::findOrFail($id);
 
-        $origin_attack = $origin->attackStatistics($origin);
-        //$target_attack = $target->attackStatistics($target);
-        $accuracy = array(
-            'grazes' => rand(0.500, 0.625),
-            'glances' => rand(0.625, 0.750),
-            'hits' => rand(0.750, 1.000),
-            'penetrates' => rand(1.000, 1.250),
-            'smashes' => rand(1.250, 1.490),
-            'wrecks' => 3.000
-        );
+        if ($user->is_in_combat == true) {
+            $origin = $user->activeShip();
+            $enemy = Ship::findOrFail($user->is_in_combat_with);
 
-        $selected_accuracy = array_rand($accuracy, 1);
-        $actual_accuracy = $accuracy[$selected_accuracy];
+            $accuracy = array(
+                'grazes' => rand(0.500, 0.625),
+                'glances' => rand(0.625, 0.750),
+                'hits' => rand(0.750, 1.000),
+                'penetrates' => rand(1.000, 1.250),
+                'smashes' => rand(1.250, 1.490),
+                'wrecks' => 3.000
+            );
 
-        $damage = $origin_attack * $actual_accuracy;
+            $selected_accuracy = array_rand($accuracy, 1);
+            $actual_accuracy = $accuracy[$selected_accuracy];
 
-        $target->current_hp - $damage;
-        $target->save();
+            $damage = $origin->attackStatistics($origin) * $actual_accuracy;
 
-        return $damage;
+            if ($enemy->current_health <= $damage) {
+                $enemy->delete();
+                $this->win();
+            } else {
+                $enemy->current_health = $enemy->current_health - $damage;
+                $enemy->save();
+            }
+            $ship = $origin;
+
+            return redirect(route('view_combat'))->with('message', 'You infliced ' . $damage . ' damage on the ' . $enemy->name);
+
+        } else {
+            // user is not in combat, redirect to the combat show without doing anything
+            return redirect(route('combat.show'));
+        }
     }
 
     public function escape()
@@ -138,7 +154,7 @@ class CombatController extends Controller
     }
 
     // End scenario's, these all end with endCombat().
-    public function win($id)
+    public function win()
     {
         $user = Auth::user();
         $ship = $user->activeShip();
@@ -146,12 +162,16 @@ class CombatController extends Controller
         $user->combat_wins++;
 
         // find the correct ship
-        $ship = Ship::findOrFail($id);
+        $enemy = Ship::findOrFail($user->is_in_combat_with);
 
         // delete the ship
-        $ship->delete();
+        $enemy->delete();
 
-        return redirect('combat_end')->with('status', 'winner');
+        $user->is_in_combat = false;
+        $user->is_in_combat_with = 0;
+        $user->save();
+
+        return redirect(route('combat_end'))->with('message', 'You win!');
     }
 
     public function lose()
@@ -160,11 +180,23 @@ class CombatController extends Controller
         $ship = $user->activeShip();
 
         // to lose you must either: surrender or sink
-        $user->combat_wins++;
+        $user->combat_losses++;
     }
 
     public function capture()
     {
         // capture is the winning scenario for boarding
+    }
+
+    public function endCombat()
+    {
+        // End the combat scenario
+        $user = Auth::user();
+
+        $user->is_in_combat = false;
+        $user->is_in_combat_with = 0;
+        $user->save();
+
+        return redirect(route('home'));
     }
 }

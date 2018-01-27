@@ -65,7 +65,7 @@
 
                                         @if ($ship->id == $user->active_ship)
                                             {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
-                                            {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-info']) }}
+                                            {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-primary']) }}
                                             {{ Form::close() }}
                                         @else
                                             {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}

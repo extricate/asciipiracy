@@ -5,23 +5,28 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Combat log
+                        @yield('fight_title')
                     </div>
                     <div class="panel-body">
-                        @if (!empty($error))
+                        @if (!empty($message))
                             <div class="alert alert-warning">
-                                {{ $error }}
+                                {{ $message }}
                             </div>
                         @endif
-                        @yield('combat.log')
+                        @if (session()->has('message'))
+                            {{ session('message') }}
+                        @endif
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                @yield('commands')
+            </div>
         </div>
-        @yield('commands')
+
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">

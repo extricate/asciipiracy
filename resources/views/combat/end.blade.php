@@ -8,10 +8,12 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="ra ra-trophy"></i>
+                        @yield('combat_status')
                     </div>
                     <div class="panel-body text-center">
-                        @yield('user_ship')
+                        @if (session()->has('message'))
+                            {{ session('message') }}
+                        @endif
                     </div>
                 </div>
             </div>
