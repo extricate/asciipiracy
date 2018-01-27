@@ -48,6 +48,9 @@ class ShipsController extends Controller
             // populate the ship with crew
             factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
 
+            $user->active_ship = $ship->id;
+            $user->save();
+
             return redirect('home');
         }
 

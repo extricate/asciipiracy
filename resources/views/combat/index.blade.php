@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        @yield('commands');
+        @yield('commands')
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">

@@ -20,8 +20,7 @@ class CombatController extends Controller
         $user = Auth::user();
         $ship = $user->activeShip();
 
-        $error = 'You\'re currently not in a fight.';
-        $enemy = $user;
+        $error = '';
 
         // check if user has an active ship, else show an error message and exit scenario
         if ($user->activeShip() == null) {
@@ -30,7 +29,7 @@ class CombatController extends Controller
         }
 
         if ($user->is_in_combat == false) {
-            // if the user is not in combat yet, create an enemy
+            // if the user is not in combat yet, create a new enemy
             $enemy = $this->createEnemy();
             $user->is_in_combat = true;
             $user->is_in_combat_with = $enemy->id;
@@ -63,8 +62,6 @@ class CombatController extends Controller
 
         // create the opponent for the combat scenario
         //$enemy = $this->createEnemy();
-
-        $error = 'You inflicted ' . $this->attack($enemy->id) . ' damage on the enemy!';
 
         return view('combat.show', compact('enemy', 'user', 'ship', 'error'));
     }
