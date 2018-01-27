@@ -20,18 +20,26 @@ class CombatController extends Controller
         $user = Auth::user();
         $ship = $user->activeShip();
 
-        // you are your own worst enemy... show user for index as its own enemy if there is no actual combat
+        $error = 'You\'re currently not in a fight.';
         $enemy = $user;
 
-        $error = 'You\'re currently not in a fight.';
-
-        // check if user has an active ship, else show an error message
+        // check if user has an active ship, else show an error message and exit scenario
         if ($user->activeShip() == null) {
             $error = 'You do not have an active ship!';
             return view('combat.index', compact('user', 'ship', '$enemy', 'error'));
         }
 
-        return view('combat.index', compact('user', 'ship', 'enemy', 'error'));
+        if ($user->is_in_combat == false) {
+            // if the user is not in combat yet, create an enemy
+            $enemy = $this->createEnemy();
+            $user->is_in_combat = true;
+            $user->is_in_combat_with = $enemy->id;
+            $user->save();
+        } else {
+            $enemy = $target = Ship::findOrFail($user->is_in_combat_with);
+        }
+
+        return view('combat.show', compact('user', 'ship', 'enemy', 'error'));
     }
 
     public function log($action)
@@ -54,7 +62,7 @@ class CombatController extends Controller
         }
 
         // create the opponent for the combat scenario
-        $enemy = $this->createEnemy();
+        //$enemy = $this->createEnemy();
 
         $error = 'You inflicted ' . $this->attack($enemy->id) . ' damage on the enemy!';
 
@@ -127,21 +135,26 @@ class CombatController extends Controller
         // then the winner gets to claim the other ship
     }
 
-    public function sink()
+    public function sink($id)
     {
-        // to sink, our hull must first be penetrated
-        // then the ship must flood faster than the pumps can pump the water away
-        // and then we sink
+        //
     }
 
     // End scenario's, these all end with endCombat().
-    public function win()
+    public function win($id)
     {
         $user = Auth::user();
         $ship = $user->activeShip();
-
         // to win the opponent must either: surrender or sink
         $user->combat_wins++;
+
+        // find the correct ship
+        $ship = Ship::findOrFail($id);
+
+        // delete the ship
+        $ship->delete();
+
+        return redirect('combat_end')->with('status', 'winner');
     }
 
     public function lose()

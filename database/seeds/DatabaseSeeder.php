@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Herman',
                 'email' => 'hsfnelissen@gmail.com',
                 'password' => bcrypt('secret'),
+                'gold' => '100000',
+                'goods' => '100000',
             ]);
         }
     }

@@ -79,7 +79,7 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Pirates!',
-            'frequency' => 0.2,
+            'frequency' => 100,
             'body' => 'Get ready for a fight!',
             'type' => 'combat',
             'affects' => 'ship',

@@ -56,6 +56,7 @@ class ExplorationController extends Controller
                 // update the users goods to deduct the price of the exploration
                 // which will eventually be based on both the duration of the exploration and the size of the ship/crew
                 $user->goods = $user->goods - $explorationCost;
+                $user->exploration_count++;
                 $user->save();
 
                 // retrieve a random event weighted by frequency
@@ -70,8 +71,7 @@ class ExplorationController extends Controller
                 // first check if the event is a combat event because then we want to initialize the combat scenario
                 if ($event->type == 'combat')
                 {
-                    app('App\Http\Controllers\CombatController')->startCombat($user, $ship);
-                    return redirect(route('start_combat'));
+                    return redirect(route('view_combat'));
                 }
 
                 if ($event->type != 'system')

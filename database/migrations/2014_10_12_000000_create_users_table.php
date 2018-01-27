@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->integer('active_ship')->nullable();
             $table->unsignedInteger('combat_wins')->default(0)->nullable();
             $table->unsignedInteger('combat_losses')->default(0)->nullable();
+            $table->integer('exploration_count')->default(0);
+            $table->boolean('is_in_combat')->default(false);
+            $table->unsignedInteger('is_in_combat_with')->default(0)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

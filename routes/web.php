@@ -44,3 +44,5 @@ Route::get('/combat/start', 'CombatController@startCombat')->name('start_combat'
 Route::get('/combat/attack/{id}', 'CombatController@attack')->name('combat_attack');
 Route::get('/combat/escape', 'CombatController@escape')->name('combat_escape');
 
+Route::get('/combat/end/win', 'CombatController@win')->name('combat_end');
+

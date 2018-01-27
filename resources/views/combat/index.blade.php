@@ -11,7 +11,7 @@
                         Combat log
                     </div>
                     <div class="panel-body">
-                        @if (empty($error))
+                        @if (!empty($error))
                             <div class="alert alert-warning">
                                 {{ $error }}
                             </div>
