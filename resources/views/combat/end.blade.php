@@ -14,10 +14,13 @@
                     <div class="panel-heading">
                         The fight is over...
                     </div>
-                    <div class="panel-body text-center">
-                        <p>
+                    <div class="panel-body">
+                        <div class="col-md-4 col-md-offset-4">
+                            <p>
                             @if (session()->has('message'))
-                                {{ session('message') }}
+                                <span class="text-center">
+                                    {{ session('message') }}
+                                </span>
                             @else
                                 @if ($user->is_in_combat == true)
                                     We're in the midst of a fight captain, get your act together!
@@ -27,9 +30,11 @@
                                     You roughly awake in your bed, covered in a cold sweat. The nightmares of your adventures still haunt you day to day... Perhaps it's time to quit this reckless captaining? You still have your life and limbs now... You decide to try to get some more sleep.
                                 @endif
                             @endif
-
+                            </p>
+                            <p class="text-center">
                             <a class="btn btn-primary" href="{{ route('home') }}">Onwards!</a>
-                        </p>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

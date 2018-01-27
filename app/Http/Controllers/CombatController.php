@@ -114,19 +114,13 @@ class CombatController extends Controller
                 3
             );
 
-            /**
-             * 'grazes' => rand(0.500, 0.625),
-            'glances' => rand(0.625, 0.750),
-            'hits' => rand(0.750, 1.000),
-            'penetrates' => rand(1.000, 1.250),
-            'smashes' => rand(1.250, 1.490),
-            'wrecks' => 3.000
-             */
-
             $selected_accuracy = array_rand($accuracy_types);
             $actual_accuracy = $accuracy_modifiers[$selected_accuracy];
             $damage = $origin->attackStatistics($origin) * $actual_accuracy;
-            $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy;
+
+            $selected_accuracy_return = array_rand($accuracy_types);
+            $actual_accuracy_return = $accuracy_modifiers[$selected_accuracy_return];
+            $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy_return;
 
             if ($enemy->current_health <= $damage) {
                 $this->win();
@@ -145,7 +139,7 @@ class CombatController extends Controller
             }
 
             // return the damage message
-            return redirect(route('view_combat'))->with('message', 'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>');
+            return redirect(route('view_combat'))->with('message', 'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything
@@ -196,8 +190,6 @@ class CombatController extends Controller
         $user->is_in_combat = false;
         $user->is_in_combat_with = 0;
         $user->save();
-
-        return redirect(route('combat_end'))->with('message', 'Congratulations, you win!');
     }
 
     public function lose()
