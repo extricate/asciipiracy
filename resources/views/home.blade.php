@@ -57,7 +57,7 @@
                                 @foreach ($user->myShips() as $ship)
                                     <li>
                                         <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-                                        <span class="label label-success">{{ $ship->current_health }}
+                                        <span class="label label-{{ $ship->health() }}">{{ $ship->current_health }}
                                             /{{ $ship->maximum_health }}</span>,
                                         a {{ $ship->length }} footer with {{ $ship->decks }} decks
                                         and {{ $ship->crew()->count() }} sailors.
