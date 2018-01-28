@@ -5,24 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        @yield('fight_title')
-                    </div>
-                    <div class="panel-body">
-                        @if (!empty($message))
-                            <div class="alert alert-warning">
-                                {!! $message !!}
-                            </div>
-                        @endif
-                        @if (session()->has('message'))
-                            {!! session('message') !!}
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 @yield('commands')
             </div>
         </div>

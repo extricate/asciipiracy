@@ -146,7 +146,7 @@ class CombatController extends Controller
                 // Then actually start the win function and delete
                 $this->win();
 
-                return redirect(route('combat_end'))->with('message',
+                return redirect(route('combat_end'))->with('result',
                     '<span class="fa-5x text-center"><i class="fa fa-trophy "></i></span>' .
                     '<p>Most tactfully, your navigator has positioned the ship for a full broadside off the stern, approaching the enemy from the rear at approximately 400 meters as she attempts to turn downwind. As soon the cannons are reloaded the Chief Gunner shouts "Cannons ready!". The crew now monitors you closely, awaiting your command. You monitor the enemy ship through your looking glass. Your first officer asks if he should give the command to fire. You answer him quietly: "Hold fire", which he relays to the crew. "Hold fire!" can be hear multiple times as the officers relay it to the rest of the crew. A lesson you have been taught a long time ago is knowing when to fire, and when to wait". A truly killing blow needs expert timing, for cannons are hardly precision instruments. "Almost there now", you whisper. As the crew grows completely quiet in anticipation of your command, you listen to the soothing sound of seagulls and the the waves breaking on the bow of the ship. You think about the enemy crew and captain. You wonder what this victory will bring for all of you. The enemy ship is almost turned, close to unleashing another broadside. Such a shame that a lovely ship like that has to be sunk.</p>' .
                     '<p>"FIRE!", as soon as you relay your command it can be hear a couple of times more, before the sound of exploding cannons drowns out all sound. As soon as the smoke clears, cheers erupt. The enemy ship is on fire and will soon be no more. Victory!</p>' .
@@ -164,7 +164,7 @@ class CombatController extends Controller
                     $reward_goods .
                     ' goods <i class="ra ra-chicken-leg"></i>' .
                     '</span></p>'
-            );
+                );
 
             } else {
                 $enemy->current_health = $enemy->current_health - $damage;
@@ -175,7 +175,7 @@ class CombatController extends Controller
                 $origin_name = $origin->name;
                 $crew_count = $origin->crew->count();
                 $this->lose();
-                return redirect(route('combat_end'))->with('message',
+                return redirect(route('combat_end'))->with('result',
                     '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
                     '<p>As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.</p>' .
                     '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>' .
@@ -299,10 +299,15 @@ class CombatController extends Controller
         // End the combat scenario
         $user = Auth::user();
 
-        $user->is_in_combat = false;
-        $user->is_in_combat_with = 0;
-        $user->save();
+        if ($user->is_in_combat_with == null) {
+            $user->is_in_combat = false;
+            $user->is_in_combat_with = 0;
+            $user->save();
 
-        return view('combat.end');
+            return view('combat.end');
+        } else {
+            return redirect(route('view_combat'))->with('message',
+                'You might want to finish your fight before you try to magically win!');;
+        }
     }
 }

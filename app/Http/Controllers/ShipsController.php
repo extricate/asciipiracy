@@ -162,8 +162,13 @@ class ShipsController extends Controller
     public function setActiveShip($id)
     {
         $user = Auth::user();
-        $user->active_ship = $id;
-        $user->save();
+
+        if ($user->is_in_combat == false) {
+            $user->active_ship = $id;
+            $user->save();
+        } else {
+            return redirect(route('home'))->with('message', 'You might want to finish your fight before you try to magically change your ship!');
+        }
 
         return back();
     }
@@ -172,11 +177,24 @@ class ShipsController extends Controller
      * Repair ship
      *
      * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function repairShip($id)
     {
+        $user = Auth::user();
         $ship = Ship::findOrFail($id);
+        $cost = $ship->repairCost($ship);
 
-        $ship->repairShip($ship);
+        if ($user->is_in_combat == false) {
+            if ($user->gold >= $cost) {
+                $ship->repairShip($ship);
+
+                return redirect(route('home'))->with('message', 'Ship repaired!');
+            } else {
+                return redirect(route('home'))->with('message', 'You do not have enough gold for that repair!');
+            }
+        } else {
+            return redirect(route('home'))->with('message', 'Captain, you might want to consider finishing your fight before thinking about repairs?!');
+        }
     }
 }

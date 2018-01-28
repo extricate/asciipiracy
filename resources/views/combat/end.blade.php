@@ -17,8 +17,8 @@
                     <div class="panel-body">
                         <div class="col-md-4 col-md-offset-4">
                             <p class="text-center">
-                                @if (session()->has('message'))
-                                    {!! session('message') !!}
+                                @if (session()->has('result'))
+                                    {!! session('result') !!}
                                 @else
                                     @if ($user->is_in_combat == true)
                                         We're in the midst of a fight captain, get your act together!

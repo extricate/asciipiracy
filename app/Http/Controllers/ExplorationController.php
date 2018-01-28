@@ -49,6 +49,9 @@ class ExplorationController extends Controller
         $ship = Auth::user()->activeShip();
 
         // check if the user has an active ship, else return the no ship event
+        if ($user->is_in_combat == true) {
+            return redirect(route('view_combat'))->with('message', 'You might want to finish the fight before you go on another adventure captain!');
+        }
         if ($user->activeShip() == !null) {
             $explorationCost = $ship->explorationCost();
             if ($user->goods >= $explorationCost) {

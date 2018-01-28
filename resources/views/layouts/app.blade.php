@@ -122,6 +122,20 @@
         </div>
     </nav>
 
+    @if (session()->has('message'))
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                        </button>
+                        {!! session('message') !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     @yield('content')
 </div>
 
