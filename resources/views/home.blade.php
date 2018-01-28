@@ -13,16 +13,29 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">Captain {{ $user->name }}'s quarters</div>
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
+                             style="enable-background:new 0 0 512 512;" xml:space="preserve" width="100px"
+                             height="100px">
+                                        <g>
+                                            <g>
+                                                @include('icons.captain')
+                                            </g>
+                                        </g>
+                                    </svg>
                         @if ($active != null)
-                            <p>Welcome back capt'n <b>{{ $user->name }}</b>.
+                            <p>Welcome back capt'n <b>{{ $user->name }}</b>.</p>
+                            <p>
                                 You're currently on the
                                 <a href="{{ $active->path() }}"><b>{{ $active->name }}</b></a>, and
                                 its {{ $active->crew->count() }} sailors are ready for your command.
                             </p>
-                            <p class="text-center">
-                                {{ $active->draw($active) }}
-                            </p>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    {{ $active->draw($active) }}
+                                </div>
+                            </div>
                         @else
                             <p>Welcome back captain <b>{{ $user->name }}</b>. You currently have no active ship.
                         @endif
@@ -57,7 +70,7 @@
                                 @foreach ($user->myShips() as $ship)
                                     <li>
                                         <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-                                        <span class="label label-{{ $ship->health() }}">{{ $ship->current_health }}
+                                        <span class="label label-{{ $ship->health($ship) }}">{{ $ship->current_health }}
                                             /{{ $ship->maximum_health }}</span>,
                                         a {{ $ship->length }} footer with {{ $ship->decks }} decks
                                         and {{ $ship->crew()->count() }} sailors.

@@ -64,12 +64,8 @@
                                         </g>
                                     </svg>
 
-
                                     @if ($user->activeShip() !== null)
-                                        @php
-
-                                                @endphp
-                                        <span class="label label-{{ Auth::user()->activeShip()->health() }}">HP: {{ Auth::user()->activeShip()->current_health }}
+                                        <span class="label label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}">HP: {{ Auth::user()->activeShip()->current_health }}
                                             /{{ Auth::user()->activeShip()->maximum_health }}</span>
                                     @else
                                         <span class="label label-default">HP:--/--

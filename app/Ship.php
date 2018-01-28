@@ -269,11 +269,8 @@ class Ship extends Model
      * @param Ship $ship
      * @return string
      */
-    public function health()
+    public function health(Ship $ship)
     {
-        $user = Auth::user();
-        $ship = $user->activeShip();
-
         $current_health = $ship->current_health;
         $maximum_health = $ship->maximum_health;
 
@@ -293,5 +290,10 @@ class Ship extends Model
         }
 
         return $healthStatus;
+    }
+
+    public function shipClass()
+    {
+
     }
 }
