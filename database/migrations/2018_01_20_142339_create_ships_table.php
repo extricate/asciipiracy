@@ -18,8 +18,7 @@ class CreateShipsTable extends Migration
             // owned by
             $table->unsignedInteger('user_id')->default(1)->nullable();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->boolean('is_beginner_ship')->default(true);
+            $table->boolean('is_beginner_ship')->default(false);
 
             $table->string('name');
             $table->string('slug')->unique()->nullable();

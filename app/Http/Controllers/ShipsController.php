@@ -60,7 +60,7 @@ class ShipsController extends Controller
     }
 
     /**
-     * Create a new ship
+     * Create a beginner ship
      *
      * @return \Response
      */
@@ -72,6 +72,7 @@ class ShipsController extends Controller
         if ($user->myShips()->count() == 0) {
             $ship = factory(App\Ship::class)->create([
                 'user_id' => $user->id,
+                'is_beginner_ship' => true,
                 'length' => 80,
                 'masts' => 2,
                 'min_sailors' => 20,
@@ -154,7 +155,6 @@ class ShipsController extends Controller
         return redirect('home');
     }
 
-
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -166,5 +166,17 @@ class ShipsController extends Controller
         $user->save();
 
         return back();
+    }
+
+    /**
+     * Repair ship
+     *
+     * @param $id
+     */
+    public function repairShip($id)
+    {
+        $ship = Ship::findOrFail($id);
+
+        $ship->repairShip($ship);
     }
 }

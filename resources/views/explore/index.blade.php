@@ -36,22 +36,20 @@
                         </div>
                         <br>
                         <div class="label label-info">
-                            That's @php echo round($user->goods/$ship->explorationCost(), 0) @endphp more journeys.
+                            That's @php echo round($user->goods/$ship->explorationCost(), 0) @endphp more journeys with
+                            the goods left.
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Active ship
+                        Active ship <a href="{{ $ship->path() }}">The {{ $ship->name }}</a>
                     </div>
-                    <div class="panel-body text-center">
-                        <a href="{{ $ship->path() }}">The {{ $ship->name }}</a>
-                        <div class="panel panel-default pull-right text-left">
-                            <div class="panel-body">
-                                @include('ships.stats')
-                            </div>
-                        </div>
-
+                    <div class="panel-body">
+                        This ship is ready to explore the seas!
+                    </div>
+                    <div class="panel-footer text-center">
+                        @include('ships.stats')
                     </div>
                 </div>
             </div>

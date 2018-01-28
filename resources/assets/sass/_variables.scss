@@ -37,7 +37,52 @@ $input-color-placeholder: lighten($text-color, 30%);
 // Panels
 $panel-default-heading-bg: #fff;
 
+// Colors
+$attack: #B71c1c;
+$escape: #0D47A1;
+$crew: #E65100;
+$white: #fff;
+
+$active-ship-border: #C8E6C9;
+
 // Labels
-.label {
-  font-size: 100%;
+.label-attack {
+ background-color: $attack;
+}
+
+.label-escape {
+  background-color: $escape;
+}
+
+.label-crew {
+  background-color: $crew;
+}
+
+// Panels
+.panel-active {
+  border-color: $active-ship-border !important;
+}
+
+// Buttons
+.btn-attack {
+  color: $white;
+  background-color: $attack;
+}
+
+.btn-escape {
+  color: $white;
+  background-color: $escape;
+}
+
+.btn-crew {
+  color: $white;
+  background-color: $crew;
+}
+
+// Lists
+ul.stats-list {
+  margin-bottom: 0;
+  .label {
+    font-size: 13px;
+  }
 }

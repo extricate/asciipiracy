@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'home');
 
 Auth::routes();
 
@@ -30,6 +28,7 @@ Route::put('/ships/{ship}/update', 'ShipsController@update');
 Route::get('/ships/create/new', 'ShipsController@create')->name('ship_create')->middleware('auth');
 Route::get('/ships/create/beginner', 'ShipsController@createBeginner')->name('ship_create_beginner')->middleware('auth');
 Route::put('/ship/set-active/{ship}', 'ShipsController@setActiveShip')->name('set_active_ship');
+Route::put('/ship/repair/{ship}', 'ShipsController@repairShip')->name('ship_repair');
 Route::delete('/ships/{ship}', 'ShipsController@destroy')->name('ship_destroy');
 
 Route::get('/people', 'PeopleController@index')->name('people');

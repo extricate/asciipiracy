@@ -326,4 +326,51 @@ class Ship extends Model
         $cost = $ship->crew()->count();
         return $cost;
     }
+
+    /**
+     * Calculate the cost of repairing this ship
+     *
+     * @param Ship $ship
+     * @return float|int|mixed|null
+     */
+    public function repairCost(Ship $ship)
+    {
+        if ($ship->current_health < $ship->maximum_health) {
+            $missing_health = $ship->maximum_health - $ship->current_health;
+            $cost_per_health = round($ship->maximum_health / 10, 0);
+            $cost = $cost_per_health * $missing_health;
+
+            return $cost;
+
+        } elseif ($ship->current_health <= 0) {
+            return null;
+        } else {
+            return $cost = 0;
+        }
+    }
+
+    /**
+     * Repair the ship
+     *
+     * @param Ship $ship
+     */
+    public function repairShip(Ship $ship)
+    {
+        $user = Auth::user();
+        $ship->maximum_health;
+        $ship->current_health;
+
+        $cost = $this->repairCost($ship);
+
+        if ($user->gold >= $cost) {
+            // Repair the ship
+            $user->gold = $user->gold - $cost;
+            $user->save();
+
+            $ship->current_health = $ship->maximum_health;
+            $ship->save();
+        } else {
+            // User doesn't have the gold to repair this ship so we do nothing, deal with it
+        }
+    }
 }

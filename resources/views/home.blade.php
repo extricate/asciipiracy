@@ -50,7 +50,6 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">Your ships</div>
-
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -63,44 +62,12 @@
                                 <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free
                                     beginner ship</a>
                             </div>
-
                         @else
                             <p class="text-center">
                                 <a href="{{ route('ship_create') }}" class="btn btn-primary">Buy a new ship</a>
                             </p>
                             @foreach ($user->myShips() as $ship)
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-                                        a {{ $ship->length }} footer with {{ $ship->decks }} decks
-                                        and {{ $ship->crew()->count() }} sailors.
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-body">
-                                                @include('ships.stats')
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                @if ($ship->id == $user->active_ship)
-                                                    {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
-                                                    {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-primary']) }}
-                                                    {{ Form::close() }}
-                                                @else
-                                                    {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
-                                                    {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
-                                                    {{ Form::close() }}
-                                                @endif
-                                            </div>
-                                            <div class="col-md-8 text-right">
-                                                <a class="btn btn-default btn-sm">Repair</a>
-                                                <a class="btn btn-default btn-sm">Upgrade</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('ships.list')
                             @endforeach
                         @endif
                     </div>
