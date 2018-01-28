@@ -185,6 +185,10 @@ class ShipsController extends Controller
         $ship = Ship::findOrFail($id);
         $cost = $ship->repairCost($ship);
 
+        if ($user->id != $ship->user_id) {
+            return redirect(route('home'))->with('message', 'That is NOT your ship you filthy hacker!');
+        }
+
         if ($user->is_in_combat == false) {
             if ($user->gold >= $cost) {
                 $ship->repairShip($ship);

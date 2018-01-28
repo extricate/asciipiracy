@@ -21,7 +21,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div class="panel panel-default @if($active->id == $ship->id) panel-active @endif">
+<div class="panel panel-default">
     <div class="panel-heading">
         The <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
     </div>
