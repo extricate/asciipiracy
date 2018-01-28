@@ -17,6 +17,9 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->unique()->nullable();
+
+            $table->unsignedInteger('location_id')->nullable();
+
             $table->unsignedInteger('gold')->default(0);
             $table->unsignedInteger('goods')->default(100);
             $table->string('email')->unique();

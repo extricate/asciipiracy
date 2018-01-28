@@ -25,8 +25,8 @@
                     <div class="panel-heading">
                         Actions
                     </div>
-                    <div class="panel-body">
-                        <a href="{{ route('explore_now') }}" class="btn btn-primary">Go explore</a>
+                    <div class="panel-body text-center">
+                        <a href="{{ route('explore_now') }}" class="btn btn-primary btn-lg">Go explore</a>
                     </div>
                 </div>
             </div>

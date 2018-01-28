@@ -37,11 +37,28 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('explore') }}">Explore</a></li>
-                    <li><a href="#">Town</a></li>
-                    <li><a href="{{ route('ships') }}">Ships</a></li>
-                    <li><a href="{{ route('people') }}">People</a></li>
-                    <li><a href="{{ route('users') }}">Players</a></li>
+                    <li>
+                        <a href="{{ route('explore') }}">
+                            <i class="fa fa-telescope"></i> Explore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
+                                 style="enable-background:new 0 0 512 512;" xml:space="preserve" width="14px"
+                                 height="14px">
+                                        <g>
+                                            <g>
+                                                @include('icons.ship')
+                                            </g>
+                                        </g>
+                                    </svg>
+                            Fight pirates</a>
+                    </li>
+                    <li>
+                        <a href="#">Town</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -68,7 +85,7 @@
                                         <span class="label label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}">HP: {{ Auth::user()->activeShip()->current_health }}
                                             /{{ Auth::user()->activeShip()->maximum_health }}</span>
                                     @else
-                                        <span class="label label-default">HP:--/--
+                                        <span class="label label-default">HP: --/--
                                     @endif
                                 </a>
                             </li>

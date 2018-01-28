@@ -63,9 +63,6 @@
                             <p class="text-center">
                                 <a href="{{ route('ship_create') }}" class="btn btn-primary">Buy a new ship</a>
                             </p>
-                            <p>
-                                The ships are generated randomly and cost 1000 gold.
-                            </p>
                             <ul>
                                 @foreach ($user->myShips() as $ship)
                                     <li>
