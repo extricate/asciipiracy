@@ -148,20 +148,22 @@ class CombatController extends Controller
 
                 return redirect(route('combat_end'))->with('message',
                     '<span class="fa-5x text-center"><i class="ra ra-skull-trophy "></i></span>' .
-                    'Congratulations, you win!' .
-                    '<br>' .
-                    'From the wreckage you gather some items... ' .
+                    '<p>Most tactfully, your navigator has positioned the ship for a full broadside off the stern, approaching the enemy from the rear at approximately 400 meters as she attempts to turn, downwind. As soon the cannons are reloaded the Chief Gunner shouts "Cannons ready!". The crew now monitors you closely, awaiting your command. You monitor the enemy ship through your looking glass. Your first officer asks if he should give the command to fire. You answer him quietly: "Hold fire", which he relays to the crew. "Hold fire!" can be hear multiple times as the officers relay it to the rest of the crew. A lesson you have been taught a long time ago is knowing when to fire, and when to wait". A truly killing blow needs expert timing, for cannons are hardly precision instruments. "Almost there now", you whisper. As the crew grows completely quiet in anticipation of your command, you listen to the soothing sound of seagulls and the the waves breaking on the bow of the ship. You think about the enemy crew and captain. You wonder what this victory will bring for all of you. The enemy ship is almost turned, close to unleashing another broadside. Such a shame that a lovely ship like that has to be sunk.</p>' .
+                    '<p>"FIRE!", as soon as you relay your command it can be hear a couple of times more, before the sound of exploding cannons drowns out all sound. As soon as the smoke clears, cheers erupt. The enemy ship is on fire and will soon be no more. Victory!</p>' .
+                    '<p>From the wreckage, some items are retrieved... ' .
                     $reward_gold .
-                    ' gold worth of goods, and ' .
+                    ' gold worth of cargo, and supplies worth ' .
                     $reward_goods .
-                    ' packs of goods' .
-                    '<br><br>' .
-                    '<span class="label label-success"> + ' .
+                    ' crates of goods. That\'ll come in handy!</p>' .
+                    '<p class="text-center"><span class="label label-success"> + ' .
                     $reward_gold .
-                    ' gold <i class="ra ra-gold-bar"></i> and + ' .
+                    ' gold <i class="ra ra-gold-bar"></i> ' .
+                    '</span> ' .
+                    ' <span class="label label-success"> ' .
+                    ' + ' .
                     $reward_goods .
                     ' goods <i class="ra ra-chicken-leg"></i>' .
-                    '</span>'
+                    '</span></p>'
             );
 
             } else {
@@ -170,10 +172,22 @@ class CombatController extends Controller
             }
 
             if ($origin->current_health <= $return_damage) {
+                $origin_name = $origin->name;
+                $crew_count = $origin->crew->count();
                 $this->lose();
                 return redirect(route('combat_end'))->with('message',
                     '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
-                    'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.' . '<br><br>' .  'Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
+                    '<p>As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.</p>' .
+                    '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>' .
+                    '<p>The ' .
+                    $origin_name .
+                    ' and its ' .
+                    $crew_count .
+                    ' crew are lost.</p>' .
+                    '<p class="text-center"><span class="label label-danger">The ' .
+                    $origin_name .
+                    ' has sunk</span></p>'
+                );
             } else {
                 $origin->current_health = $origin->current_health - $return_damage;
                 $origin->save();

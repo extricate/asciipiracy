@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href=""><span class="ra ra-crossed-sabres"></span> Fight pirates</a>
+                        <a href="{{ route('view_combat') }}"><span class="ra ra-crossed-sabres"></span> Fight pirates</a>
                     </li>
                     <li>
                         <a href="#"><span class="fa fa-home"></span> Town</a>
