@@ -37,6 +37,7 @@ $factory->define(App\Ship::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
+        'is_beginner_ship' => false,
         'maximum_health' => $maximumHealth,
         'current_health' => $maximumHealth,
         'cannons' => $cannons,

@@ -135,8 +135,16 @@ class CombatController extends Controller
             $return_damage = round($return_damage, 0);
 
             if ($enemy->current_health <= $damage) {
+                // First, gather the spoils of war
+                $reward_array = $this->rewards();
+                $reward_gold = $reward_array[0];
+                $reward_goods = $reward_array[1];
+
+                // Then actually start the win function and delete
                 $this->win();
-                return redirect(route('combat_end'))->with('message', 'Congratulations, you win!');
+
+                return redirect(route('combat_end'))->with('message', 'Congratulations, you win!' . '<br>' . 'From the wreckage you gather: ' . $reward_gold . ' <i class="ra ra-gold-bar"></i>' . ' and ' . $reward_goods . ' <i class="ra ra-chicken-leg"></i>');
+
             } else {
                 $enemy->current_health = $enemy->current_health - $damage;
                 $enemy->save();
@@ -145,7 +153,7 @@ class CombatController extends Controller
             if ($origin->current_health <= $return_damage) {
                 $this->lose();
                 return redirect(route('combat_end'))->with('message',
-                    'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently. Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
+                    'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.' . '<br>' .  'Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
             } else {
                 $origin->current_health = $origin->current_health - $return_damage;
                 $origin->save();
@@ -187,14 +195,44 @@ class CombatController extends Controller
         //
     }
 
-    // End scenario's, these all end with endCombat().
-    public function win()
+    /**
+     * Rewards logic if user has won
+     *
+     * @return array
+     */
+    public function rewards()
     {
         $user = Auth::user();
         $ship = $user->activeShip();
         // to win the opponent must either: surrender or sink
         $user->combat_wins++;
+        // find the correct ship
+        $enemy = Ship::findOrFail($user->is_in_combat_with);
 
+        // Rewards logic and persisting rewards
+        $enemy_combat = $enemy->attackStatistics($enemy);
+        $enemy_escape = $enemy->escapeStatistics($enemy);
+        $reward_gold = rand(0, $enemy_combat);
+        $reward_goods = rand(0, $enemy_escape);
+
+        $user->gold = $user->gold + $reward_gold;
+        $user->goods = $user->goods + $reward_goods;
+        $user->save();
+
+        $rewards = array($reward_gold, $reward_goods);
+
+        return $rewards;
+    }
+
+    /**
+     * Win function
+     */
+    public function win()
+    {
+        $user = Auth::user();
+
+        // to win the opponent must either: surrender or sink
+        $user->combat_wins++;
         // find the correct ship
         $enemy = Ship::findOrFail($user->is_in_combat_with);
 

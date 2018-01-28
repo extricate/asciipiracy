@@ -58,39 +58,62 @@
                                     feet</b> and a beam of <b>{{ $ship->beam }} feet</b>.
                             </p>
 
-                            <h3>Combat characteristics: </h3>
-                            <p>
-                            <ul>
-                                <li><i class="ra ra-hearts ra-fw"></i> Health: {{ $ship->current_health }}
-                                    /{{ $ship->maximum_health }}</li>
-                                <li><i class="ra ra-crossed-sabres ra-fw"></i>
-                                    Attack: {{ $ship->attackStatistics($ship) }}</li>
-                                <ul>
-                                    <li>Cannons: {{ $ship->cannons }}, bearing {{ $ship->cannon_caliber }} shot</li>
-                                    <li>Gunports: {{ $ship->gunports }}</li>
-                                    <li>Minimum sailors: {{ $ship->min_sailors }}</li>
-                                    <li>Current sailors: {{ $ship->crew->count() }}</li>
-                                    <li>Maximum sailors: {{ $ship->max_sailors }}</li>
-                                </ul>
-                                <li><i class="ra ra-cog ra-fw"></i> Escape: {{ $ship->escapeStatistics($ship) }}</li>
-                                <ul>
-                                    <li>Maneuverability: {{ $ship->maneuverability }}</li>
-                                    <li>Maximum speed: {{ $ship->max_speed }} knots</li>
-                                </ul>
-
-                            </ul>
-
-                            <h3>Trade characteristics: </h3>
-                            <ul>
-                                <li>Total hold: {{ $ship->total_hold }} pound.</li>
-                            </ul>
-
-                            <h3>Random characteristics</h3>
-                            <ul>
-                                <li>Construction date: {{ $ship->constructed_at }}</li>
-                                <li>Story: {{ $ship->story }}</li>
-                            </ul>
-                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Combat characteristics
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-unstyled">
+                                                <li><i class="ra ra-hearts ra-fw"></i>
+                                                    Health: {{ $ship->current_health }}
+                                                    /{{ $ship->maximum_health }}</li>
+                                                <li><i class="ra ra-crossed-sabres ra-fw"></i>
+                                                    Attack: {{ $ship->attackStatistics($ship) }}</li>
+                                                <ul>
+                                                    <li>Cannons: {{ $ship->cannons }},
+                                                        bearing {{ $ship->cannon_caliber }} shot
+                                                    </li>
+                                                    <li>Gunports: {{ $ship->gunports }}</li>
+                                                    <li>Minimum sailors: {{ $ship->min_sailors }}</li>
+                                                    <li>Current sailors: {{ $ship->crew->count() }}</li>
+                                                    <li>Maximum sailors: {{ $ship->max_sailors }}</li>
+                                                </ul>
+                                                <li><i class="ra ra-cog ra-fw"></i>
+                                                    Escape: {{ $ship->escapeStatistics($ship) }}</li>
+                                                <ul>
+                                                    <li>Maneuverability: {{ $ship->maneuverability }}</li>
+                                                    <li>Maximum speed: {{ $ship->max_speed }} knots</li>
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Trade characteristics
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-unstyled">
+                                                <li>Total hold: {{ $ship->total_hold }} pound.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Random characteristics
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-unstyled">
+                                                <li>Ship value: {{ $ship->ShipValue($ship) }} <i class="ra ra-gold-bar"></i></li>
+                                                <li>Construction date: {{ $ship->constructed_at }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <h3>Crew</h3>
                             <p>

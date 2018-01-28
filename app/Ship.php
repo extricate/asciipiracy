@@ -310,11 +310,9 @@ class Ship extends Model
      */
     public function shipValue(Ship $ship)
     {
-        // Determine the value of a ship, i.e. for purchase, sale and repair costs.
-
         // Value in gold is based on maximum health, gunports, cannon_caliber, total hold, max sailors, max speed and maneuverability.
 
-        $value = $ship->maximum_health + ($ship->gunports * $ship->cannon_caliber) + ($ship->total_hold / 1000) + $ship->max_sailors + $ship->max_speed * $ship->maneuverability;
+        $value = $ship->maximum_health + ($ship->gunports) + ($ship->total_hold / 1000) + $ship->max_sailors + $ship->max_speed * $ship->maneuverability;
 
         $value = round($value, 0);
 

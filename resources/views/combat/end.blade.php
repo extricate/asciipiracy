@@ -16,11 +16,9 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-4 col-md-offset-4">
-                            <p>
+                            <p class="text-center">
                             @if (session()->has('message'))
-                                <span class="text-center">
-                                    {{ session('message') }}
-                                </span>
+                                {!! session('message') !!}
                             @else
                                 @if ($user->is_in_combat == true)
                                     We're in the midst of a fight captain, get your act together!

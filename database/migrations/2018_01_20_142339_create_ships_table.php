@@ -16,8 +16,10 @@ class CreateShipsTable extends Migration
         Schema::create('ships', function (Blueprint $table) {
             $table->increments('id');
             // owned by
-            $table->unsignedInteger('user_id')->default(1);
+            $table->unsignedInteger('user_id')->default(1)->nullable();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->boolean('is_beginner_ship')->default(true);
 
             $table->string('name');
             $table->string('slug')->unique()->nullable();

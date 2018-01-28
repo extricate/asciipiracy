@@ -103,7 +103,7 @@ class EventsSeeder extends Seeder
             'icon_type' => 'ra',
             'icon' => 'hand-saw',
             'frequency' => 1,
-            'body' => 'Upon returning to port you are approached by a man accompanied by a few soldiers. He tells you that he has been looking for a ship with a masts configuration that exactly matches yours. He continues to explain that he is the local shipwright, and that he has discovered a way to greatly improve the maneuverability of ships by tweaking their masts! However, he has yet to find a ship that is suitable for the method. You reluctantly agree to have your ship be his guinea pig, after he tells you that you will be compensated dearly if the procedure fails. Luckily, the procedure goes fine and your ships\' maneuverability has been increased!',
+            'body' => 'Upon returning to port you are approached by a man accompanied by a few soldiers. He tells you that he has been looking for a ship with a mast configuration that exactly matches yours. He continues to explain that he is the local shipwright, and that he has discovered a way to greatly improve the maneuverability of ships by tweaking their masts! However, he has yet to find a ship that is suitable for the method. You reluctantly agree to have your ship be his guinea pig, after he tells you that you will be compensated dearly if the procedure fails. Luckily, the procedure goes fine and your ships\' maneuverability has been increased!',
             'type' => '+',
             'affects' => 'ship',
             'effect_on' => 'maneuverability',

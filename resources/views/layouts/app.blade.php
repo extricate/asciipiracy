@@ -39,11 +39,6 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="{{ route('explore') }}">
-                            <i class="fa fa-telescope"></i> Explore
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                  version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
                                  style="enable-background:new 0 0 512 512;" xml:space="preserve" width="14px"
@@ -54,10 +49,14 @@
                                             </g>
                                         </g>
                                     </svg>
-                            Fight pirates</a>
+                            Explore
+                        </a>
                     </li>
                     <li>
-                        <a href="#">Town</a>
+                        <a href=""><span class="ra ra-crossed-sabres"></span> Fight pirates</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-home"></span> Town</a>
                     </li>
                 </ul>
 
