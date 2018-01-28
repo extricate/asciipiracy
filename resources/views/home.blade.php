@@ -31,16 +31,21 @@
                                 <a href="{{ $active->path() }}"><b>{{ $active->name }}</b></a>, and
                                 its {{ $active->crew->count() }} sailors are ready for your command.
                             </p>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    {{ $active->draw($active) }}
-                                </div>
-                            </div>
                         @else
                             <p>Welcome back captain <b>{{ $user->name }}</b>. You currently have no active ship.
                         @endif
                     </div>
                 </div>
+                @if ($active != null)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            The {{ $active->name }}
+                        </div>
+                        <div class="panel-body">
+                            {{ $active->draw($active) }}
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -63,27 +68,35 @@
                             <p class="text-center">
                                 <a href="{{ route('ship_create') }}" class="btn btn-primary">Buy a new ship</a>
                             </p>
-                            <ul>
-                                @foreach ($user->myShips() as $ship)
-                                    <li>
+                            @foreach ($user->myShips() as $ship)
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
                                         <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-                                        <span class="label label-{{ $ship->health($ship) }}">{{ $ship->current_health }}
+                                        <span class="label label-{{ $ship->health($ship) }}">HP: {{ $ship->current_health }}
                                             /{{ $ship->maximum_health }}</span>,
                                         a {{ $ship->length }} footer with {{ $ship->decks }} decks
                                         and {{ $ship->crew()->count() }} sailors.
 
-                                        @if ($ship->id == $user->active_ship)
-                                            {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
-                                            {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-primary']) }}
-                                            {{ Form::close() }}
-                                        @else
-                                            {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
-                                            {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
-                                            {{ Form::close() }}
-                                        @endif
-                                    </li>
-                                @endforeach
-                            </ul>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                @if ($ship->id == $user->active_ship)
+                                                    {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', 0]]) }}
+                                                    {{ Form::submit('Active ship', ['class' => 'btn btn-sm btn-primary']) }}
+                                                    {{ Form::close() }}
+                                                @else
+                                                    {{ Form::open(['method' => 'PUT', 'route' => ['set_active_ship', $ship->id]]) }}
+                                                    {{ Form::submit('Make active', ['class' => 'btn btn-sm btn-info']) }}
+                                                    {{ Form::close() }}
+                                                @endif
+                                            </div>
+                                            <div class="col-md-8 text-right">
+                                                <a class="btn btn-default btn-sm">Repair</a>
+                                                <a class="btn btn-default btn-sm">Upgrade</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                 </div>

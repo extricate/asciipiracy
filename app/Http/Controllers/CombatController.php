@@ -56,7 +56,7 @@ class CombatController extends Controller
     public function startCombat()
     {
         $user = Auth::user();
-        $ship = $user->activeShip();
+        $ship = Auth::user()->activeShip();
 
         // check if user has an active ship, else show an error message
         if ($user->activeShip() == null) {
@@ -147,8 +147,8 @@ class CombatController extends Controller
                 $this->win();
 
                 return redirect(route('combat_end'))->with('message',
-                    '<span class="fa-5x text-center"><i class="ra ra-skull-trophy "></i></span>' .
-                    '<p>Most tactfully, your navigator has positioned the ship for a full broadside off the stern, approaching the enemy from the rear at approximately 400 meters as she attempts to turn, downwind. As soon the cannons are reloaded the Chief Gunner shouts "Cannons ready!". The crew now monitors you closely, awaiting your command. You monitor the enemy ship through your looking glass. Your first officer asks if he should give the command to fire. You answer him quietly: "Hold fire", which he relays to the crew. "Hold fire!" can be hear multiple times as the officers relay it to the rest of the crew. A lesson you have been taught a long time ago is knowing when to fire, and when to wait". A truly killing blow needs expert timing, for cannons are hardly precision instruments. "Almost there now", you whisper. As the crew grows completely quiet in anticipation of your command, you listen to the soothing sound of seagulls and the the waves breaking on the bow of the ship. You think about the enemy crew and captain. You wonder what this victory will bring for all of you. The enemy ship is almost turned, close to unleashing another broadside. Such a shame that a lovely ship like that has to be sunk.</p>' .
+                    '<span class="fa-5x text-center"><i class="fa fa-trophy "></i></span>' .
+                    '<p>Most tactfully, your navigator has positioned the ship for a full broadside off the stern, approaching the enemy from the rear at approximately 400 meters as she attempts to turn downwind. As soon the cannons are reloaded the Chief Gunner shouts "Cannons ready!". The crew now monitors you closely, awaiting your command. You monitor the enemy ship through your looking glass. Your first officer asks if he should give the command to fire. You answer him quietly: "Hold fire", which he relays to the crew. "Hold fire!" can be hear multiple times as the officers relay it to the rest of the crew. A lesson you have been taught a long time ago is knowing when to fire, and when to wait". A truly killing blow needs expert timing, for cannons are hardly precision instruments. "Almost there now", you whisper. As the crew grows completely quiet in anticipation of your command, you listen to the soothing sound of seagulls and the the waves breaking on the bow of the ship. You think about the enemy crew and captain. You wonder what this victory will bring for all of you. The enemy ship is almost turned, close to unleashing another broadside. Such a shame that a lovely ship like that has to be sunk.</p>' .
                     '<p>"FIRE!", as soon as you relay your command it can be hear a couple of times more, before the sound of exploding cannons drowns out all sound. As soon as the smoke clears, cheers erupt. The enemy ship is on fire and will soon be no more. Victory!</p>' .
                     '<p>From the wreckage, some items are retrieved... ' .
                     $reward_gold .

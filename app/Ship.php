@@ -318,4 +318,12 @@ class Ship extends Model
 
         return $value;
     }
+
+    public function explorationCost()
+    {
+        // Calculate the cost of exploration with this ship
+        $ship = Auth::user()->activeShip();
+        $cost = $ship->crew()->count();
+        return $cost;
+    }
 }

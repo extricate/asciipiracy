@@ -17,27 +17,40 @@
                     <div class="panel-body">
                         <div class="col-md-4 col-md-offset-4">
                             <p class="text-center">
-                            @if (session()->has('message'))
-                                {!! session('message') !!}
-                            @else
-                                @if ($user->is_in_combat == true)
-                                    We're in the midst of a fight captain, get your act together!
-                                @elseif ($user->combat_wins - $user->combat_losses > 0)
-                                    <div class="alert alert-info text-center">
-                                        You are not in combat.
-                                    </div>
-                                    A young sailor approaches you: "Sir, are you alright?". It appears you had been standing there for ten minutes, reliving moments of glory in the past. Ah, the good old days.
+                                @if (session()->has('message'))
+                                    {!! session('message') !!}
                                 @else
+                                    @if ($user->is_in_combat == true)
+                                        We're in the midst of a fight captain, get your act together!
+                            @elseif ($user->combat_wins - $user->combat_losses > 0)
+                                <p class="fa-5x text-center">
+                                    <i class="fa fa-question"></i>
+                                </p>
                                 <div class="alert alert-info text-center">
                                     You are not in combat.
                                 </div>
-                                    You roughly awake in your bed, covered in a cold sweat. The nightmares of your adventures still haunt you day to day... Perhaps it's time to quit this reckless captaining? You still have your life and limbs now... You decide to try to get some more sleep.
+                                <p>A young sailor approaches you: "Sir, are you alright?". It appears you had been
+                                    standing
+                                    there for ten minutes, reliving moments of glory in the past. Ah, the good old
+                                    days.
+                                </p>
+                            @else
+                                <p class="fa-5x text-center">
+                                    <i class="fa fa-question"></i>
+                                </p>
+                                <div class="alert alert-info text-center">
+                                    You are not in combat.
+                                </div>
+                                You roughly awake in your bed, covered in a cold sweat. The nightmares of your
+                                adventures still haunt you day to day... Perhaps it's time to quit this reckless
+                                captaining? You still have your life and limbs now... You decide to try to get some more
+                                sleep.
                                 @endif
-                            @endif
-                            </p>
-                            <p class="text-center">
-                            <a class="btn btn-primary" href="{{ route('home') }}">Onwards!</a>
-                            </p>
+                                @endif
+                                </p>
+                                <p class="text-center">
+                                    <a class="btn btn-primary" href="{{ route('home') }}">Onwards!</a>
+                                </p>
                         </div>
                     </div>
                 </div>
