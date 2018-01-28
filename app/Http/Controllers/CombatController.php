@@ -107,6 +107,9 @@ class CombatController extends Controller
             );
 
             /**
+             * Previous function worked like this, but sadly functions in arrays don't work
+             * I'll have to find a way to circumvent that
+             *
              * rand(0.500, 0.625),
              * rand(0.625, 0.750),
              * rand(0.750, 1.000),
@@ -143,7 +146,23 @@ class CombatController extends Controller
                 // Then actually start the win function and delete
                 $this->win();
 
-                return redirect(route('combat_end'))->with('message', 'Congratulations, you win!' . '<br>' . 'From the wreckage you gather: ' . $reward_gold . ' <i class="ra ra-gold-bar"></i>' . ' and ' . $reward_goods . ' <i class="ra ra-chicken-leg"></i>');
+                return redirect(route('combat_end'))->with('message',
+                    '<span class="fa-5x text-center"><i class="ra ra-skull-trophy "></i></span>' .
+                    'Congratulations, you win!' .
+                    '<br>' .
+                    'From the wreckage you gather some items... ' .
+                    $reward_gold .
+                    ' gold worth of goods, and ' .
+                    $reward_goods .
+                    ' packs of goods' .
+                    '<br><br>' .
+                    '<span class="label label-success"> + ' .
+                    $reward_gold .
+                    ' gold <i class="ra ra-gold-bar"></i> and + ' .
+                    $reward_goods .
+                    ' goods <i class="ra ra-chicken-leg"></i>' .
+                    '</span>'
+            );
 
             } else {
                 $enemy->current_health = $enemy->current_health - $damage;
@@ -153,7 +172,8 @@ class CombatController extends Controller
             if ($origin->current_health <= $return_damage) {
                 $this->lose();
                 return redirect(route('combat_end'))->with('message',
-                    'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.' . '<br>' .  'Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
+                    '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
+                    'As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.' . '<br><br>' .  'Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.');
             } else {
                 $origin->current_health = $origin->current_health - $return_damage;
                 $origin->save();
@@ -165,7 +185,7 @@ class CombatController extends Controller
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything
-            return redirect(route('combat.index'));
+            return redirect(route('view_combat'));
         }
     }
 
