@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Ship extends Model
@@ -260,5 +261,37 @@ class Ship extends Model
         $escape = round($escape, 0);
 
         return $escape;
+    }
+
+    /**
+     * Calculates the health status of a ship
+     *
+     * @param Ship $ship
+     * @return string
+     */
+    public function health()
+    {
+        $user = Auth::user();
+        $ship = $user->activeShip();
+
+        $current_health = $ship->current_health;
+        $maximum_health = $ship->maximum_health;
+
+        $diff = ((1 - $current_health / $maximum_health) * 100);
+
+        $healthStatus = "default";
+
+        if ($diff < 25) {
+            // We're good
+            $healthStatus = "success";
+        } elseif ($diff >= 50) {
+            // Getting worse
+            $healthStatus = "warning";
+        } elseif ($diff >= 75) {
+            // Bad bad bad
+            $healthStatus = "danger";
+        }
+
+        return $healthStatus;
     }
 }
