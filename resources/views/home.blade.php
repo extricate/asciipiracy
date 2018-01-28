@@ -72,10 +72,15 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-                                        <span class="label label-{{ $ship->health($ship) }}">HP: {{ $ship->current_health }}
-                                            /{{ $ship->maximum_health }}</span>,
                                         a {{ $ship->length }} footer with {{ $ship->decks }} decks
                                         and {{ $ship->crew()->count() }} sailors.
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                @include('ships.stats')
+                                            </div>
+
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-md-4">
