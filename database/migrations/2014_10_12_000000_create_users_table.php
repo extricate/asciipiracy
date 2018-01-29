@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('location_id')->nullable();
             $table->unsignedInteger('max_ships')->default(5);
 
-            $table->integer('active_ship')->nullable();
+            $table->unsignedInteger('active_ship')->nullable()->onDelete('set null');
 
             $table->unsignedInteger('combat_wins')->default(0)->nullable();
             $table->unsignedInteger('combat_losses')->default(0)->nullable();

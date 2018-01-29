@@ -21,9 +21,9 @@ class CombatController extends Controller
         $ship = $user->activeShip();
 
         // check if user has an active ship, else show an error message and exit scenario
-        if ($user->activeShip() == null) {
-            $message = 'You do not have an active ship!';
-            return view('combat.index', compact('user', 'ship', '$enemy', 'message'));
+        if ($user->active_ship == null) {
+            return redirect(route('home'))->with('message',
+                'You do not have an active ship to fight anybody with.');
         }
 
         if ($user->is_in_combat == false) {
@@ -45,23 +45,15 @@ class CombatController extends Controller
         return view('combat.show', compact('user', 'ship', 'enemy', 'message'));
     }
 
-    public function log($action)
-    {
-        // push the action to the log
-        array_push($logs, $action);
-
-        return view('combat.log', '$logs');
-    }
-
     public function startCombat()
     {
         $user = Auth::user();
         $ship = Auth::user()->activeShip();
 
         // check if user has an active ship, else show an error message
-        if ($user->activeShip() == null) {
-            $message = 'You do not have an active ship!';
-            return view('combat.index', compact('user', 'ship', '$enemy', 'message'));
+        if ($user->active_ship == null) {
+            return redirect(route('home'))->with('message',
+                'You do not have an active ship to fight anybody with.');
         }
 
         // create the opponent for the combat scenario
@@ -128,7 +120,7 @@ class CombatController extends Controller
             $return_damage = round($return_damage, 0);
 
             if ($enemy->current_health <= $damage) {
-                // First, gather the spoils of war
+                // First, gather the spoils of war to output them in the return message
                 $reward_array = $this->rewards();
                 $reward_gold = $reward_array[0];
                 $reward_goods = $reward_array[1];
@@ -145,22 +137,17 @@ class CombatController extends Controller
                     $reward_gold .
                     ' gold worth of cargo, and supplies worth ' .
                     $reward_goods .
-                    ' crates of goods. That\'ll come in handy!</p>' .
-                    '<p class="text-center"><span class="label label-success"> + ' .
+                    ' crates of goods. That\'ll come in handy!</p> <p class="text-center"><span class="label label-success"> + ' .
                     $reward_gold .
                     ' gold <i class="ra ra-gold-bar"></i> ' .
-                    '</span> ' .
-                    ' <span class="label label-success"> ' .
+                    '</span> <span class="label label-success"> ' .
                     ' + ' .
                     $reward_goods .
-                    ' goods <i class="ra ra-chicken-leg"></i>' .
-                    '</span>' .
+                    ' goods <i class="ra ra-chicken-leg"></i></span>' .
                     ' <span class="label label-success"> ' .
                     ' + ' .
                     $reward_experience .
-                    ' experience' .
-                    '</span>' .
-                    '</p>'
+                    ' experience</span></p>'
                 );
 
             } else {
@@ -169,9 +156,11 @@ class CombatController extends Controller
             }
 
             if ($origin->current_health <= $return_damage) {
+                // apparently the ship was destroyed in the attack
                 $origin_name = $origin->name;
                 $crew_count = $origin->crew->count();
                 $this->lose();
+                $this->endCombat();
                 return redirect(route('combat_end'))->with('result',
                     '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
                     '<p>As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.</p>' .
@@ -186,6 +175,7 @@ class CombatController extends Controller
                     ' has sunk</span></p>'
                 );
             } else {
+                // take the damage like a champ
                 $origin->current_health = $origin->current_health - $return_damage;
                 $origin->save();
             }
@@ -217,18 +207,17 @@ class CombatController extends Controller
                 return redirect(route('home'))->with('message', 'Successfully escaped from the encounter!');
             } else {
                 $this->attack();
-                if ($user->current_ship == null) {
-                    $this->lose();
+
+                if ($user->active_ship != null) {
+                    return redirect(route('view_combat'))->with('message',
+                        'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
+                } else {
                     $this->endCombat();
                     return redirect(route('combat_end'))->with('result',
                         '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
-                        '<p>As you try to escape your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.</p>' .
-                        '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>'
-                    );
-                } else {
-                    return redirect(route('view_combat'))->with('message', 'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
+                        '<p>As hard as you and your crew try, you cannot seem to outrun the enemy. Eventually, they catch up and unleash a devestating final broadside. As a falling mast knocks you overboard to your certain demise, you contemplate what you could\'ve done differently.</p>' .
+                        '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>');
                 }
-                return redirect(route('view_combat'))->with('message', 'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
             }
         }
     }
@@ -271,7 +260,7 @@ class CombatController extends Controller
         $enemy_escape = $enemy->escapeStatistics($enemy);
         $reward_gold = rand(0, $enemy_combat);
         $reward_goods = rand(0, $enemy_escape);
-        $reward_experience = rand($enemy_combat/10, $enemy_combat/2);
+        $reward_experience = rand($enemy_combat / 10, $enemy_combat / 2);
 
         $user->gold = $user->gold + $reward_gold;
         $user->goods = $user->goods + $reward_goods;
@@ -294,7 +283,6 @@ class CombatController extends Controller
         $user->combat_wins++;
         // find the correct ship
         $enemy = Ship::findOrFail($user->is_in_combat_with);
-
         // delete the ship
         $enemy->delete();
 
@@ -308,11 +296,13 @@ class CombatController extends Controller
         $user = Auth::user();
         $ship = $user->activeShip();
 
-        // to lose you must either: surrender or sink
         $user->combat_losses++;
+        // for some reason I cannot force constraint thus manually set active ship to null
+        $user->active_ship = 0;
         $user->save();
 
         $ship->delete();
+        $this->endCombat();
     }
 
     public function capture()

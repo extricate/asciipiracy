@@ -75,7 +75,6 @@ class User extends Authenticatable
             return null;
         }
 
-
         return $activeShip;
 
     }
