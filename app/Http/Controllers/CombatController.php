@@ -192,7 +192,7 @@ class CombatController extends Controller
 
             // return the damage message
             return redirect(route('view_combat'))->with('message',
-                'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> your <b>' . $origin->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
+                'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy_return] . '</b> your <b>' . $origin->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything
