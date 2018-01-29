@@ -18,6 +18,11 @@
     @include('layouts.header.nav')
 
     @if (session()->has('message'))
+        <script>
+            $.notify({message: '{!! session('message') !!}',
+                type: 'info'});
+            // sadly script is not working yet due to Vue blocking it. Need to understand Vue better
+        </script>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
