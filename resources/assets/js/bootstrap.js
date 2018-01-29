@@ -53,3 +53,9 @@ if (token) {
 //     cluster: 'mt1',
 //     encrypted: true
 // });
+
+/**
+ * Load the bootstrap notify library
+ */
+
+window._ = require('bootstrap-notify');

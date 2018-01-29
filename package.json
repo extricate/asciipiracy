@@ -19,7 +19,10 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
+    "bootstrap-notify": "https://github.com/mouse0270/bootstrap-notify",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
     "rpg-awesome": "^0.1.1"
   }
 }
