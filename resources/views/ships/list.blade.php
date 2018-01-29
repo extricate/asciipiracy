@@ -11,10 +11,14 @@
             </div>
             <div class="modal-body">
                 @if ($ship->repairCost($ship) > 0)
-                    <p>After fully inspecting the ship, the local carpenter tells you that the repairs on this ship are gonna cost about <span class="label label-danger">{{ $ship->repairCost($ship) }} gold</span> for the amount of damage this ship has sustained.</p>
+                    <p>After fully inspecting the ship, the local carpenter tells you that the repairs on this ship are
+                        gonna cost about <span class="label label-danger">{{ $ship->repairCost($ship) }} gold</span> for
+                        the amount of damage this ship has sustained.</p>
                 @else
                     <p>
-                        After inspection the local carpenter comes to the conclusion that this ship isn't damaged. He mumbles something about you being an idiot and goes on his way. Perhaps next time don't waste his time?
+                        After inspection the local carpenter comes to the conclusion that this ship isn't damaged. He
+                        mumbles something about you being an idiot and goes on his way. Perhaps next time don't waste
+                        his time?
                     </p>
                 @endif
             </div>
@@ -33,6 +37,19 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         The <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
+
+        <span class="pull-right">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
+                 style="enable-background:new 0 0 512 512;" xml:space="preserve" width="20px"
+                 height="20px">
+                <g>
+                    <g>
+                        @include('icons.ship')
+                    </g>
+                </g>
+            </svg>
+        </span>
     </div>
     <div class="panel-body">
         <p>

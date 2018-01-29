@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Your ships</div>
+                    <div class="panel-heading">Your ships <span class="pull-right">{{ $user->myShips()->count() }} /5</span></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">

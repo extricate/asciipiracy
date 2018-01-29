@@ -23,10 +23,10 @@ Route::get('/user/{user}/ships/active', 'UserController@active')->name('active_s
 
 Route::get('/ships', 'ShipsController@index')->name('ships');
 Route::get('/ships/{ship}', 'ShipsController@show');
-Route::get('/ships/{ship}/upgrade', 'ShipsUpgradeController@show')->middleware('auth');
+Route::get('/ships/{ship}/upgrade', 'ShipsUpgradeController@show');
 Route::put('/ships/{ship}/update', 'ShipsController@update');
-Route::get('/ships/create/new', 'ShipsController@create')->name('ship_create')->middleware('auth');
-Route::get('/ships/create/beginner', 'ShipsController@createBeginner')->name('ship_create_beginner')->middleware('auth');
+Route::get('/ships/create/new', 'ShipsController@create')->name('ship_create');
+Route::get('/ships/create/beginner', 'ShipsController@createBeginner')->name('ship_create_beginner');
 Route::put('/ship/set-active/{ship}', 'ShipsController@setActiveShip')->name('set_active_ship');
 Route::put('/ship/repair/{ship}', 'ShipsController@repairShip')->name('ship_repair');
 Route::delete('/ships/{ship}', 'ShipsController@destroy')->name('ship_destroy');

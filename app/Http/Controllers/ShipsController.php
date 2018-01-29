@@ -13,7 +13,7 @@ class ShipsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth');
     }
 
     public function index()
@@ -51,11 +51,56 @@ class ShipsController extends Controller
             $user->active_ship = $ship->id;
             $user->save();
 
-            return redirect('home');
+            return redirect('home')->with('message', 'Ship successfully purchased and set as active!');
         }
 
         else {
-            return redirect('home');
+            return redirect('home')->with('message', 'You don\'t have enough gold, scrub');
+        }
+    }
+
+    /**
+     * Ship made to specifications
+     */
+
+    public function createToSpecs(Ship $ship)
+    {
+        // get the calling user's ID to associate the ship
+        $specifications = $ship;
+        $user = Auth::user();
+
+        if ($user->myShips()->count() == 0) {
+            $createShip = factory(App\Ship::class)->create([
+                'user_id' => $user->id,
+                'is_beginner_ship' => false,
+                'length' => $specifications->length,
+                'masts' => $specifications->masts,
+                'min_sailors' => $specifications->min_sailors,
+                'max_sailors' => $specifications->max_sailors,
+                'decks' => $specifications->decks,
+                'beam' => $specifications->beam,
+                'draught' => $specifications->draught,
+                'cannons' => $specifications->cannons,
+                'cannon_caliber' => $specifications->cannon_caliber,
+                'gunports' => $specifications->gunports,
+                'total_hold' => $specifications->total_hold,
+                'maneuverability' => $specifications->maneuverability,
+                'max_speed' => $specifications->max_speed,
+                'current_health' => $specifications->maximum_health,
+                'maximum_health' => $specifications->maximum_health,
+            ]);
+            $generateSailorAmount = $createShip->max_sailors;
+            // populate the ship with crew
+            factory(App\Person::class, $generateSailorAmount)->create([
+                'ships_id' => $createShip->id
+            ]);
+
+            $user->active_ship = $createShip->id;
+            $user->save();
+
+            return redirect('home')->with('message', 'Beginner ship created and set to active!');
+        } else {
+            return redirect('home')->with('message', 'Something went wrong. Perhaps you already have a beginner ship?');
         }
     }
 
@@ -98,9 +143,9 @@ class ShipsController extends Controller
             $user->active_ship = $ship->id;
             $user->save();
 
-            return redirect('home');
+            return redirect('home')->with('message', 'Beginner ship created and set to active!');
         } else {
-            return redirect('home');
+            return redirect('home')->with('message', 'Something went wrong. Perhaps you already have a beginner ship?');
         }
     }
 

@@ -7,10 +7,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * @return string
+     */
     public function path()
     {
         return '/users/' . $this->id;
