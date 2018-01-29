@@ -210,14 +210,25 @@ class CombatController extends Controller
 
             // roll escape statistics
             $escape = $ship->escapeStatistics($ship) * rand(0.1, 2);
-            $chase = $enemy->escapeStatistics($enemy) * rand(0.1, 2);
+            $chase = $enemy->escapeStatistics($enemy) * rand(0.5, 2);
 
             if ($escape > $chase) {
                 $this->win();
                 return redirect(route('home'))->with('message', 'Successfully escaped from the encounter!');
             } else {
                 $this->attack();
-                return back()->with('message', 'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
+                if ($user->current_ship == null) {
+                    $this->lose();
+                    $this->endCombat();
+                    return redirect(route('combat_end'))->with('result',
+                        '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
+                        '<p>As you try to escape your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.</p>' .
+                        '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>'
+                    );
+                } else {
+                    return redirect(route('view_combat'))->with('message', 'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
+                }
+                return redirect(route('view_combat'))->with('message', 'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
             }
         }
     }
