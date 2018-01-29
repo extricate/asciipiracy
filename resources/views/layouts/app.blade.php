@@ -18,28 +18,33 @@
     @include('layouts.header.nav')
 
     @if (session()->has('message'))
-        <script>
-            $.notify({message: '{!! session('message') !!}',
-                type: 'info'});
-            // sadly script is not working yet due to Vue blocking it. Need to understand Vue better
-        </script>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-info alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="fa fa-times"></i></span>
-                        </button>
-                        {!! session('message') !!}
+        <noscript>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                            </button>
+                            {!! session('message') !!}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </noscript>
     @endif
     @yield('content')
 </div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+@if (session()->has('message'))
+    <script>
+        $.notify({
+            message: '{!! session('message') !!}',
+            type: 'info'
+        });
+    </script>
+@endif
 </body>
 </html>
