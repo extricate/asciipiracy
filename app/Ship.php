@@ -329,6 +329,10 @@ class Ship extends Model
      */
     public function repairCost(Ship $ship)
     {
+        if ($ship->is_beginner_ship == true) {
+            $cost = 1;
+            return $cost;
+        }
         if ($ship->current_health < $ship->maximum_health) {
             $missing_health = $ship->maximum_health - $ship->current_health;
             $cost_per_health = round($ship->maximum_health / 100, 0);
