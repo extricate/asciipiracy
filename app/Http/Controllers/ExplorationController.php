@@ -59,6 +59,9 @@ class ExplorationController extends Controller
                 // which will eventually be based on both the duration of the exploration and the size of the ship/crew
                 $user->goods = $user->goods - $explorationCost;
                 $user->exploration_count++;
+
+                // add exploration experience
+                $user->experience = $user->experience + $explorationCost;
                 $user->save();
 
                 // retrieve a random event weighted by frequency

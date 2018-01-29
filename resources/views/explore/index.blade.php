@@ -30,6 +30,7 @@
                             <a href="{{ route('explore_now') }}" class="btn btn-primary btn-lg">Go explore</a>
                         </p>
                     </div>
+                    @if ($ship != null)
                     <div class="panel-footer text-center">
                         <div class="label label-info">
                             Exploration with your current ship costs {{ $ship->explorationCost() }} goods.
@@ -40,7 +41,9 @@
                             the goods left.
                         </div>
                     </div>
+                    @endif
                 </div>
+                @if ($ship != null)
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Active ship <a href="{{ $ship->path() }}">The {{ $ship->name }}</a>
@@ -52,6 +55,7 @@
                         @include('ships.stats')
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

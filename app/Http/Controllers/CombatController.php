@@ -142,6 +142,7 @@ class CombatController extends Controller
                 $reward_array = $this->rewards();
                 $reward_gold = $reward_array[0];
                 $reward_goods = $reward_array[1];
+                $reward_experience = $reward_array[2];
 
                 // Then actually start the win function and delete
                 $this->win();
@@ -248,12 +249,14 @@ class CombatController extends Controller
         $enemy_escape = $enemy->escapeStatistics($enemy);
         $reward_gold = rand(0, $enemy_combat);
         $reward_goods = rand(0, $enemy_escape);
+        $reward_experience = rand(10, $enemy_combat/100);
 
         $user->gold = $user->gold + $reward_gold;
         $user->goods = $user->goods + $reward_goods;
+        $user->experience = $user->experience + $reward_experience;
         $user->save();
 
-        $rewards = array($reward_gold, $reward_goods);
+        $rewards = array($reward_gold, $reward_goods, $reward_experience);
 
         return $rewards;
     }
@@ -285,6 +288,7 @@ class CombatController extends Controller
 
         // to lose you must either: surrender or sink
         $user->combat_losses++;
+        $user->save();
 
         $ship->delete();
     }
@@ -300,6 +304,13 @@ class CombatController extends Controller
         $user = Auth::user();
 
         if ($user->is_in_combat_with == null) {
+            $user->is_in_combat = false;
+            $user->is_in_combat_with = 0;
+            $user->save();
+
+            return view('combat.end');
+        } elseif ($user->activeShip() == null) {
+            // apparently we lost
             $user->is_in_combat = false;
             $user->is_in_combat_with = 0;
             $user->save();

@@ -72,4 +72,45 @@ class User extends Authenticatable
         return $activeShip;
 
     }
+
+    /**
+     * Calculate level progress
+     *
+     * @return float|int
+     */
+    public function levelProgress(User $user)
+    {
+        $levelProgress = $user->experience/$user->experience_next_level * 100;
+        $levelProgress = round($levelProgress, 0);
+
+        if ($levelProgress >= 100) {
+            $this->levelUp();
+        }
+
+        return $levelProgress;
+    }
+
+    /**
+     * Level up the user
+     */
+    public function levelUp()
+    {
+        $user = Auth::user();
+
+        if ($user->experience >= $user->experience_next_level) {
+            // check how many extra levels are required
+            // each level introduces the double amount of experience required for the next one
+
+            $remaining_exp = $user->experience - $user->experience_next_level;
+            // set the required experience for the next level
+            $user->experience_next_level = round($user->experience_next_level * 1.5, 0);
+            $user->experience = round($remaining_exp, 0);
+
+            // increase the level
+            $user->level = $user->level + 1;
+
+            // save the changes
+            $user->save();
+        }
+    }
 }

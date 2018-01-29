@@ -53,7 +53,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('view_combat') }}"><span class="ra ra-crossed-sabres"></span> Fight pirates</a>
+                        <a href="{{ route('view_combat') }}"><span class="ra ra-crossed-sabres"></span> Fight
+                            pirates</a>
                     </li>
                     <li>
                         <a href="#"><span class="fa fa-home"></span> Town</a>
@@ -81,10 +82,11 @@
                                     </svg>
 
                                     @if ($user->activeShip() !== null)
-                                        <span class="label label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}"><i class="fa fa-heart"></i> {{ Auth::user()->activeShip()->current_health }}
+                                        <span class="label label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}"><i
+                                                    class="fa fa-heart"></i> {{ Auth::user()->activeShip()->current_health }}
                                             /{{ Auth::user()->activeShip()->maximum_health }}</span>
                                     @else
-                                        <span class="label label-default"><i class="fa fa-heart"></i> --/--
+                                        <span class="label label-default"><i class="fa fa-heart"></i> --/-- </span>
                                     @endif
                                 </a>
                             </li>
@@ -93,8 +95,11 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    Lvl {{ $user->level }} captain {{ Auth::user()->name }}<span class="caret"></span>
+                                    <div style="width: {{ $user->levelProgress($user) }}%; background-color:#000; color:#fff; width: 20%;">
+                                    </div>
                                 </a>
+
 
                                 <ul class="dropdown-menu">
                                     <li>

@@ -25,7 +25,7 @@
                                         </g>
                                     </svg>
                         @if ($active != null)
-                            <p>Welcome back capt'n <b>{{ $user->name }}</b>.</p>
+                            <p>Welcome back captain <b>{{ $user->name }}</b>.</p>
                             <p>
                                 You're currently on the
                                 <a href="{{ $active->path() }}"><b>{{ $active->name }}</b></a>, and
