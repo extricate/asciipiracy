@@ -211,42 +211,36 @@ class Ship extends Model
         echo "</p>";
     }
 
+    /**
+     * Attacking
+     *
+     * @param Ship $ship
+     * @return float|int|mixed
+     */
     public function attackStatistics(Ship $ship)
     {
-        // Attacking
-        $cannons = $this->cannons;
-        $cannon_caliber = $this->cannon_caliber;
-
         // cannon caliber to damage modifier values
-        if ($this->cannon_caliber == '4 pounder')
-        {
+        if ($ship->cannon_caliber == '4 pounder') {
+            $caliber_modifier = 2;
+        } elseif ($ship->cannon_caliber == '6 pounder') {
+            $caliber_modifier = 3;
+        } elseif ($ship->cannon_caliber == '9 pounder') {
             $caliber_modifier = 4;
-        } elseif ($this->cannon_caliber == '6 pounder')
-        {
+        } elseif ($ship->cannon_caliber == '12 pounder') {
+            $caliber_modifier = 5;
+        } elseif ($ship->cannon_caliber == '18 pounder') {
             $caliber_modifier = 6;
-        } elseif ($this->cannon_caliber == '9 pounder')
-        {
+        } elseif ($ship->cannon_caliber == '24 pounder') {
+            $caliber_modifier = 7;
+        } elseif ($ship->cannon_caliber == '32 pounder') {
+            $caliber_modifier = 8;
+        } elseif ($ship->cannon_caliber == '42 pounder') {
             $caliber_modifier = 9;
-        } elseif ($this->cannon_caliber == '12 pounder')
-        {
-            $caliber_modifier = 12;
-        } elseif ($this->cannon_caliber == '18 pounder')
-        {
-            $caliber_modifier = 18;
-        } elseif ($this->cannon_caliber == '24 pounder')
-        {
-            $caliber_modifier = 24;
-        } elseif ($this->cannon_caliber == '32 pounder')
-        {
-            $caliber_modifier = 32;
-        } elseif ($this->cannon_caliber == '42 pounder')
-        {
-            $caliber_modifier = 42;
         } else {
             $caliber_modifier = 1;
         }
 
-        $attack = $cannons * $caliber_modifier;
+        $attack = $ship->cannons * $caliber_modifier;
         $attack = round($attack, 0);
 
         return $attack;

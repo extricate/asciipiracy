@@ -134,7 +134,7 @@ class EventsSeeder extends Seeder
             'title' => 'Large fire',
             'icon_type' => 'ra',
             'icon' => 'fire',
-            'frequency' => 100,
+            'frequency' => 1,
             'body' => 'On the high seas a large fire in the galley erupted. The fire seriously damaged the ship!',
             'type' => '-',
             'affects' => 'ship',
@@ -206,8 +206,34 @@ class EventsSeeder extends Seeder
             'type' => '+',
             'affects' => 'user',
             'effect_on' => 'goods',
+            'effect_changed' => '+ 200 goods',
+            'effect' => '200',
+        ]);
+
+        DB::Table('events')->insert([
+            'title' => 'It\'s raining fish!',
+            'icon_type' => 'ra',
+            'icon' => 'fish',
+            'frequency' => 3,
+            'body' => 'Whilst sailing the seas a flying fish lands on the deck. A few crew look at it confused. And then another one falls... and another one. Apparently, we\'re sailing through a huge school of flying fish! The cook has a good idea, stating that we could simply sail around for a bit with some nets on the sides of the ship and hanging over the deck, catching all the fish! We ended up with a nice amount of food that\'ll serve us well on our journey.',
+            'type' => '+',
+            'affects' => 'user',
+            'effect_on' => 'goods',
             'effect_changed' => '+ 100 goods',
             'effect' => '100',
+        ]);
+
+        DB::Table('events')->insert([
+            'title' => 'Sharks!',
+            'icon_type' => 'ra',
+            'icon' => 'shark',
+            'frequency' => 3,
+            'body' => 'The bloody creatures are everywhere! Circling the ship, just waiting for somebody to fall in and be slaughtered. Hm... That gives you an idea. You retrieve some harpoons from the hold and hand them out to various sailors. They start harpooning the sharks below. The first ones are quickly eaten by the remaining sharks, but eventually your crew succeeds in getting a few sharks on the ship. Looks like we\'re having shark burgers this week!',
+            'type' => '+',
+            'affects' => 'user',
+            'effect_on' => 'goods',
+            'effect_changed' => '+ 50 goods',
+            'effect' => '50',
         ]);
 
         DB::Table('events')->insert([
@@ -227,7 +253,7 @@ class EventsSeeder extends Seeder
             'title' => 'Pirates!',
             'icon_type' => 'ra',
             'icon' => 'skull',
-            'frequency' => 1,
+            'frequency' => 4,
             'body' => 'Get ready for a fight!',
             'type' => 'combat',
             'affects' => 'ship',
