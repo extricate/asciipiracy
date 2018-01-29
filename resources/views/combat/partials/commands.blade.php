@@ -1,4 +1,4 @@
-<d<div class="panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading">
         Your orders, commander {{ $user->name }}?
     </div>
