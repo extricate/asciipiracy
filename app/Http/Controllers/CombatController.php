@@ -85,7 +85,7 @@ class CombatController extends Controller
         $user = Auth::user();
 
         if ($user->is_in_combat == true) {
-            $origin = $user->activeShip();
+            $ship = $user->activeShip();
             $enemy = Ship::findOrFail($user->is_in_combat_with);
 
             // accuracy logic
@@ -111,7 +111,7 @@ class CombatController extends Controller
 
             $selected_accuracy = array_rand($accuracy_types);
             $actual_accuracy = $accuracy_modifiers[$selected_accuracy];
-            $damage = $origin->attackStatistics($origin) * $actual_accuracy * $damage_reduction;
+            $damage = $ship->attackStatistics($ship) * $actual_accuracy * $damage_reduction;
             $damage = round($damage, 0);
 
             $selected_accuracy_return = array_rand($accuracy_types);
@@ -155,10 +155,9 @@ class CombatController extends Controller
                 $enemy->save();
             }
 
-            if ($origin->current_health <= $return_damage) {
+            if ($ship->current_health <= $return_damage) {
                 // apparently the ship was destroyed in the attack
-                $origin_name = $origin->name;
-                $crew_count = $origin->crew->count();
+                $crew_count = $ship->crew->count();
                 $this->lose();
                 $this->endCombat();
                 return redirect(route('combat_end'))->with('result',
@@ -166,23 +165,23 @@ class CombatController extends Controller
                     '<p>As your ship takes the final broadside from the enemy, a falling mast knocks you overboard... whilst dropping to your certain demise you contemplate what you could\'ve done differently.</p>' .
                     '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>' .
                     '<p>The ' .
-                    $origin_name .
+                    $ship->name .
                     ' and its ' .
                     $crew_count .
                     ' crew are lost.</p>' .
                     '<p class="text-center"><span class="label label-danger">The ' .
-                    $origin_name .
+                    $ship->name .
                     ' has sunk</span></p>'
                 );
             } else {
                 // take the damage like a champ
-                $origin->current_health = $origin->current_health - $return_damage;
-                $origin->save();
+                $ship->current_health = $ship->current_health - $return_damage;
+                $ship->save();
             }
 
             // return the damage message
             return redirect(route('view_combat'))->with('message',
-                'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy_return] . '</b> your <b>' . $origin->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
+                'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy_return] . '</b> your <b>' . $ship->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything
@@ -215,8 +214,11 @@ class CombatController extends Controller
                     $this->endCombat();
                     return redirect(route('combat_end'))->with('result',
                         '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
-                        '<p>As hard as you and your crew try, you cannot seem to outrun the enemy. Eventually, they catch up and unleash a devestating final broadside. As a falling mast knocks you overboard to your certain demise, you contemplate what you could\'ve done differently.</p>' .
-                        '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>');
+                        '<p>As hard as you and your crew try, you cannot seem to outrun the enemy. Eventually, they catch up and unleash a devastating final broadside. As a falling mast knocks you overboard to your certain demise, you contemplate what you could\'ve done differently.</p>' .
+                        '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>' .
+                    '<p class="text-center"><span class="label label-danger">The ' .
+                    $ship->name .
+                    ' has sunk</span></p>');
                 }
             }
         }
