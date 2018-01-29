@@ -164,7 +164,13 @@ class CombatController extends Controller
                     ' + ' .
                     $reward_goods .
                     ' goods <i class="ra ra-chicken-leg"></i>' .
-                    '</span></p>'
+                    '</span>' .
+                    ' <span class="label label-success"> ' .
+                    ' + ' .
+                    $reward_experience .
+                    ' experience' .
+                    '</span>' .
+                    '</p>'
                 );
 
             } else {
@@ -249,7 +255,7 @@ class CombatController extends Controller
         $enemy_escape = $enemy->escapeStatistics($enemy);
         $reward_gold = rand(0, $enemy_combat);
         $reward_goods = rand(0, $enemy_escape);
-        $reward_experience = rand(10, $enemy_combat/100);
+        $reward_experience = rand($enemy_combat/10, $enemy_combat/2);
 
         $user->gold = $user->gold + $reward_gold;
         $user->goods = $user->goods + $reward_goods;

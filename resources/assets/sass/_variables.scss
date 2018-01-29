@@ -42,8 +42,8 @@ $attack: #B71c1c;
 $escape: #0D47A1;
 $crew: #E65100;
 $white: #fff;
-
-$active-ship-border: #C8E6C9;
+$grey: #E0E0E0;
+$experience-bar: #8BC34A;
 
 // Labels
 .label-attack {
@@ -56,11 +56,6 @@ $active-ship-border: #C8E6C9;
 
 .label-crew {
   background-color: $crew;
-}
-
-// Panels
-.panel-active {
-  border-color: $active-ship-border !important;
 }
 
 // Buttons
@@ -85,4 +80,21 @@ ul.stats-list {
   .label {
     font-size: 13px;
   }
+}
+
+// Progress bar
+.experience-bar {
+  background-color: $experience-bar;
+  border-radius: 50px;
+  height: 4px;
+  display: flex;
+  line-height: 4px;
+}
+
+.experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {
+  border-radius: 50px;
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: $grey;
 }

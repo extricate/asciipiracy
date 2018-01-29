@@ -80,7 +80,7 @@ class User extends Authenticatable
      */
     public function levelProgress(User $user)
     {
-        $levelProgress = $user->experience/$user->experience_next_level * 100;
+        $levelProgress = $user->experience / $user->experience_next_level * 100;
         $levelProgress = round($levelProgress, 0);
 
         if ($levelProgress >= 100) {

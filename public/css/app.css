@@ -5245,10 +5245,6 @@
   background-color: #E65100;
 }
 
-.panel-active {
-  border-color: #C8E6C9 !important;
-}
-
 .btn-attack {
   color: #fff;
   background-color: #B71c1c;
@@ -5270,6 +5266,25 @@ ul.stats-list {
 
 ul.stats-list .label {
   font-size: 13px;
+}
+
+.experience-bar {
+  background-color: #8BC34A;
+  border-radius: 50px;
+  height: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 4px;
+}
+
+.experience-bar::-webkit-progress-bar,
+.experience-bar::-webkit-progress-value {
+  border-radius: 50px;
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: #E0E0E0;
 }
 
 /*!

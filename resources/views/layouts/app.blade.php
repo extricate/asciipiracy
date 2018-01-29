@@ -95,9 +95,8 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false" aria-haspopup="true">
-                                    Lvl {{ $user->level }} captain {{ Auth::user()->name }}<span class="caret"></span>
-                                    <div style="width: {{ $user->levelProgress($user) }}%; background-color:#000; color:#fff; width: 20%;">
-                                    </div>
+                                    Lvl {{ $user->level }} captain {{ Auth::user()->name }}
+                                    <progress class="experience-bar" max="100" value="{{ $user->levelProgress($user) }}"></progress>
                                 </a>
 
 
