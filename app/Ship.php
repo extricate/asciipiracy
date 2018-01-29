@@ -306,7 +306,7 @@ class Ship extends Model
     {
         // Value in gold is based on maximum health, gunports, cannon_caliber, total hold, max sailors, max speed and maneuverability.
 
-        $value = $ship->maximum_health + ($ship->gunports) + ($ship->total_hold / 1000) + $ship->max_sailors + $ship->max_speed * $ship->maneuverability;
+        $value = $ship->maximum_health + ($ship->gunports) + ($ship->total_hold / 1000) + $ship->max_sailors + $ship->max_speed * $ship->maneuverability + (($ship->gunports + $ship->cannons) * (int)$ship->cannon_caliber);
 
         $value = round($value, 0);
 

@@ -49,7 +49,8 @@
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Your ships <span class="pull-right">{{ $user->myShips()->count() }} /5</span></div>
+                    <div class="panel-heading">Your ships <span class="pull-right">{{ $user->myShips()->count() }}
+                            / 5</span></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -66,7 +67,17 @@
                             <p class="text-center">
                                 <a href="{{ route('ship_create') }}" class="btn btn-primary">Buy a new ship</a>
                             </p>
+                            @if ($active != null)
+                                @php $ship = auth()->user()->activeShip(); @endphp
+                                @include('ships.list')
+                            @endif
                             @foreach ($user->myShips() as $ship)
+                                @php
+                                    // do not show the currently active ship
+                                    if ($active != null) {
+                                        if ($ship->id == $active->id) continue;
+                                    }
+                                @endphp
                                 @include('ships.list')
                             @endforeach
                         @endif

@@ -250,10 +250,23 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::Table('events')->insert([
+            'title' => 'A slow week',
+            'icon_type' => 'ra',
+            'icon' => 'stopwatch',
+            'frequency' => 6,
+            'body' => 'Not much happened during this journey. You visited some islands, but found nothing of interest. You encountered a few other ships, but none were up for some trading or fighting. Ah well, let\'s hope next week will be better.',
+            'type' => '+',
+            'affects' => 'user',
+            'effect_on' => 'gold',
+            'effect_changed' => '',
+            'effect' => '0',
+        ]);
+
+        DB::Table('events')->insert([
             'title' => 'Pirates!',
             'icon_type' => 'ra',
             'icon' => 'skull',
-            'frequency' => 4,
+            'frequency' => 5,
             'body' => 'Get ready for a fight!',
             'type' => 'combat',
             'affects' => 'ship',
