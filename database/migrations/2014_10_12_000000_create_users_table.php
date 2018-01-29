@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
 
             $table->unsignedInteger('location_id')->nullable();
 
+            $table->unsignedInteger('max_ships')->default(5);
+
             $table->unsignedInteger('level')->default(1);
             $table->unsignedInteger('experience')->default(0)->nullable();
             $table->unsignedInteger('experience_next_level')->default(100)->nullable();

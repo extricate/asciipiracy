@@ -32,43 +32,54 @@ class ShipsController extends Controller
         // get the calling user's ID to associate the ship
         $user = Auth::user();
 
+        // check if user has ship slots left
+        if ($this->checkShipCapacity() == false) {
+            return redirect('home')->with('message', 'You already have the maximum amount of ships you can have!');
+        }
+
         // get user gold and reduce by the correct amount; if the user has enough, continue the script
         $shipPrice = 1000;
         $gold = $user->gold;
         if ($user->gold >= $shipPrice) {
+            // deduct price of ship
             $user->gold = $gold - $shipPrice;
             $user->save();
 
-            // gold has been deducted, create the ship
-
+            // create the ship
             $ship = factory(App\Ship::class)->create([
                 'user_id' => $user->id
             ]);
-            $generateSailorAmount = $ship->min_sailors;
-            // populate the ship with crew
-            factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
 
+            // populate the ship with crew
+            $generateSailorAmount = $ship->min_sailors;
+            factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
             $user->active_ship = $ship->id;
             $user->save();
 
             return redirect('home')->with('message', 'Ship successfully purchased and set as active!');
-        }
-
-        else {
+        } else {
             return redirect('home')->with('message', 'You don\'t have enough gold, scrub');
         }
     }
 
     /**
      * Ship made to specifications
+     *
+     * @param Ship $ship
+     * @return \Illuminate\Http\RedirectResponse
      */
-
     public function createToSpecs(Ship $ship)
     {
         // get the calling user's ID to associate the ship
         $specifications = $ship;
         $user = Auth::user();
 
+        // check if user has ship slots left
+        if ($this->checkShipCapacity() == false) {
+            return redirect('home')->with('message', 'You already have the maximum amount of ships you can have!');
+        }
+
+        // create the ship based on the specifications
         if ($user->myShips()->count() == 0) {
             $createShip = factory(App\Ship::class)->create([
                 'user_id' => $user->id,
@@ -111,7 +122,6 @@ class ShipsController extends Controller
      */
     public function createBeginner()
     {
-        // get the calling user's ID to associate the ship
         $user = Auth::user();
 
         if ($user->myShips()->count() == 0) {
@@ -145,7 +155,21 @@ class ShipsController extends Controller
 
             return redirect('home')->with('message', 'Beginner ship created and set to active!');
         } else {
-            return redirect('home')->with('message', 'Something went wrong. Perhaps you already have a beginner ship?');
+            return redirect('home')->with('message',
+                'Something went wrong. Perhaps you already have a beginner ship or any other ship? You can only create a beginner ship if you have no other ships.');
+        }
+    }
+
+    /**
+     * Check if user has capacity for more ships
+     * @return bool
+     */
+    public function checkShipCapacity()
+    {
+        if (Auth::user()->myShips()->count() >= Auth::user()->max_ships) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -212,7 +236,8 @@ class ShipsController extends Controller
             $user->active_ship = $id;
             $user->save();
         } else {
-            return redirect(route('home'))->with('message', 'You might want to finish your fight before you try to magically change your ship!');
+            return redirect(route('home'))->with('message',
+                'You might want to finish your fight before you try to magically change your ship!');
         }
 
         return back();
@@ -243,7 +268,8 @@ class ShipsController extends Controller
                 return redirect(route('home'))->with('message', 'You do not have enough gold for that repair!');
             }
         } else {
-            return redirect(route('home'))->with('message', 'Captain, you might want to consider finishing your fight before thinking about repairs?!');
+            return redirect(route('home'))->with('message',
+                'Captain, you might want to consider finishing your fight before thinking about repairs?!');
         }
     }
 }

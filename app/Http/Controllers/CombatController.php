@@ -105,17 +105,6 @@ class CombatController extends Controller
                 'smashes',
                 'wrecks'
             );
-
-            /**
-             * Previous function worked like this, but sadly functions in arrays don't work
-             * I'll have to find a way to circumvent that
-             *
-             * rand(0.500, 0.625),
-             * rand(0.625, 0.750),
-             * rand(0.750, 1.000),
-             * rand(1.000, 1.250),
-             * rand(1.250, 1.490),
-             */
             $accuracy_modifiers = array(
                 0.625,
                 0.750,
@@ -125,16 +114,17 @@ class CombatController extends Controller
                 3
             );
 
-
             // determine actual damage
+            $damage_reduction = 0.5;
+
             $selected_accuracy = array_rand($accuracy_types);
             $actual_accuracy = $accuracy_modifiers[$selected_accuracy];
-            $damage = $origin->attackStatistics($origin) * $actual_accuracy;
+            $damage = $origin->attackStatistics($origin) * $actual_accuracy * $damage_reduction;
             $damage = round($damage, 0);
 
             $selected_accuracy_return = array_rand($accuracy_types);
             $actual_accuracy_return = $accuracy_modifiers[$selected_accuracy_return];
-            $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy_return;
+            $return_damage = $enemy->attackStatistics($enemy) * $actual_accuracy_return * $damage_reduction;
             $return_damage = round($return_damage, 0);
 
             if ($enemy->current_health <= $damage) {
