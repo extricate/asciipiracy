@@ -202,9 +202,24 @@ class CombatController extends Controller
 
     public function escape()
     {
-        // to escape we first move towards the wind
-        // then the ships race based on their escape stat and certain random events
-        // if the escape is successful, the escape ends the combat scenario immediately (no win or lose) with endCombat()
+        $user = Auth::user();
+
+        if ($user->is_in_combat == true) {
+            $ship = $user->activeShip();
+            $enemy = Ship::findOrFail($user->is_in_combat_with);
+
+            // roll escape statistics
+            $escape = $ship->escapeStatistics($ship) * rand(0.1, 2);
+            $chase = $enemy->escapeStatistics($enemy) * rand(0.1, 2);
+
+            if ($escape > $chase) {
+                $this->win();
+                return redirect(route('home'))->with('message', 'Successfully escaped from the encounter!');
+            } else {
+                $this->attack();
+                return back()->with('message', 'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
+            }
+        }
     }
 
     public function surrender()
