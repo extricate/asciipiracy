@@ -152,7 +152,7 @@ class ShipsController extends Controller
         // delete the ship
         $ship->delete();
 
-        return redirect('home');
+        return redirect('home')->with('message', 'Ship successfully sunk!');
     }
 
     /**

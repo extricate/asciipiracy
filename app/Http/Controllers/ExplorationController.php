@@ -33,7 +33,7 @@ class ExplorationController extends Controller
             'effect_on' => '',
             'effect' => '',
             'effect_changed' => '',
-            );
+        );
         return view('explore.show', compact('event'));
     }
 
@@ -50,10 +50,13 @@ class ExplorationController extends Controller
 
         // check if the user has an active ship, else return the no ship event
         if ($user->is_in_combat == true) {
-            return redirect(route('view_combat'))->with('message', 'You might want to finish the fight before you go on another adventure captain!');
+            return redirect(route('view_combat'))->with('message',
+                'You might want to finish the fight before you go on another adventure captain!');
         }
         if ($user->activeShip() == !null) {
+
             $explorationCost = $ship->explorationCost();
+
             if ($user->goods >= $explorationCost) {
                 // update the users goods to deduct the price of the exploration
                 // which will eventually be based on both the duration of the exploration and the size of the ship/crew
@@ -74,13 +77,11 @@ class ExplorationController extends Controller
                 $type = $event->type;
 
                 // first check if the event is a combat event because then we want to initialize the combat scenario
-                if ($event->type == 'combat')
-                {
+                if ($event->type == 'combat') {
                     return redirect(route('view_combat'));
                 }
 
-                if ($event->type != 'system')
-                {
+                if ($event->type != 'system') {
                     // construct the effect of the event if it's not a system event
                     $this->processEvent($affects, $effect_on, $type, $effect);
                 }
@@ -116,7 +117,7 @@ class ExplorationController extends Controller
         // determine type of affects to localize the correct object
         if ($affects == 'user') {
             $affects = $user;
-        } elseif ( $affects == 'ship' ) {
+        } elseif ($affects == 'ship') {
             $affects = $ship;
         }
 
@@ -128,17 +129,23 @@ class ExplorationController extends Controller
             $affects->{$effect_on} = $affects->{$effect_on} - $effect;
             $affects->save();
         } elseif ($type == '*') {
-            $$affects->{$effect_on} = $affects->{$effect_on} * $effect;
-            $$affects->save();
+            $affects->{$effect_on} = $affects->{$effect_on} - $effect;
+            $affects->save();
         } elseif ($type == '/') {
-            $$affects->{$effect_on} = $affects->{$effect_on} / $effect;
-            $$affects->save();
+            $affects->{$effect_on} = $affects->{$effect_on} - $effect;
+            $affects->save();
         }
 
         // check if any special conditions apply now and process or remedy them.
         if ($ship->current_health <= 0) {
             // apparently the ship sank, tough luck
             $ship->delete();
+        }
+
+        if ($ship->cannons > $ship->gunports) {
+            // apparently we got too much cannons now. Let's restore that.
+            $ship->cannons = $ship->gunports;
+            $ship->save();
         }
 
         if ($ship->current_health > $ship->maximum_health) {
