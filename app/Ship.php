@@ -337,9 +337,7 @@ class Ship extends Model
             $missing_health = $ship->maximum_health - $ship->current_health;
             $cost_per_health = round($ship->maximum_health / 100, 0);
             $cost = $cost_per_health * $missing_health;
-
             return $cost;
-
         } elseif ($ship->current_health <= 0) {
             return null;
         } else {
