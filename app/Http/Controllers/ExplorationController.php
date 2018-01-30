@@ -78,7 +78,7 @@ class ExplorationController extends Controller
 
                 // first check if the event is a combat event because then we want to initialize the combat scenario
                 if ($event->type == 'combat') {
-                    return redirect(route('view_combat'))->with('message', 'Whilst exploring, you are attacked by pirates!');
+                    return redirect(route('start_combat'))->with('message', 'Whilst exploring, you are attacked by pirates!');
                 }
 
                 if ($event->type != 'system') {

@@ -17,29 +17,24 @@ class CombatController extends Controller
 
     public function index()
     {
+        // Show the start
         $user = Auth::user();
         $ship = $user->activeShip();
+        $baseEscapeChance = $this->escapeChance();
 
         // check if user has an active ship, else show an error message and exit scenario
         if ($user->active_ship == null) {
             return redirect(route('home'))->with('message',
-                'You do not have an active ship to fight anybody with silly.');
+                'You do not have an active ship to fight anybody with, silly.');
         }
-
-        if ($user->is_in_combat == false) {
+        if ($user->is_in_combat == true) {
             // if the user is not in combat yet, create a new enemy
-            $enemy = $this->createEnemy();
-            $user->is_in_combat = true;
-            $user->is_in_combat_with = $enemy->id;
-            $user->save();
-
-            // show the message that the user encountered a new enemy
-            $message = 'You encounter an enemy pirate ship called ' . $enemy->name;
-        } else {
             $enemy = $target = Ship::findOrFail($user->is_in_combat_with);
 
-            // show the message that the user encountered a new enemy
-            $message = 'You are fighting the ' . $enemy->name;
+            return view('combat.show', compact('user', 'ship', 'enemy', 'baseEscapeChance'));
+        } else {
+            return redirect(route('home'))->with('message',
+                'You are not yet in combat.');
         }
 
         $baseEscapeChance = $this->escapeChance();
@@ -49,18 +44,24 @@ class CombatController extends Controller
     public function startCombat()
     {
         $user = Auth::user();
-        $ship = Auth::user()->activeShip();
 
-        // check if user has an active ship, else show an error message
+        // check if user has an active ship, else show an error message and exit scenario
         if ($user->active_ship == null) {
             return redirect(route('home'))->with('message',
-                'You do not have an active ship to fight anybody with.');
+                'You do not have an active ship to fight anybody with, silly.');
+        }
+        if ($user->is_in_combat == false) {
+            // if the user is not in combat yet, create a new enemy
+            $enemy = $this->createEnemy();
+            $user->is_in_combat = true;
+            $user->is_in_combat_with = $enemy->id;
+            $user->save();
+        } else {
+            $enemy = $target = Ship::findOrFail($user->is_in_combat_with);
         }
 
-        // create the opponent for the combat scenario
-        //$enemy = $this->createEnemy();
-
-        return view('combat.show', compact('enemy', 'user', 'ship', 'message'));
+        $baseEscapeChance = $this->escapeChance();
+        return view('combat.show', compact('enemy', 'user', 'ship', 'message', 'baseEscapeChance'));
     }
 
     public function createEnemy()

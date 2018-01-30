@@ -240,7 +240,13 @@ class ShipsController extends Controller
                 'You might want to finish your fight before you try to magically change your ship!');
         }
 
-        return back()->with('message', 'Successfully changed active ship!');
+        // Return messages
+        if ($user->activeShip() != null) {
+            return back()->with('message', 'Successfully changed active ship to the ' . $user->activeShip()->name . '!');
+        } else {
+            return back()->with('message', 'You leave your active ship and go ashore.');
+        }
+
     }
 
     /**
@@ -263,9 +269,9 @@ class ShipsController extends Controller
             if ($user->gold >= $cost) {
                 $ship->repairShip($ship);
 
-                return redirect(route('home'))->with('message', 'Ship repaired!');
+                return redirect(route('home'))->with('message', 'The ' . $ship->name . ' has been repaired!');
             } else {
-                return redirect(route('home'))->with('message', 'You do not have enough gold for that repair!');
+                return redirect(route('home'))->with('message', 'You do not have enough gold to repair the ' . $ship->name . ' at this time!');
             }
         } else {
             return redirect(route('home'))->with('message',

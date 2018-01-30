@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('view_combat') }}"><span class="ra ra-crossed-sabres"></span> Fight
+                    <a href="{{ route('start_combat') }}"><span class="ra ra-crossed-sabres"></span> Fight
                         pirates</a>
                 </li>
                 <li>
