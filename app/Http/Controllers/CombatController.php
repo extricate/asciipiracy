@@ -23,7 +23,7 @@ class CombatController extends Controller
         // check if user has an active ship, else show an error message and exit scenario
         if ($user->active_ship == null) {
             return redirect(route('home'))->with('message',
-                'You do not have an active ship to fight anybody with.');
+                'You do not have an active ship to fight anybody with silly.');
         }
 
         if ($user->is_in_combat == false) {
@@ -42,7 +42,8 @@ class CombatController extends Controller
             $message = 'You are fighting the ' . $enemy->name;
         }
 
-        return view('combat.show', compact('user', 'ship', 'enemy', 'message'));
+        $baseEscapeChance = $this->escapeChance();
+        return view('combat.show', compact('user', 'ship', 'enemy', 'baseEscapeChance'));
     }
 
     public function startCombat()
@@ -185,11 +186,11 @@ class CombatController extends Controller
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything
-            return redirect(route('view_combat'));
+            return redirect(route('home'))->with('You are not, or no longer, in combat');
         }
     }
 
-    public function escape()
+    public function escapeChance()
     {
         $user = Auth::user();
 
@@ -197,16 +198,44 @@ class CombatController extends Controller
             $ship = $user->activeShip();
             $enemy = Ship::findOrFail($user->is_in_combat_with);
 
-            // roll escape statistics
-            $escape = $ship->escapeStatistics($ship) * rand(0.1, 2);
-            $chase = $enemy->escapeStatistics($enemy) * rand(0.5, 2);
+            $escape = $ship->escapeStatistics($ship);
+            $chase = $enemy->escapeStatistics($enemy);
 
-            if ($escape > $chase) {
+            // base escape chance is 60% when enemy and user have the same skills
+            $baseEscape = 60;
+            // the base is changed based on the difference in skills, user has higher skills?
+            // then the base is adjusted positively, and vice-versa.
+
+            // calculate the difference in skills as a percentage
+            $escapeSkillDifference = round((1 - $chase / $escape) * 100, 0);
+            $escapeChance = $baseEscape + $escapeSkillDifference;
+
+            // let's add permanent uncertainty in the mix
+            if ($escapeChance > 100) $escapeChance = 95;
+            if ($escapeChance < 0) $escapeChance = 5;
+
+            return $escapeChance;
+        }
+
+    }
+
+    public function escape()
+    {
+        $user = Auth::user();
+        $ship = $user->activeShip();
+
+        if ($user->is_in_combat == true) {
+            // roll escape statistics
+            $escapeChance = $this->escapeChance();
+            $escapeRoll = mt_rand(0, 100);
+
+            if ($escapeChance > $escapeRoll) {
                 $this->win();
-                return redirect(route('home'))->with('message', 'Successfully escaped from the encounter!');
+                return redirect(route('combat_end'))->with('result',
+                    '<span class="fa-5x text-center"><i class="fa fa-trophy "></i></span>' .
+                    '<p>All that remains of the enemy is but a small spot against the blue horizon. We successfully escaped.</p>');
             } else {
                 $this->attack();
-
                 if ($user->active_ship != null) {
                     return redirect(route('view_combat'))->with('message',
                         'Failed to escape! Whilst trying to escape, the enemy fired and you returned fire!');
@@ -216,9 +245,9 @@ class CombatController extends Controller
                         '<p class="fa-5x text-center"><i class="ra ra-skull "></i></p>' .
                         '<p>As hard as you and your crew try, you cannot seem to outrun the enemy. Eventually, they catch up and unleash a devastating final broadside. As a falling mast knocks you overboard to your certain demise, you contemplate what you could\'ve done differently.</p>' .
                         '<p>Alass, the ship, cargo and crew are lost, but perhaps you will survive to fight another day.</p>' .
-                    '<p class="text-center"><span class="label label-danger">The ' .
-                    $ship->name .
-                    ' has sunk</span></p>');
+                        '<p class="text-center"><span class="label label-danger">The ' .
+                        $ship->name .
+                        ' has sunk</span></p>');
                 }
             }
         }
@@ -260,9 +289,9 @@ class CombatController extends Controller
         // Rewards logic and persisting rewards
         $enemy_combat = $enemy->attackStatistics($enemy);
         $enemy_escape = $enemy->escapeStatistics($enemy);
-        $reward_gold = rand(0, $enemy_combat);
-        $reward_goods = rand(0, $enemy_escape);
-        $reward_experience = rand($enemy_combat / 10, $enemy_combat / 2);
+        $reward_gold = mt_rand(0, $enemy_combat * 5);
+        $reward_goods = mt_rand(0, $enemy_escape * 5);
+        $reward_experience = mt_rand($enemy_combat / 10, $enemy_combat / 2);
 
         $user->gold = $user->gold + $reward_gold;
         $user->goods = $user->goods + $reward_goods;

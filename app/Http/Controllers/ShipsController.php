@@ -240,7 +240,7 @@ class ShipsController extends Controller
                 'You might want to finish your fight before you try to magically change your ship!');
         }
 
-        return back();
+        return back()->with('message', 'Successfully changed active ship!');
     }
 
     /**

@@ -40,9 +40,18 @@
 <script src="{{ asset('js/app.js') }}"></script>
 @if (session()->has('message'))
     <script>
+        $.notifyDefaults({
+            type: 'info',
+            mouse_over: 'pause',
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+            }
+        });
         $.notify({
             message: '{!! session('message') !!}',
-            type: 'info'
+            type: 'info',
+            icon: 'fa fa-exclamation-triangle',
         });
     </script>
 @endif

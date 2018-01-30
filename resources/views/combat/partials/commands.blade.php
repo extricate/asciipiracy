@@ -8,7 +8,9 @@
         </div>
 
         <div class="col-md-4">
-            <a href="{{ route('combat_escape') }}" class="btn btn-escape"><i class="fa fa-reply-all"></i> Escape</a>
+            <a href="{{ route('combat_escape') }}" class="btn btn-escape"><i class="fa fa-reply-all"></i>
+                Escape ({{ $baseEscapeChance }}%)
+            </a>
         </div>
 
         <div class="col-md-4">
