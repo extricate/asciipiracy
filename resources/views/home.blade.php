@@ -36,7 +36,7 @@
                         @endif
                     </div>
                 </div>
-                @if ($active != null)npm insta
+                @if ($active != null)
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         The {{ $active->name }}

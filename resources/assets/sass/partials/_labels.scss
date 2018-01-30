@@ -34,3 +34,18 @@
 .label-unallocated {
   background-color: $unallocated;
 }
+
+.label-stats-up {
+  background-color: $orange;
+  color: $black;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 18px;
+  width: 18px;
+  &:empty {
+    display: inline-block;
+  }
+}
