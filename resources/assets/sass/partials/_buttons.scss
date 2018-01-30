@@ -19,3 +19,59 @@
   color: $white;
   background-color: $crew;
 }
+
+// Stats
+
+.btn-group-stats {
+  margin: 6px 4px;
+}
+.btn-strength, .btn-dexterity, .btn-intelligence, .btn-stamina, .btn-charisma, .btn-unallocated {
+  cursor: auto;
+  touch-action: none;
+  &:focus, &:hover, &:active {
+    color: $white;
+  }
+}
+.btn-strength {
+  color: $white;
+  background-color: $strength;
+}
+
+.btn-dexterity {
+  color: $white;
+  background-color: $dexterity;
+}
+
+.btn-intelligence {
+  color: $white;
+  background-color: $intelligence;
+}
+
+.btn-stamina {
+  color: $white;
+  background-color: $stamina;
+}
+
+.btn-charisma {
+  color: $white;
+  background-color: $charisma;
+}
+
+.btn-unallocated {
+  color: $white;
+  background-color: $unallocated;
+}
+
+.btn-stats-up {
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  &:empty {
+    display: inline-block;
+  }
+}

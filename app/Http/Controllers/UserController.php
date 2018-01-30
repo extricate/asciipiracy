@@ -84,9 +84,9 @@ class UserController extends Controller
             } else {
                 return redirect(route('home'))->with('message', 'Something went terribly wrong.');
             }
+            return redirect(route('home'))->with('message', 'Stat upgraded!');
             $user->save();
         }
-
         return redirect(route('home'))->with('message', 'Not enough status points!');
     }
 }

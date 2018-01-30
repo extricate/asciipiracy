@@ -8596,6 +8596,88 @@
   background-color: #E65100;
 }
 
+.btn-group-stats {
+  margin: 6px 4px;
+}
+
+.btn-strength,
+.btn-dexterity,
+.btn-intelligence,
+.btn-stamina,
+.btn-charisma,
+.btn-unallocated {
+  cursor: auto;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+
+.btn-strength:focus,
+.btn-strength:hover,
+.btn-strength:active,
+.btn-dexterity:focus,
+.btn-dexterity:hover,
+.btn-dexterity:active,
+.btn-intelligence:focus,
+.btn-intelligence:hover,
+.btn-intelligence:active,
+.btn-stamina:focus,
+.btn-stamina:hover,
+.btn-stamina:active,
+.btn-charisma:focus,
+.btn-charisma:hover,
+.btn-charisma:active,
+.btn-unallocated:focus,
+.btn-unallocated:hover,
+.btn-unallocated:active {
+  color: #fff;
+}
+
+.btn-strength {
+  color: #fff;
+  background-color: #303F9F;
+}
+
+.btn-dexterity {
+  color: #fff;
+  background-color: #388E3C;
+}
+
+.btn-intelligence {
+  color: #fff;
+  background-color: #1976D2;
+}
+
+.btn-stamina {
+  color: #fff;
+  background-color: #d32f2f;
+}
+
+.btn-charisma {
+  color: #fff;
+  background-color: #FFA000;
+}
+
+.btn-unallocated {
+  color: #fff;
+  background-color: #455A64;
+}
+
+.btn-stats-up {
+  border: 0;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-stats-up:empty {
+  display: inline-block;
+}
+
 .label-attack {
   background-color: #B71c1c;
 }
@@ -8606,47 +8688,6 @@
 
 .label-crew {
   background-color: #E65100;
-}
-
-.label-strength {
-  background-color: #303F9F;
-}
-
-.label-dexterity {
-  background-color: #388E3C;
-}
-
-.label-intelligence {
-  background-color: #1976D2;
-}
-
-.label-stamina {
-  background-color: #d32f2f;
-}
-
-.label-charisma {
-  background-color: #FFA000;
-}
-
-.label-unallocated {
-  background-color: #455A64;
-}
-
-.label-stats-up {
-  background-color: #FFA000;
-  color: #000000;
-  border: 0;
-  border-radius: 50%;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  height: 18px;
-  width: 18px;
-}
-
-.label-stats-up:empty {
-  display: inline-block;
 }
 
 ul.stats-list {
@@ -8678,6 +8719,10 @@ ul.stats-list .label {
 
 .form-inline {
   display: inline;
+}
+
+.form-stats {
+  font-size: 100%;
 }
 
 /*!
@@ -17053,6 +17098,88 @@ button.close {
   background-color: #E65100;
 }
 
+.btn-group-stats {
+  margin: 6px 4px;
+}
+
+.btn-strength,
+.btn-dexterity,
+.btn-intelligence,
+.btn-stamina,
+.btn-charisma,
+.btn-unallocated {
+  cursor: auto;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+
+.btn-strength:focus,
+.btn-strength:hover,
+.btn-strength:active,
+.btn-dexterity:focus,
+.btn-dexterity:hover,
+.btn-dexterity:active,
+.btn-intelligence:focus,
+.btn-intelligence:hover,
+.btn-intelligence:active,
+.btn-stamina:focus,
+.btn-stamina:hover,
+.btn-stamina:active,
+.btn-charisma:focus,
+.btn-charisma:hover,
+.btn-charisma:active,
+.btn-unallocated:focus,
+.btn-unallocated:hover,
+.btn-unallocated:active {
+  color: #fff;
+}
+
+.btn-strength {
+  color: #fff;
+  background-color: #303F9F;
+}
+
+.btn-dexterity {
+  color: #fff;
+  background-color: #388E3C;
+}
+
+.btn-intelligence {
+  color: #fff;
+  background-color: #1976D2;
+}
+
+.btn-stamina {
+  color: #fff;
+  background-color: #d32f2f;
+}
+
+.btn-charisma {
+  color: #fff;
+  background-color: #FFA000;
+}
+
+.btn-unallocated {
+  color: #fff;
+  background-color: #455A64;
+}
+
+.btn-stats-up {
+  border: 0;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-stats-up:empty {
+  display: inline-block;
+}
+
 .label-attack {
   background-color: #B71c1c;
 }
@@ -17063,47 +17190,6 @@ button.close {
 
 .label-crew {
   background-color: #E65100;
-}
-
-.label-strength {
-  background-color: #303F9F;
-}
-
-.label-dexterity {
-  background-color: #388E3C;
-}
-
-.label-intelligence {
-  background-color: #1976D2;
-}
-
-.label-stamina {
-  background-color: #d32f2f;
-}
-
-.label-charisma {
-  background-color: #FFA000;
-}
-
-.label-unallocated {
-  background-color: #455A64;
-}
-
-.label-stats-up {
-  background-color: #FFA000;
-  color: #000000;
-  border: 0;
-  border-radius: 50%;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  height: 18px;
-  width: 18px;
-}
-
-.label-stats-up:empty {
-  display: inline-block;
 }
 
 ul.stats-list {
@@ -17135,5 +17221,9 @@ ul.stats-list .label {
 
 .form-inline {
   display: inline;
+}
+
+.form-stats {
+  font-size: 100%;
 }
 
