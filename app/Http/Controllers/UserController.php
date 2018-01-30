@@ -6,6 +6,7 @@ use App;
 use App\User;
 use App\Ship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -63,5 +64,29 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function allocateStats($stat)
+    {
+        $user = Auth::user();
+        if ($user->unallocated_stats >= 1) {
+            $user->unallocated_stats = $user->unallocated_stats - 1;
+            if ($stat == 'strength') {
+                $user->strength = $user->strength + 1;
+            } elseif ($stat == 'dexterity') {
+                $user->dexterity = $user->dexterity + 1;
+            } elseif ($stat == 'intelligence') {
+                $user->intelligence = $user->intelligence + 1;
+            } elseif ($stat == 'stamina') {
+                $user->stamina = $user->stamina + 1;
+            } elseif ($stat == 'charisma') {
+                $user->charisma = $user->charisma + 1;
+            } else {
+                return redirect(route('home'))->with('message', 'Something went terribly wrong.');
+            }
+            $user->save();
+        }
+
+        return redirect(route('home'))->with('message', 'Not enough status points!');
     }
 }

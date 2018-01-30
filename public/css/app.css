@@ -8608,6 +8608,30 @@
   background-color: #E65100;
 }
 
+.label-strength {
+  background-color: #303F9F;
+}
+
+.label-dexterity {
+  background-color: #388E3C;
+}
+
+.label-intelligence {
+  background-color: #1976D2;
+}
+
+.label-stamina {
+  background-color: #d32f2f;
+}
+
+.label-charisma {
+  background-color: #FFA000;
+}
+
+.label-unallocated {
+  background-color: #455A64;
+}
+
 ul.stats-list {
   margin-bottom: 0;
 }
@@ -8632,7 +8656,27 @@ ul.stats-list .label {
 }
 
 .experience-bar::-webkit-progress-bar {
-  background-color: #E0E0E0;
+  background-color: #777;
+}
+
+.form-inline {
+  display: inline;
+}
+
+.form-stats input {
+  border-radius: .25em;
+  border: 0;
+  background-color: #FFA000;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+}
+
+.form-stats input .stat-up::before {
+  content: "\F077";
 }
 
 /*!
@@ -16983,5 +17027,111 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+.btn-attack {
+  color: #fff;
+  background-color: #B71c1c;
+}
+
+.btn-attack:hover {
+  color: #fff;
+}
+
+.btn-escape {
+  color: #fff;
+  background-color: #0D47A1;
+}
+
+.btn-escape:hover {
+  color: #fff;
+}
+
+.btn-crew {
+  color: #fff;
+  background-color: #E65100;
+}
+
+.label-attack {
+  background-color: #B71c1c;
+}
+
+.label-escape {
+  background-color: #0D47A1;
+}
+
+.label-crew {
+  background-color: #E65100;
+}
+
+.label-strength {
+  background-color: #303F9F;
+}
+
+.label-dexterity {
+  background-color: #388E3C;
+}
+
+.label-intelligence {
+  background-color: #1976D2;
+}
+
+.label-stamina {
+  background-color: #d32f2f;
+}
+
+.label-charisma {
+  background-color: #FFA000;
+}
+
+.label-unallocated {
+  background-color: #455A64;
+}
+
+ul.stats-list {
+  margin-bottom: 0;
+}
+
+ul.stats-list .label {
+  font-size: 13px;
+}
+
+.experience-bar {
+  background-color: #8BC34A;
+  border-radius: 50px;
+  height: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 4px;
+}
+
+.experience-bar::-webkit-progress-bar,
+.experience-bar::-webkit-progress-value {
+  border-radius: 50px;
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: #777;
+}
+
+.form-inline {
+  display: inline;
+}
+
+.form-stats input {
+  border-radius: .25em;
+  border: 0;
+  background-color: #FFA000;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+}
+
+.form-stats input .stat-up::before {
+  content: "\F077";
 }
 

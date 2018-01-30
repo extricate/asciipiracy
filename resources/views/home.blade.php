@@ -36,18 +36,25 @@
                         @endif
                     </div>
                 </div>
-                @if ($active != null)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            The {{ $active->name }}
-                        </div>
-                        <div class="panel-body">
-                            {{ $active->draw($active) }}
-                        </div>
+                @if ($active != null)npm insta
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        The {{ $active->name }}
                     </div>
+                    <div class="panel-body">
+                        {{ $active->draw($active) }}
+                    </div>
+                </div>
                 @endif
             </div>
             <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Your stats</div>
+                    <div class="panel-body">
+                        @include('user.stats')
+                    </div>
+
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">Your ships <span class="pull-right">{{ $user->myShips()->count() }}
                             / 5</span></div>
@@ -60,8 +67,7 @@
                         @if ($user->myShips()->count() == 0)
                             <p class="text-center">You have no ships.</p>
                             <div class="text-center">
-                                <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free
-                                    beginner ship</a>
+                                <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free beginner ship</a>
                             </div>
                         @else
                             <p class="text-center">

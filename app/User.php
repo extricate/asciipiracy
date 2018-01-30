@@ -29,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'goods', 'gold'
+        'name', 'email', 'password', 'goods', 'gold', 'strength', 'dexterity', 'intelligence', 'stamina', 'charisma', 'unallocated_stats'
     ];
 
     /**
@@ -113,6 +113,7 @@ class User extends Authenticatable
             $user->experience = round($remaining_exp, 0);
 
             // increase the level
+            $user->unallocated_stats = $user->unallocated_stats + 5;
             $user->level = $user->level + 1;
 
             // save the changes

@@ -26,6 +26,13 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('gold')->default(0);
             $table->unsignedInteger('goods')->default(100);
 
+            $table->unsignedInteger('unallocated_stats')->default(0);
+            $table->unsignedInteger('strength')->default(1);
+            $table->unsignedInteger('dexterity')->default(1);
+            $table->unsignedInteger('intelligence')->default(1);
+            $table->unsignedInteger('stamina')->default(1);
+            $table->unsignedInteger('charisma')->default(1);
+
             $table->unsignedInteger('location_id')->nullable();
             $table->unsignedInteger('max_ships')->default(5);
 

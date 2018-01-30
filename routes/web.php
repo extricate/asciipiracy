@@ -17,9 +17,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::put('/current-user/stats/increase/{stat}', 'UserController@allocateStats')->name('allocate_stats');
+
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/users/{user}', 'UserController@show');
-Route::get('/user/{user}/ships/active', 'UserController@active')->name('active_ship');
+Route::get('/users/{user}/ships/active', 'UserController@active')->name('active_ship');
 
 Route::get('/ships', 'ShipsController@index')->name('ships');
 Route::get('/ships/{ship}', 'ShipsController@show');
