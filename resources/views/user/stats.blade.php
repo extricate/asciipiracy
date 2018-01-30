@@ -1,8 +1,7 @@
 <div class="row">
-    <div class="col-md-4">
-
+    <div class="col-md-5">
     </div>
-    <div class="col-md-8 text-right">
+    <div class="col-md-7 text-right">
         <div class="btn-group btn-group-stats" role="group" aria-label="...">
             <div class="btn btn-strength">Strength: {{ $user->strength }}</div>
             @if ($user->unallocated_stats > 0)
