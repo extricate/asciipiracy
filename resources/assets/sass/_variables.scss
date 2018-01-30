@@ -1,3 +1,4 @@
+@import '/partials/partials';
 
 // Body
 $body-bg: #f5f8fa;
@@ -37,70 +38,3 @@ $input-color-placeholder: lighten($text-color, 30%);
 // Panels
 $panel-default-heading-bg: #fff;
 
-// Colors
-$attack: #B71c1c;
-$escape: #0D47A1;
-$crew: #E65100;
-$white: #fff;
-$grey: #E0E0E0;
-$experience-bar: #8BC34A;
-
-// Labels
-.label-attack {
- background-color: $attack;
-}
-
-.label-escape {
-  background-color: $escape;
-}
-
-.label-crew {
-  background-color: $crew;
-}
-
-// Buttons
-.btn-attack {
-  color: $white;
-  background-color: $attack;
-  &:hover {
-     color: $white;
-   }
-}
-
-.btn-escape {
-  color: $white;
-  background-color: $escape;
-  &:hover {
-    color: $white;
-  }
-}
-
-.btn-crew {
-  color: $white;
-  background-color: $crew;
-}
-
-// Lists
-ul.stats-list {
-  margin-bottom: 0;
-  .label {
-    font-size: 13px;
-  }
-}
-
-// Progress bar
-.experience-bar {
-  background-color: $experience-bar;
-  border-radius: 50px;
-  height: 4px;
-  display: flex;
-  line-height: 4px;
-}
-
-.experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {
-  border-radius: 50px;
-}
-
-.experience-bar::-webkit-progress-bar {
-  background-color: $grey;
-}

@@ -280,7 +280,7 @@ class CombatController extends Controller
     public function rewards()
     {
         $user = Auth::user();
-        $ship = $user->activeShip();
+
         // to win the opponent must either: surrender or sink
         $user->combat_wins++;
         // find the correct ship

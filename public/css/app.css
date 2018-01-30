@@ -8573,18 +8573,6 @@
   content: "\E901";
 }
 
-.label-attack {
-  background-color: #B71c1c;
-}
-
-.label-escape {
-  background-color: #0D47A1;
-}
-
-.label-crew {
-  background-color: #E65100;
-}
-
 .btn-attack {
   color: #fff;
   background-color: #B71c1c;
@@ -8605,6 +8593,18 @@
 
 .btn-crew {
   color: #fff;
+  background-color: #E65100;
+}
+
+.label-attack {
+  background-color: #B71c1c;
+}
+
+.label-escape {
+  background-color: #0D47A1;
+}
+
+.label-crew {
   background-color: #E65100;
 }
 

@@ -1,0 +1,21 @@
+// Buttons
+.btn-attack {
+  color: $white;
+  background-color: $attack;
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn-escape {
+  color: $white;
+  background-color: $escape;
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn-crew {
+  color: $white;
+  background-color: $crew;
+}

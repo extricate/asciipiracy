@@ -1,0 +1,16 @@
+// Progress bar
+.experience-bar {
+  background-color: $experience-bar;
+  border-radius: 50px;
+  height: 4px;
+  display: flex;
+  line-height: 4px;
+}
+
+.experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {
+  border-radius: 50px;
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: $grey;
+}
