@@ -16,7 +16,6 @@
     <p>
         @include('ships.stats')
     </p>
-
     {{ $ship->draw($ship) }}
 @endsection
 

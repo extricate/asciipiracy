@@ -8590,9 +8590,17 @@
   background-color: #B71c1c;
 }
 
+.btn-attack:hover {
+  color: #fff;
+}
+
 .btn-escape {
   color: #fff;
   background-color: #0D47A1;
+}
+
+.btn-escape:hover {
+  color: #fff;
 }
 
 .btn-crew {

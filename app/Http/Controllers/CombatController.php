@@ -181,12 +181,12 @@ class CombatController extends Controller
             }
 
             // return the damage message
-            return redirect(route('view_combat'))->with('message',
-                'Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '<br>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy_return] . '</b> your <b>' . $ship->name . '</b> for <b>' . $return_damage . ' damage</b>' . '<br>');
+            return redirect(route('view_combat'))->with('attack',
+                '<p>Your broadside <b>' . $accuracy_types[$selected_accuracy] . '</b> the <b>' . $enemy->name . '</b> for <b>' . $damage . ' damage</b>' . '</p><p>' . 'The enemies broadside <b>' . $accuracy_types[$selected_accuracy_return] . '</b> your <b>' . $ship->name . '</b> for <b>' . $return_damage . ' damage</b>' . '</p>');
 
         } else {
             // user is not in combat, redirect to the combat index without doing anything
-            return redirect(route('home'))->with('You are not, or no longer, in combat');
+            return redirect(route('home'))->with('You are not, or are no longer, in combat');
         }
     }
 
@@ -232,7 +232,7 @@ class CombatController extends Controller
             if ($escapeChance > $escapeRoll) {
                 $this->win();
                 return redirect(route('combat_end'))->with('result',
-                    '<span class="fa-5x text-center"><i class="fa fa-trophy "></i></span>' .
+                    '<span class="fa-5x text-center"><i class="fa fa-life-ring "></i></span>' .
                     '<p>All that remains of the enemy is but a small spot against the blue horizon. We successfully escaped.</p>');
             } else {
                 $this->attack();
@@ -289,9 +289,9 @@ class CombatController extends Controller
         // Rewards logic and persisting rewards
         $enemy_combat = $enemy->attackStatistics($enemy);
         $enemy_escape = $enemy->escapeStatistics($enemy);
-        $reward_gold = mt_rand(0, $enemy_combat * 5);
-        $reward_goods = mt_rand(0, $enemy_escape * 5);
-        $reward_experience = mt_rand($enemy_combat / 10, $enemy_combat / 2);
+        $reward_gold = mt_rand(0, $enemy_combat * 3) + 100;
+        $reward_goods = mt_rand(0, $enemy_escape * 2) + 10;
+        $reward_experience = mt_rand($enemy_combat / 10, $enemy_combat / 2) + 10;
 
         $user->gold = $user->gold + $reward_gold;
         $user->goods = $user->goods + $reward_goods;

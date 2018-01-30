@@ -62,11 +62,17 @@ $experience-bar: #8BC34A;
 .btn-attack {
   color: $white;
   background-color: $attack;
+  &:hover {
+     color: $white;
+   }
 }
 
 .btn-escape {
   color: $white;
   background-color: $escape;
+  &:hover {
+    color: $white;
+  }
 }
 
 .btn-crew {

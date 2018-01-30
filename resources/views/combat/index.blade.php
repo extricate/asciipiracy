@@ -10,6 +10,19 @@
             </div>
         </div>
 
+        @if (session()->has('attack'))
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                        </button>
+                        {!! session('attack') !!}
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">
