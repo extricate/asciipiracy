@@ -42,7 +42,9 @@ Route::get('/settlement/general-store', 'SettlementController@general')->name('g
 Route::post('/settlement/general-store', 'TradeController@buyGoods')->name('buy_goods');
 Route::post('/settlement/shipwright', 'TradeController@buyCannons')->name('buy_cannons');
 Route::get('/settlement/carpenter', 'SettlementController@carpenter')->name('carpenter');
+
 Route::get('/settlement/shipwright', 'SettlementController@shipwright')->name('shipwright');
+Route::post('/settlement/shipwright/upgrade', 'ShipsUpgradeController@upgrade')->name('ship_upgrade');
 Route::get('/settlement/tavern', 'SettlementController@tavern')->name('tavern');
 
 

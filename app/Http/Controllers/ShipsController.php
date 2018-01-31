@@ -58,9 +58,9 @@ class ShipsController extends Controller
             $user->active_ship = $ship->id;
             $user->save();
 
-            return redirect('home')->with('message', 'Ship successfully purchased and set as active!');
+            return back()->with('message', 'Ship successfully purchased and set as active!');
         } else {
-            return redirect('home')->with('message', 'You don\'t have enough gold, scrub');
+            return back()->with('message', 'You don\'t have enough gold, scrub');
         }
     }
 
@@ -155,9 +155,9 @@ class ShipsController extends Controller
             $user->active_ship = $ship->id;
             $user->save();
 
-            return redirect('home')->with('message', 'Beginner ship created and set to active!');
+            return back()->with('message', 'Beginner ship created and set to active!');
         } else {
-            return redirect('home')->with('message',
+            return back()->with('message',
                 'Something went wrong. Perhaps you already have a beginner ship or any other ship? You can only create a beginner ship if you have no other ships.');
         }
     }

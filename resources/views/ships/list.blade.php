@@ -38,7 +38,7 @@
     <div class="panel-heading">
         The <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
         @if ($ship->is_beginner_ship == true)
-            - beginner
+            - <i class="fa fa-child"></i>
         @endif
         <span class="pull-right">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

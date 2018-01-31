@@ -144,6 +144,19 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::Table('events')->insert([
+            'title' => 'A violent storm!',
+            'icon_type' => 'fa',
+            'icon' => 'flash',
+            'frequency' => 1,
+            'body' => 'The thunder roared unlike anything you had heard before. The ship had rocked the ship like it was a plaything in a tub. More than once, as another rogue wave slammed into the ship, you thought it would be the last. The ship was heavily damaged in the storm.',
+            'type' => '-',
+            'affects' => 'ship',
+            'effect_on' => 'current_health',
+            'effect_changed' => '- 200 ship hp',
+            'effect' => '50',
+        ]);
+
+        DB::Table('events')->insert([
             'title' => 'Free upgrades!',
             'icon_type' => 'ra',
             'icon' => 'hand-saw',
@@ -180,6 +193,19 @@ class EventsSeeder extends Seeder
             'effect_on' => 'cannons',
             'effect_changed' => '+ 4 cannons (only added if you do not have the maximum amount of cannons yet)',
             'effect' => '4',
+        ]);
+
+        DB::Table('events')->insert([
+            'title' => 'The shipwrights\' wife',
+            'icon_type' => 'fa',
+            'icon' => 'arrow-up',
+            'frequency' => 1,
+            'body' => 'You are slowly strolling through town, thinking about a place to go explore next. Suddenly you hear a scream! It\'s coming from a dark alley and you can see the silhouettes of two men and a woman. They appear to be struggling. You decide that the men are most likely up to no good, and decide to intervene. You approach the dark alley, rapier drawn, and shout: "Oi, assholes! Stop that or die tonight!". They stop what they were doing and look at you. You can see their faces clearly now, ugly as they are. They appear to be beggars. The woman, who was now lying on the ground tries to crawl away, crying. One of the men stands up and reaches for a dagger on his right hip. You decide that now is the moment to act upon your words, and you quickly close the gap between him and you and stab him in the heart. His accomplice yells "Fuck, fuck, fuck" and decides to make a run for it. You decide that you\'d rather assist the woman than to give chase. "Ma\'am, are you alright?". She\'s still crying, and sobbinly answers you "I-I\'m o-okay I guess... T-those men... they- they-...". You shush her, "They\'re gone now, they won\'t harm you anymore. Here, let me help you stand. Is there somewhere I can take you?". "I- I live at the end of the street... I\'m the shipwrights wife, could you please take me there?". You help her up and give her your jacket to cover her smudged and torn clothing. Upon arrival she thanks you for your help. She asks you to come by in the morning to talk things over. In the morning you return to the house. The shipwright is sitting outside and immediately jumps to his feet when he sees you. At a moment you are afraid that the large man is going to assault you, you step back a bit but he grabs you and gives you the tightest hug you have ever had. "Thank you sir, thank you!" he says. You reckon that his wife has told him of past nights affairs. "Is she alright?", you ask. "Yes, she\'s still resting. Luckily, those thugs didn\'t get very far but God knows what would\'ve happened if you didn\'t intervene. I already spoke with the officials and they said that the surviving thug will be a wanted man for the rest of his life. You, of course, are completely cleared of charges for getting rid of one of those animals". "Good", you say. "I understand that you\'re a captain. As you know, I\'m the local shipwright. I most likely own my wife her life to your bravery, good sir, and I\'d like to thank you properly by giving you this paper entitling you to have your current ship upgraded at any shipwright in the world. Please use it wisely.". You thank the man, ask him to give his wife your best, and are on your way.',
+            'type' => '+',
+            'affects' => 'ship',
+            'effect_on' => 'upgrade_points',
+            'effect_changed' => '+ 1 ship upgrade point)',
+            'effect' => '1',
         ]);
 
         DB::Table('events')->insert([
@@ -266,7 +292,7 @@ class EventsSeeder extends Seeder
             'title' => 'Pirates!',
             'icon_type' => 'ra',
             'icon' => 'skull',
-            'frequency' => 5,
+            'frequency' => 4,
             'body' => 'Get ready for a fight!',
             'type' => 'combat',
             'affects' => 'ship',

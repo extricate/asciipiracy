@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">Captain {{ $user->name }}'s quarters</div>
                     <div class="panel-body text-center">
@@ -47,7 +47,7 @@
                 </div>
                 @endif
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">Your stats</div>
                     <div class="panel-body">

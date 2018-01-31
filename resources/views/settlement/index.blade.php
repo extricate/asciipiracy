@@ -31,7 +31,8 @@
                         Merchants' district
                     </div>
                     <div class="panel-body">
-                        Need some goods? Got something to sell? This is the place to be!
+                        <p>Need some goods? Got something to sell? This is the place to be!</p>
+                        <a href="{{ route('general_store') }}" class="btn btn-default">Visit the general store</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +42,8 @@
                         Crafting district
                     </div>
                     <div class="panel-body">
-                        Need a new ship? Require some upgrades? This is the place to be.
+                        <p>Need a new ship? Require some upgrades? This is the place to be.</p>
+                        <a href="{{ route('shipwright') }}" class="btn btn-default">Visit the shipwright</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +53,8 @@
                         Visit the tavern
                     </div>
                     <div class="panel-body">
-                        Need to hire some sailors? Want to hear the latest gossip? This is the place to be.
+                        <p>Need to hire some sailors? Want to hear the latest gossip? This is the place to be.</p>
+                        <a href="{{ route('tavern') }}" class="btn btn-default">Visit the tavern</a>
                     </div>
                 </div>
             </div>

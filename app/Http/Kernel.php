@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'combat.status' => \App\Http\Middleware\CombatStatus::class,
         'has.active.ship' =>\App\Http\Middleware\HasActiveShip::class,
+        'ship.has.bonus.points' =>\App\Http\Middleware\ShipHasBonusPoints::class,
     ];
 }

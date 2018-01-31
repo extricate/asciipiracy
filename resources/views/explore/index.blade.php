@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Upgrade ship')
+@section('title', 'Exploration')
 
 @php
     $user = auth()->user();

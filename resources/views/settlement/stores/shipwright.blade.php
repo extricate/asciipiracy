@@ -1,42 +1,73 @@
-@extends('settlement.stores.index')
+@extends('layouts.app')
+
+@php $user = Auth::user(); $active = $user->activeShip() @endphp
 
 @section('title', 'Shipwright')
 @section('store_name', 'Fogbank Hulls')
 @section('store_type', 'Shipwright')
 
-@section('store_intro')
-    Welcome to the @yield('store_name') @yield('store_type'). We offer all sorts of services for your ships.
-@endsection
-
-@section('store_contents')
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Shipwright services
-                </div>
-                <div class="panel-body">
-                    {{ Form::open(['method' => 'POST', 'route' => ['buy_cannons'], 'class'=>'form-inline']) }}
-                    <div class="form-group">
-                        <label class="sr-only" for="goods">Amount of cannons</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ra ra-cannon-shot"></i></div>
-                            <input type="number" name="cannons" class="form-control" id="goods" placeholder="Amount of cannons" value="{!! old('cannons') !!}">
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        The @yield('store_name') @yield('store_type')
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-lg-4 col-lg-offset-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        The shopkeeper
+                                    </div>
+                                    <div class="panel-body">
+                                        @if (session()->has('trade'))
+                                            <div class="alert alert-success">
+                                                {!! session('trade') !!}
+                                            </div>
+                                        @elseif (session()->has('error'))
+                                            <div class="alert alert-danger">
+                                                {!! session('error') !!}
+                                            </div>
+                                        @else
+                                            Welcome to the @yield('store_name') @yield('store_type'). We offer all sorts
+                                            of services for
+                                            your ships.
+                                        @endif
+                                    </div>
+                                </div>
+                                @include('settlement.stores.shipwright.services')
+                            </div>
+                            <div class="col-lg-7">
+                                @include('settlement.stores.shipwright.upgrades')
+                            </div>
                         </div>
                     </div>
-                    {{ Form::submit('Buy cannons', ['class' => 'btn btn-primary']) }}
-                    {{ Form::close() }}
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Ship upgrades
-                </div>
-                <div class="panel-body">
-
-                </div>
+            <div class="col-lg-2">
+                @if ($user->myShips()->count() == 0)
+                    <div class="text-center">
+                        <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free beginner
+                            ship</a>
+                    </div>
+                @endif
+                @if ($active != null)
+                    @php $ship = auth()->user()->activeShip(); @endphp
+                    @include('ships.list')
+                @endif
+                @foreach ($user->myShips() as $ship)
+                    @php
+                        // do not show the currently active ship
+                        if ($active != null) {
+                            if ($ship->id == $active->id) continue;
+                        }
+                    @endphp
+                    @include('ships.list')
+                @endforeach
             </div>
         </div>
     </div>
