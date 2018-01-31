@@ -51,7 +51,8 @@ class ShipsController extends Controller
             ]);
 
             // populate the ship with crew
-            $generateSailorAmount = $ship->min_sailors;
+
+            $generateSailorAmount = $ship->min_sailors + rand(0, $ship->max_sailors-$ship->min_sailors);
             factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
             $user->active_ship = $ship->id;
             $user->save();

@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Settlement::class, function (Faker $faker) {
 
-    $inhabitants = $faker->numberBetween(50, 200000);
+    $inhabitants = $faker->biasedNumberBetween(50, 250000, function($x) { return 1 - sqrt($x); });
     if ($inhabitants < 100) { $settlementType = 1; }
     elseif ($inhabitants < 1000) { $settlementType = 2; }
     elseif ($inhabitants < 5000) { $settlementType = 3; }
@@ -17,6 +17,5 @@ $factory->define(App\Settlement::class, function (Faker $faker) {
     return [
         'name' => $faker->city(),
         'type' => $settlementType,
-
     ];
 });

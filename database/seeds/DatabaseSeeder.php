@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('secret'),
                 'gold' => '100000',
                 'goods' => '100000',
+                'max_ships' => '20',
             ]);
         }
     }

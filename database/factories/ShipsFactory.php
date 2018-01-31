@@ -4,8 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Ship::class, function (Faker $faker) {
 
-    $minSailors = $faker->biasedNumberBetween($min = 20, $max = 240, function($x) { return 1 - sqrt($x); });
-    $maxSailors = $minSailors + $faker->numberBetween($min = 20, $max = 240);
+    $minSailors = $faker->biasedNumberBetween($min = 20, $max = 60, $function = 'sqrt');
+    $maxSailors = $minSailors + $faker->biasedNumberBetween($min = 20, $max = 300, function($x) { return 1 - sqrt($x); });
 
     $masts = $faker->biasedNumberBetween($min = 1, $max = 4, function($x) { return 1 - sqrt($x); });
     $propulsion = $masts * $faker->numberBetween($min = 40, $max = 200);
@@ -18,7 +18,7 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     if ($length >= 300) $masts++;
     if ($masts > 4) $masts--;
 
-    $gunports = $decks * $faker->biasedNumberBetween($min = 0, $max = 42, function($x) { return 1 - sqrt($x); });
+    $gunports = $decks * $faker->biasedNumberBetween($min = 2, $max = 42, function($x) { return 1 - sqrt($x); });
     if ($gunports % 2 == 1) $gunports++; // Make gunports amount an even amount
     $cannons = $faker->biasedNumberBetween($min = 0, $gunports, $function = 'sqrt');
     if ($cannons % 2 == 1) $cannons++;

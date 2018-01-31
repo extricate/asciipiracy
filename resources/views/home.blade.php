@@ -57,7 +57,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">Your ships <span class="pull-right">{{ $user->myShips()->count() }}
-                            / 5</span></div>
+                            / {{ $user->max_ships }}</span></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
