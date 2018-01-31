@@ -36,6 +36,11 @@ class DatabaseSeeder extends Seeder
                 'goods' => '100000',
                 'max_ships' => '20',
             ]);
+
+            DB::Table('settlements')->insert([
+                'name' => 'Beginners Nest',
+                'type' => 6,
+            ]);
         }
     }
 

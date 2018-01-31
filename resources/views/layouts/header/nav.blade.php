@@ -40,7 +40,10 @@
                         pirates</a>
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-home"></span> Town</a>
+                    <a href="{{ route('visit_town') }}"><span class="fa fa-home"></span> Town</a>
+                </li>
+                <li>
+                    <a href=""><span class="fa fa-map-o"></span> Travel</a>
                 </li>
             </ul>
 

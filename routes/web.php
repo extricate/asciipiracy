@@ -35,7 +35,12 @@ Route::put('/ship/repair/{ship}', 'ShipsController@repairShip')->name('ship_repa
 Route::delete('/ships/{ship}', 'ShipsController@destroy')->name('ship_destroy');
 
 // settlements
-Route::get('/settlement', 'SettlementController@index')->name('town');
+Route::get('/settlement', 'SettlementController@index')->name('visit_town');
+
+Route::get('/settlement/general-store', 'SettlementController@general')->name('general_store');
+Route::get('/settlement/carpenter', 'SettlementController@carpenter')->name('carpenter');
+Route::get('/settlement/shipwright', 'SettlementController@shipwright')->name('shipwright');
+Route::get('/settlement/tavern', 'SettlementController@tavern')->name('tavern');
 // people
 Route::get('/people', 'PeopleController@index')->name('people');
 Route::get('/people/{person}', 'PeopleController@show');
