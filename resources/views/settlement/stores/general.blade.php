@@ -11,10 +11,10 @@
 
 @section('store_contents')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    General goods
+                    Supplies
                 </div>
                 <div class="panel-body">
                     {{ Form::open(['method' => 'POST', 'route' => ['buy_goods'], 'class'=>'form-inline']) }}
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Trader goods

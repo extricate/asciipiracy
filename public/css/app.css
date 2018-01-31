@@ -8682,6 +8682,25 @@
   display: inline-block;
 }
 
+.btn-dropdown {
+  min-width: 0;
+  padding: 6px 12px;
+  background-color: #3097D1;
+  border-color: #2a88bd;
+  color: #fff;
+}
+
+.btn-dropdown:hover,
+.btn-dropdown:focus,
+.btn-dropdown:active {
+  background-color: #2579a9;
+  border-color: #1f648b;
+}
+
+.btn-dropdown > a.dropdown-item {
+  color: #fff;
+}
+
 .label-attack {
   background-color: #B71c1c;
 }
@@ -8729,6 +8748,10 @@ ul.stats-list .label {
   font-size: 100%;
   width: 100%;
   height: 100%;
+}
+
+.input-group .input-trade {
+  width: 70px;
 }
 
 /*!
@@ -17190,6 +17213,25 @@ button.close {
   display: inline-block;
 }
 
+.btn-dropdown {
+  min-width: 0;
+  padding: 6px 12px;
+  background-color: #3097D1;
+  border-color: #2a88bd;
+  color: #fff;
+}
+
+.btn-dropdown:hover,
+.btn-dropdown:focus,
+.btn-dropdown:active {
+  background-color: #2579a9;
+  border-color: #1f648b;
+}
+
+.btn-dropdown > a.dropdown-item {
+  color: #fff;
+}
+
 .label-attack {
   background-color: #B71c1c;
 }
@@ -17237,5 +17279,9 @@ ul.stats-list .label {
   font-size: 100%;
   width: 100%;
   height: 100%;
+}
+
+.input-group .input-trade {
+  width: 70px;
 }
 

@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
                 'max_ships' => '20',
             ]);
 
-            DB::Table('settlements')->insert([
+            factory('App\Settlement')->create([
                 'name' => 'Beginners Nest',
                 'type' => 6,
             ]);
