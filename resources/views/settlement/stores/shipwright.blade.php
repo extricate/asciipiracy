@@ -3,13 +3,13 @@
 @php $user = Auth::user(); $active = $user->activeShip() @endphp
 
 @section('title', 'Shipwright')
-@section('store_name', 'Fogbank Hulls')
+@section('store_name', Auth::user()->isIn()->shipwright_name)
 @section('store_type', 'Shipwright')
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-1">
+            <div class="col-lg-7 col-lg-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         The @yield('store_name') @yield('store_type')
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 @if ($user->myShips()->count() == 0)
                     <div class="text-center">
                         <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free beginner

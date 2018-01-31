@@ -8605,7 +8605,8 @@
 .btn-intelligence,
 .btn-stamina,
 .btn-charisma,
-.btn-unallocated {
+.btn-unallocated,
+.btn-upgrade {
   cursor: auto;
   -ms-touch-action: none;
       touch-action: none;
@@ -8628,7 +8629,10 @@
 .btn-charisma:active,
 .btn-unallocated:focus,
 .btn-unallocated:hover,
-.btn-unallocated:active {
+.btn-unallocated:active,
+.btn-upgrade:focus,
+.btn-upgrade:hover,
+.btn-upgrade:active {
   color: #fff;
 }
 
@@ -17109,7 +17113,8 @@ button.close {
 .btn-intelligence,
 .btn-stamina,
 .btn-charisma,
-.btn-unallocated {
+.btn-unallocated,
+.btn-upgrade {
   cursor: auto;
   -ms-touch-action: none;
       touch-action: none;
@@ -17132,7 +17137,10 @@ button.close {
 .btn-charisma:active,
 .btn-unallocated:focus,
 .btn-unallocated:hover,
-.btn-unallocated:active {
+.btn-unallocated:active,
+.btn-upgrade:focus,
+.btn-upgrade:hover,
+.btn-upgrade:active {
   color: #fff;
 }
 

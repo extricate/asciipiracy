@@ -1,7 +1,7 @@
 @extends('settlement.stores.index')
 
 @section('title', 'General Store')
-@section('store_name', 'Winking Skeever')
+@section('store_name', Auth::user()->isIn()->general_store_name)
 @section('store_type', 'General Store')
 
 @section('store_intro')
@@ -33,7 +33,10 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Special goods
+                    Trader goods
+                </div>
+                <div class="panel-body">
+                    @include('settlement.stores.general.trade')
                 </div>
             </div>
         </div>

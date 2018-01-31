@@ -120,4 +120,13 @@ class User extends Authenticatable
             $user->save();
         }
     }
+
+    public function isIn()
+    {
+        $user = Auth::user();
+        $location = $user->location_id;
+        $settlement = App\Settlement::findOrFail($location);
+
+        return $settlement;
+    }
 }

@@ -37,6 +37,18 @@ class CreateShipsTable extends Migration
 
             $table->unsignedInteger('total_hold');
 
+            // trade goods
+            $table->unsignedInteger('tobacco')->default(0);
+            $table->unsignedInteger('furs')->default(0);
+            $table->unsignedInteger('gemstones')->default(0);
+            $table->unsignedInteger('textiles')->default(0);
+            $table->unsignedInteger('alcohol')->default(0);
+            $table->unsignedInteger('sugar')->default(0);
+            $table->unsignedInteger('spices')->default(0);
+            $table->unsignedInteger('ivory')->default(0);
+            $table->unsignedInteger('coffee')->default(0);
+            $table->unsignedInteger('mahogany')->default(0);
+
             $table->unsignedInteger('constructed_at');
             $table->longText('story')->nullable();
 

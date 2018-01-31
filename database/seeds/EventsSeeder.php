@@ -153,7 +153,7 @@ class EventsSeeder extends Seeder
             'affects' => 'ship',
             'effect_on' => 'current_health',
             'effect_changed' => '- 200 ship hp',
-            'effect' => '50',
+            'effect' => '200',
         ]);
 
         DB::Table('events')->insert([

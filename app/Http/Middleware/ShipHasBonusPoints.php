@@ -18,7 +18,7 @@ class ShipHasBonusPoints
     {
         $user = Auth::user();
         $ship = $user->activeShip();
-        if ($ship->bonus_points > 0) {
+        if ($ship->upgrade_points > 0) {
             return $next($request);
         } else {
             return back()->with('error', 'You do not have upgrade points.');

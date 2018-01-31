@@ -32,7 +32,10 @@ class ShipsUpgradeController extends Controller
         $validator = Validator::make($request->all(), [
             'gunports' => 'string|nullable',
             'max_health' => 'string|nullable',
-            'max_sailors' => 'string|nullable'
+            'max_sailors' => 'string|nullable',
+            'maneuverability' => 'string|nullable',
+            'hold' => 'string|nullable',
+            'length' => 'string|nullable',
         ]);
 
         if ($validator->fails()) {
@@ -60,6 +63,23 @@ class ShipsUpgradeController extends Controller
             $ship->current_health = $ship->max_health;
             $ship->save();
             return redirect(route('shipwright'))->with('trade', 'You upgraded the maximum amount of ship hitpoints! As a service, I also ordered the carpenter to repair your ship.');
+        } elseif ($request->has('length')) {
+            $ship->length = $ship->length + 50;
+            $ship->upgrade_points = $ship->upgrade_points - 1;
+            $ship->save();
+            return redirect(route('shipwright'))->with('trade', 'The ship has been extended by 50 feet!');
+
+        } elseif ($request->has('hold')) {
+            $ship->total_hold = $ship->total_hold + 2000;
+            $ship->upgrade_points = $ship->upgrade_points - 1;
+            $ship->save();
+            return redirect(route('shipwright'))->with('trade', 'The ship\'s hold has been increased in size!');
+
+        } elseif ($request->has('maneuverability')) {
+            $ship->maneuverability = $ship->maneuverability + 10;
+            $ship->upgrade_points = $ship->upgrade_points - 1;
+            $ship->save();
+            return redirect(route('shipwright'))->with('trade', 'The ship\'s maneuverability has been increased!');
 
         } else {
             return redirect(route('shipwright'))->with('error', 'Invalid request');
