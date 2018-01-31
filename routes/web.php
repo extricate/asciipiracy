@@ -23,6 +23,7 @@ Route::get('/users', 'UserController@index')->name('users');
 Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/{user}/ships/active', 'UserController@active')->name('active_ship');
 
+// ships
 Route::get('/ships', 'ShipsController@index')->name('ships');
 Route::get('/ships/{ship}', 'ShipsController@show');
 Route::get('/ships/{ship}/upgrade', 'ShipsUpgradeController@show');
@@ -33,17 +34,20 @@ Route::put('/ship/set-active/{ship}', 'ShipsController@setActiveShip')->name('se
 Route::put('/ship/repair/{ship}', 'ShipsController@repairShip')->name('ship_repair');
 Route::delete('/ships/{ship}', 'ShipsController@destroy')->name('ship_destroy');
 
+// settlements
+Route::get('/settlement', 'SettlementController@index')->name('town');
+// people
 Route::get('/people', 'PeopleController@index')->name('people');
 Route::get('/people/{person}', 'PeopleController@show');
 
+// exploration
 Route::get('/explore', 'ExplorationController@index')->name('explore');
 Route::get('/explore/now', 'ExplorationController@goExplore')->name('explore_now');
 
+// combat
 Route::get('/combat', 'CombatController@index')->name('view_combat');
 Route::get('/combat/start', 'CombatController@startCombat')->name('start_combat');
-
 Route::get('/combat/attack', 'CombatController@attack')->name('combat_attack');
 Route::get('/combat/escape', 'CombatController@escape')->name('combat_escape');
-
 Route::get('/combat/end', 'CombatController@endCombat')->name('combat_end');
 

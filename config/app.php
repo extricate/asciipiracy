@@ -127,6 +127,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Faker localization
+    |--------------------------------------------------------------------------
+    |
+    | Faker provides various locale providers for its library and
+    | we set that locale explicitly in here, for more details
+    | you can visit the faker libraries github, have fun.
+    |
+    */
+
+    'faker_locale' => env('FAKER_LOCALE', 'us_US'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |

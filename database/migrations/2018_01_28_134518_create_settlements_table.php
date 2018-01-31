@@ -16,9 +16,9 @@ class CreateSettlementsTable extends Migration
         Schema::create('settlements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('type', ['Outpost', 'Monastery', 'Haven', 'Village', 'Town', 'City', 'Metropolis', 'Capital']);
+            $table->enum('type', ['Monastery', 'Haven', 'Outpost', 'Village', 'Town', 'City', 'Metropolis', 'Capital']);
             $table->unsignedInteger('nation')->nullable();
-            $table->unsignedInteger('inhabitants')->default(100);
+            $table->unsignedInteger('inhabitants')->default(50);
             $table->date('founded')->nullable();
             $table->timestamps();
         });
