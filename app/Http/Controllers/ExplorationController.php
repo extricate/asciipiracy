@@ -17,6 +17,7 @@ class ExplorationController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('combat.status');
+        $this->middleware('has.active.ship');
     }
 
     /**
