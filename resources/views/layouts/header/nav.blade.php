@@ -54,6 +54,7 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                     @else
+                        @php $user = Auth::user(); @endphp
                         <li>
                             <a href="{{ route('home') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

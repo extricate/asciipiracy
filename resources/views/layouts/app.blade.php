@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>ASCIIPiracy - @yield('title')</title>
+    <title>@yield('title') - ASCIIPiracy</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -51,6 +51,23 @@
         $.notify({
             message: '{!! session('message') !!}',
             type: 'info',
+            icon: 'fa fa-exclamation-triangle',
+        });
+    </script>
+@endif
+@if (session()->has('error'))
+    <script>
+        $.notifyDefaults({
+            type: 'danger',
+            mouse_over: 'pause',
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+            }
+        });
+        $.notify({
+            message: '{!! session('error') !!}',
+            type: 'danger',
             icon: 'fa fa-exclamation-triangle',
         });
     </script>

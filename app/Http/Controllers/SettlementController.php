@@ -42,7 +42,7 @@ class SettlementController extends Controller
         }
     }
 
-    // all services in the settlement
+    // all store services in the settlement
     public function general()
     {
         return view('settlement.stores.general');
@@ -66,6 +66,6 @@ class SettlementController extends Controller
     // travel
     public function travel()
     {
-        return view('settlement.travel');
+        return view('travel.index');
     }
 }
