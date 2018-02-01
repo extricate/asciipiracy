@@ -58,11 +58,11 @@ class ShipsUpgradeController extends Controller
             return redirect(route('shipwright'))->with('trade', 'You upgraded the maximum amount of sailors!');
 
         } elseif ($request->has('max_health')) {
-            $ship->max_health = $ship->max_health + 20;
+            $ship->maximum_health = $ship->maximum_health + 20;
             $ship->upgrade_points = $ship->upgrade_points - 1;
-            $ship->current_health = $ship->max_health;
+            $ship->current_health = $ship->maximum_health;
             $ship->save();
-            return redirect(route('shipwright'))->with('trade', 'You upgraded the maximum amount of ship hitpoints! As a service, I also ordered the carpenter to repair your ship.');
+            return redirect(route('shipwright'))->with('trade', 'You upgraded the maximum amount of ship hitpoints! I also ordered the carpenter to repair your ship.');
         } elseif ($request->has('length')) {
             $ship->length = $ship->length + 50;
             $ship->upgrade_points = $ship->upgrade_points - 1;
