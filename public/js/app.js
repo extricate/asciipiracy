@@ -11366,13 +11366,15 @@ var app = new Vue({
 
 /**
  * Dropdown replace with value and name
- * Can only have one element like this on a page right now
+ * created for use in the trade page
  */
-$(".btn-dropdown a").click(function () {
-  var oldText = $('.dropdown-replace').text();
-  var newText = $(this).text();
-  $('.dropdown-replace').text(newText).prop('name', newText).append(' <i class="fa fa-caret-down"></i>');
-  $(".btn-dropdown a").text(oldText);
+
+$(".dropdown-menu a").click(function () {
+  var oldText = $(this).parents('.input-group').find('.dropdown-toggle').text();
+  var selText = $(this).text();
+  $(this).text(oldText);
+  $(this).parents('.input-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+  $(this).parents('form').find('.trade-action').val(selText);
 });
 
 /***/ }),

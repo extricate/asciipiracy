@@ -8750,8 +8750,8 @@ ul.stats-list .label {
   height: 100%;
 }
 
-.input-group .input-trade {
-  width: 70px;
+.input-trade {
+  width: 70px !important;
 }
 
 ul .ship-quicklist {
@@ -17319,8 +17319,8 @@ ul.stats-list .label {
   height: 100%;
 }
 
-.input-group .input-trade {
-  width: 70px;
+.input-trade {
+  width: 70px !important;
 }
 
 ul .ship-quicklist {

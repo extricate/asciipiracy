@@ -95,17 +95,17 @@ class TradeController extends Controller
             $type = $request->type;
 
             if ($request->quantity > $city->{$type . '_stock'}) {
-                return redirect(route('general_store'))->with('message',
+                return redirect(route('general_store'))->with('trade',
                     'That is more than we have stocked I am afraid.');
             } elseif ($request->quantity > $ship->free_hold) {
-                return redirect(route('general_store'))->with('message',
+                return redirect(route('general_store'))->with('trade',
                     'It appears your ship does not have the required amount of free hold for this quantity of ' . $type);
             }
             $type_sell_price = $city->{$type . '_buy'};
             $total_price = $request->quantity * $type_sell_price;
 
             if ($total_price > $user->gold) {
-                return redirect(route('general_store'))->with('message',
+                return redirect(route('general_store'))->with('trade',
                     'It looks like you cannot afford this amount. I am afraid that we do not work on a credit basis. Perhaps take out a loan somewhere?');
             } else {
                 $user->gold = $user->gold - $total_price;
@@ -117,15 +117,15 @@ class TradeController extends Controller
                 $ship->$type = $ship->$type + $request->quantity;
                 $ship->save();
 
-                return redirect(route('general_store'))->with('message',
+                return redirect(route('general_store'))->with('trade',
                     'Thank you for your purchase sir. Your acquired goods will be loaded on your ship.');
             }
         } elseif ($request->action == 'sell') {
             $type = $request->type;
 
             if ($request->quantity > $ship->$type) {
-                return redirect(route('general_store'))->with('message',
-                    'I don\'t do speculative trading. I really need to get the quantity of goods I am buying.');
+                return redirect(route('general_store'))->with('trade',
+                    'I do not do speculative trading. I really need to get the quantity of goods I am buying.');
             }
 
             $type_sell_price = $city->{$type . '_sell'};
@@ -140,7 +140,7 @@ class TradeController extends Controller
             $ship->$type = $ship->$type - $request->quantity;
             $ship->save();
 
-            return redirect(route('general_store'))->with('message',
+            return redirect(route('general_store'))->with('trade',
                 'Thank you for your business, sir. Your acquired goods will be offloaded from your ship.');
         }
 

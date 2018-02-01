@@ -39,20 +39,20 @@
         <td>{{ $city->tobacco_buy }}</td>
         <td>@if ($ship != null){{ $ship->tobacco }} @else N/A @endif</td>
         <td>
-            {{ Form::open(['method' => 'POST', 'route' => ['trade'], 'class'=>'form-inline']) }}
+            {{ Form::open(['method' => 'POST', 'route' => ['trade'], 'class'=>'form-inline trade-form trade-form-tobacco']) }}
             <div class="input-group">
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-primary dropdown-replace dropdown-toggle"
+                    <button type="button" class="btn btn-primary dropdown-replace dropdown-toggle text-capitalize"
                             data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" name="Buy">Buy<i class="fa fa-caret-down"></i>
+                            aria-haspopup="true" aria-expanded="false" name="Buy">buy<i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-menu btn-dropdown">
-                        <a class="dropdown-item" href="#">Sell</a>
+                        {{ Form::hidden('action', 'buy', array('class' => 'trade-action')) }}
+                        <a class="dropdown-item text-capitalize" href="#">sell</a>
                     </div>
                 </div>
-                <input name="quantity" type="number" class="form-control input-trade" aria-label="Text input with dropdown button">
+                <input name="quantity" type="number" class="form-control input-trade" aria-label="Amount of goods" value="{!! old('quantity') !!}">
             </div>
-            {{ Form::hidden('action', 'buy', array('id' => 'action')) }}
             {{ Form::hidden('type', 'tobacco') }}
             {{ Form::submit('Trade', ['class' => 'btn btn-primary']) }}
             {{ Form::close() }}
