@@ -35,6 +35,7 @@ class CreateShipsTable extends Migration
 
             $table->enum('cannon_caliber', ['4 pounder', '6 pounder', '9 pounder', '12 pounder', '18 pounder', '24 pounder', '32 pounder', '42 pounder']);
 
+            $table->unsignedInteger('free_hold');
             $table->unsignedInteger('total_hold');
 
             // trade goods

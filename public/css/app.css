@@ -8768,6 +8768,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
+  vertical-align: middle;
   padding: 15px;
 }
 
@@ -17336,6 +17337,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
+  vertical-align: middle;
   padding: 15px;
 }
 

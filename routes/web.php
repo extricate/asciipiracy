@@ -40,6 +40,7 @@ Route::get('/settlement', 'SettlementController@index')->name('visit_town');
 // stores
 Route::get('/settlement/general-store', 'SettlementController@general')->name('general_store');
 Route::post('/settlement/general-store', 'TradeController@buyGoods')->name('buy_goods');
+Route::post('/settlement/general-store/trade', 'TradeController@trade')->name('trade');
 Route::post('/settlement/shipwright', 'TradeController@buyCannons')->name('buy_cannons');
 Route::get('/settlement/carpenter', 'SettlementController@carpenter')->name('carpenter');
 
