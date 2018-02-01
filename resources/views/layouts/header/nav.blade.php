@@ -54,6 +54,9 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                     @else
+                        <li><a href="#"><i class="ra ra-gold-bar"></i> {{ Auth::user()->gold }}</a></li>
+                        <li><a href="#"><i class="ra ra-chicken-leg"></i> {{ Auth::user()->goods }}</a></li>
+
                         @php $user = Auth::user(); $active = $user->activeShip(); @endphp
                         <li class="dropdown">
                             <a class="dropdown-toggle" type="button" id="ship-menu" data-toggle="dropdown"
@@ -96,8 +99,6 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li><a href="#"><i class="ra ra-gold-bar"></i> Gold: {{ Auth::user()->gold }}</a></li>
-                        <li><a href="#"><i class="ra ra-chicken-leg"></i> Goods: {{ Auth::user()->goods }}</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true">

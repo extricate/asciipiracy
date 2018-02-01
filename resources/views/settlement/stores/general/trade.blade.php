@@ -1,6 +1,14 @@
 @php $user = Auth::user(); $city = $user->isIn(); $ship = $user->activeShip(); @endphp
 {{-- design inspiration http://www.manapool.co.uk/wp-content/uploads/2010/11/Patrician-4-trade.jpg --}}
 <table class="table trading-table">
+    <colgroup>
+        <col class="goods" />
+        <col class="stock" />
+        <col class="sell" />
+        <col class="buy" />
+        <col class="ship-stock" />
+        <col class="trade" />
+    </colgroup>
     <thead>
     <tr>
         <th>
@@ -13,21 +21,23 @@
             Sell
         </th>
         <th>
-            Price
-        </th>
-        <th>
             Buy
         </th>
         <th>
             Ship stock
         </th>
+        <th>
+            Trade
+        </th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th scope="row">Tobacco</th>
+        <th scope="row">@svg('008-cigar', 'icon-trade', ['alt' => 'tobacco'])</th>
         <td>{{ $city->tobacco_stock }}</td>
         <td>{{ $city->tobacco_sell}}</td>
+        <td>{{ $city->tobacco_buy }}</td>
+        <td>@if ($ship != null){{ $ship->tobacco }} @else N/A @endif</td>
         <td>
             <div class="input-group">
                 <div class="input-group-btn">
@@ -41,8 +51,6 @@
                 <input type="number" class="form-control input-trade" aria-label="Text input with dropdown button">
             </div>
         </td>
-        <td>{{ $city->tobacco_buy }}</td>
-        <td>@if ($ship != null){{ $ship->tobacco }} @else N/A @endif</td>
     </tr>
     </tbody>
 </table>

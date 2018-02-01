@@ -8762,6 +8762,20 @@ ul .ship-quicklist .ship-quicklist-item {
   margin: 6px;
 }
 
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 15px;
+}
+
+.icon-trade {
+  height: 30px;
+  width: 30px;
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -17299,5 +17313,19 @@ ul .ship-quicklist {
 
 ul .ship-quicklist .ship-quicklist-item {
   margin: 6px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 15px;
+}
+
+.icon-trade {
+  height: 30px;
+  width: 30px;
 }
 
