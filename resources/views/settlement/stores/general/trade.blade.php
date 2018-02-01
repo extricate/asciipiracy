@@ -28,16 +28,19 @@
         <th scope="row">Tobacco</th>
         <td>{{ $city->tobacco_stock }}</td>
         <td>{{ $city->tobacco_sell}}</td>
-        <td><div class="input-group">
+        <td>
+            <div class="input-group">
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy <i class="fa fa-caret-down"></i>
+                    <button type="button" class="btn btn-primary dropdown-replace dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" name="Buy">Buy<i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-menu btn-dropdown">
                         <a class="dropdown-item" href="#">Sell</a>
                     </div>
                 </div>
                 <input type="number" class="form-control input-trade" aria-label="Text input with dropdown button">
-            </div></td>
+            </div>
+        </td>
         <td>{{ $city->tobacco_buy }}</td>
         <td>@if ($ship != null){{ $ship->tobacco }} @else N/A @endif</td>
     </tr>

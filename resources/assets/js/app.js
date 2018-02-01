@@ -20,3 +20,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * Dropdown replace with value and name
+ * Can only have one element like this on a page right now
+ */
+$(".btn-dropdown a").click(function(){
+    var oldText = $('.dropdown-replace').text();
+    var newText = $(this).text();
+    $('.dropdown-replace').text(newText).prop('name', newText).append(' <i class="fa fa-caret-down"></i>');
+    $(".btn-dropdown a").text(oldText);
+});
