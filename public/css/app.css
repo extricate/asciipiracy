@@ -8754,6 +8754,14 @@ ul.stats-list .label {
   width: 70px;
 }
 
+ul .ship-quicklist {
+  min-width: 300px;
+}
+
+ul .ship-quicklist .ship-quicklist-item {
+  margin: 6px;
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -17283,5 +17291,13 @@ ul.stats-list .label {
 
 .input-group .input-trade {
   width: 70px;
+}
+
+ul .ship-quicklist {
+  min-width: 300px;
+}
+
+ul .ship-quicklist .ship-quicklist-item {
+  margin: 6px;
 }
 
