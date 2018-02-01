@@ -14,16 +14,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Captain {{ $user->name }}'s quarters</div>
                     <div class="panel-body text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
-                             style="enable-background:new 0 0 512 512;" xml:space="preserve" width="100px"
-                             height="100px">
-                                        <g>
-                                            <g>
-                                                @include('icons.captain')
-                                            </g>
-                                        </g>
-                                    </svg>
+                        @svg('captain', 'icon-xxl')
                         @if ($active != null)
                             <p>Welcome back captain <b>{{ $user->name }}</b>.</p>
                             <p>

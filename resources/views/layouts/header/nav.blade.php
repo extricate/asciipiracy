@@ -22,28 +22,19 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="{{ route('explore') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
-                             style="enable-background:new 0 0 512 512;" xml:space="preserve" width="14px"
-                             height="14px">
-                                        <g>
-                                            <g>
-                                                @include('icons.ship')
-                                            </g>
-                                        </g>
-                                    </svg>
+                        @svg('rudder', 'icon-nav')
                         Explore
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('start_combat') }}"><span class="ra ra-crossed-sabres"></span> Fight
+                    <a href="{{ route('start_combat') }}">@svg('sword', 'icon-nav') Fight
                         pirates</a>
                 </li>
                 <li>
-                    <a href="{{ route('visit_town') }}"><span class="fa fa-home"></span> Town</a>
+                    <a href="{{ route('visit_town') }}">@svg('cabin', 'icon-nav') Town</a>
                 </li>
                 <li>
-                    <a href=""><span class="fa fa-map-o"></span> Travel</a>
+                    <a href="">@svg('map', 'icon-nav') Travel</a>
                 </li>
             </ul>
 
@@ -54,29 +45,26 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                     @else
-                        <li><a href="#"><i class="ra ra-gold-bar"></i> {{ Auth::user()->gold }}</a></li>
-                        <li><a href="#"><i class="ra ra-chicken-leg"></i> {{ Auth::user()->goods }}</a></li>
+                        <li>
+                            <a href="#">
+                                @svg('coins', 'icon-nav') {{ Auth::user()->gold }}
+                                @svg('chicken', 'icon-nav') {{ Auth::user()->goods }}
+                            </a>
+                        </li>
 
                         @php $user = Auth::user(); $active = $user->activeShip(); @endphp
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" type="button" id="ship-menu" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
-                                     style="enable-background:new 0 0 512 512;" xml:space="preserve" width="14px"
-                                     height="14px">
-                                        <g>
-                                            <g>
-                                                @include('icons.ship')
-                                            </g>
-                                        </g>
-                                    </svg>
                                 @if ($user->activeShip() !== null)
-                                    <span class="label label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}"><i
-                                                class="fa fa-heart"></i> {{ Auth::user()->activeShip()->current_health }}
-                                        /{{ Auth::user()->activeShip()->maximum_health }}</span>
+                                    <label class="label-ship label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}">
+                                        @svg('ship', 'icon-nav')
+                                        {{ Auth::user()->activeShip()->current_health }}
+                                        /{{ Auth::user()->activeShip()->maximum_health }}
+                                    </label>
                                 @else
-                                    <span class="label label-default"><i class="fa fa-heart"></i> --/-- </span>
+                                    <label class="label-no-ship">
+                                        @svg('ship', 'icon-nav') --/-- </label>
                                 @endif
                             </a>
                             <ul class="dropdown-menu ship-quicklist" aria-labelledby="ship-menu">
@@ -105,11 +93,8 @@
                                 Lvl {{ $user->level }} captain {{ Auth::user()->name }}
                                 <progress class="experience-bar" max="100"
                                           value="{{ $user->levelProgress($user) }}">
-
                                 </progress>
                             </a>
-
-
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="/home">
@@ -122,7 +107,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                           style="display: none;">
                                         {{ csrf_field() }}

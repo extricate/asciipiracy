@@ -4,7 +4,11 @@
     @if ($event)
         @if (!empty($event->icon))
             <p class="fa-5x">
+                @if ($event->icon_type == 'svg')
+                    {{ svg_image($event->icon)->class('icon-xxl') }}
+                @else
                 <i class="{{ $event->icon_type }} {{ $event->icon_type }}-{{ $event->icon }}"></i>
+                @endif
             </p>
         @endif
         <h1>{{ $event->title }}</h1>

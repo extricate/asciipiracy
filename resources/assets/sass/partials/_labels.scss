@@ -10,3 +10,39 @@
 .label-crew {
   background-color: $crew;
 }
+
+label {
+  padding: 2px 8px;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.label-goods {
+  background-color: #537aff;
+  color: $white;
+}
+
+.label-gold {
+  background-color: #f97217;
+  color: $white;
+}
+
+.label-ship {
+  cursor: pointer;
+  color: $white;
+  background-color: $brown;
+}
+
+.label-no-ship {
+  cursor: pointer;
+  color: $white;
+  background-color: $dark-grey;
+}
+
+.label-warning {
+  background-color: #cbb956;
+}
+
+.label-danger {
+  background-color: $red;
+}

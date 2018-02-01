@@ -8,7 +8,7 @@
         <div class="form-group">
             <label class="sr-only" for="goods">Amount of cannons</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="ra ra-cannon-shot"></i>
+                <div class="input-group-addon">@svg('cannon', 'icon-sm')
                 </div>
                 <input type="number" name="cannons" class="form-control" id="goods"
                        placeholder="Amount of cannons"
