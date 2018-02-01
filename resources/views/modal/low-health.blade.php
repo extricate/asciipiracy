@@ -2,7 +2,7 @@
 
 @section('id')lowhealth@endsection
 
-@section('title')
+@section('modal_title')
     Are you sure about that?
 @endsection
 

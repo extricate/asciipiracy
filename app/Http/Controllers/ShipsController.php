@@ -14,7 +14,7 @@ class ShipsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('combat.status');
+        $this->middleware('combat.status', ['except' => ['destroy']]);
     }
 
     public function index()

@@ -27,7 +27,7 @@
                     </div>
                     <div class="panel-body text-center">
                         @if ($ship != null)
-                            @if ($ship->current_health >= ($ship->maximum_health / 2))
+                            @if ($ship->current_health >= ($ship->maximum_health / 3))
                                 <p>
                                     <a href="{{ route('explore_now') }}" class="btn btn-primary btn-lg">Go explore</a>
                                 </p>
@@ -87,7 +87,8 @@
                     <p>Your ship is low on health, are you sure you want to do this?</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ route('explore_now') }}">Continue</a>
+                    <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="{{ route('explore_now') }}" class="btn btn-primary">Continue</a>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 @section('id'){{"confirm_delete"}}@endsection
 
-@section('title')
+@section('modal_title')
     Confirmation needed
 @endsection
 

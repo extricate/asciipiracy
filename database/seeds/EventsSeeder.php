@@ -106,7 +106,7 @@ class EventsSeeder extends Seeder
 
         DB::Table('events')->insert([
             'title' => 'Rescued a carpenter!',
-            'icon_type' => 'ra',
+            'icon_type' => 'svg',
             'icon' => 'spyglass',
             'frequency' => 3,
             'body' => 'Whilst roaming the seas the lookout has spotted a small, makeshift raft with a shipwrecked man. Apparently, he was a carpenter serving on a military vessel that was lost in a storm. He was very grateful for your rescue and decided to repair some ship damage. Upon returning to port he went to rejoin the military.',
@@ -146,7 +146,7 @@ class EventsSeeder extends Seeder
         DB::Table('events')->insert([
             'title' => 'A violent storm!',
             'icon_type' => 'svg',
-            'icon' => 'storm',
+            'icon' => 'ship-in-storm',
             'frequency' => 1,
             'body' => 'The thunder roared unlike anything you had heard before. The ship had rocked the ship like it was a plaything in a tub. More than once, as another rogue wave slammed into the ship, you thought it would be the last. The ship was heavily damaged in the storm.',
             'type' => '-',
