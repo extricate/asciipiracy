@@ -74,6 +74,11 @@
                                         @include('layouts.header.ship-quicklist')
                                     </li>
                                 @endif
+                                @if ($user->myShips()->count() == 0)
+                                        <div class="text-center">
+                                            <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free beginner ship</a>
+                                        </div>
+                                @endif
                                 @foreach ($user->myShips() as $ship)
                                     @php
                                         // do not show the currently active ship

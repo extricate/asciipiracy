@@ -26,9 +26,17 @@
                         Actions
                     </div>
                     <div class="panel-body text-center">
-                        <p>
-                            <a href="{{ route('explore_now') }}" class="btn btn-primary btn-lg">Go explore</a>
-                        </p>
+                        @if ($ship != null)
+                            @if ($ship->current_health >= ($ship->maximum_health / 2))
+                                <p>
+                                    <a href="{{ route('explore_now') }}" class="btn btn-primary btn-lg">Go explore</a>
+                                </p>
+                            @else
+                                <p>
+                                    <button type="button" data-toggle="modal" data-target="#lowhealth" class="btn btn-primary btn-lg">Go explore</button>
+                                </p>
+                            @endif
+                        @endif
                     </div>
                     @if ($ship != null)
                         <div class="panel-footer text-center">
@@ -37,9 +45,7 @@
                             </div>
                             <br>
                             <div class="label label-info">
-                                That's @php echo round($user->goods/$ship->explorationCost(), 0) @endphp more journeys
-                                with
-                                the goods left.
+                                That's @php echo round($user->goods/$ship->explorationCost(), 0) @endphp more journeys with the goods left.
                             </div>
                         </div>
                     @endif
@@ -65,6 +71,24 @@
                         </div>
                     </div>
                 @endif
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="lowhealth" aria-labelledby="low health confirmation">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    Are you sure about that?
+                </div>
+                <div class="modal-body">
+                    <p>Your ship is low on health, are you sure you want to do this?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ route('explore_now') }}">Continue</a>
+                </div>
             </div>
         </div>
     </div>
