@@ -1,0 +1,43 @@
+.settlement {
+  height: 257px;
+  position: relative;
+  overflow: hidden;
+}
+
+.settlement-icon {
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  top: 0;
+  left: 0;
+}
+
+.settlement-primary {
+  z-index: 10;
+  top: 20px;
+}
+
+.settlement-icon-1 {
+  left: 60%;
+  top: -50px;
+}
+
+.settlement-icon-2 {
+  top: 0px;
+  left: 130px;
+}
+
+.settlement-icon-3 {
+  top: 50px;
+  left: 50%;
+}
+
+.settlement-icon-5 {
+  left: 60%;
+  top: 50px;
+}
+
+.settlement-icon-6 {
+  left: 25%;
+  top: 25px;
+}

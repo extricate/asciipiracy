@@ -47,8 +47,8 @@
                     @else
                         <li>
                             <a href="#">
-                                @svg('coins', 'icon-nav') {{ Auth::user()->gold }}
-                                @svg('chicken', 'icon-nav') {{ Auth::user()->goods }}
+                                <label>@svg('coins', 'icon-nav') {{ Auth::user()->gold }}</label>
+                                <label>@svg('chicken', 'icon-nav') {{ Auth::user()->goods }}</label>
                             </a>
                         </li>
 

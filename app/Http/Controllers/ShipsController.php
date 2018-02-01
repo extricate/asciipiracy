@@ -217,11 +217,28 @@ class ShipsController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user();
         // find the correct ship
         $ship = Ship::findOrFail($id);
 
         // delete the ship
         $ship->delete();
+
+        // if the user is in combat, reset that status
+        if ($user->is_in_combat == true) {
+            // to win the opponent must either: surrender or sink
+            $user->combat_losses++;
+            // find the correct ship
+            $enemy = Ship::findOrFail($user->is_in_combat_with);
+            // delete the ship
+            $enemy->delete();
+
+            $user->is_in_combat = false;
+            $user->is_in_combat_with = 0;
+            $user->save();
+
+            return redirect('home')->with('message', 'You surrender your ship to the enemy. They are friendly enough to drop you off back home.');
+        }
 
         return redirect('home')->with('message', 'Ship successfully sunk!');
     }
