@@ -12,9 +12,9 @@ $factory->define(App\MapTile::class, function (Faker $faker) {
     $type = 'water';
 
     if ($type == 'settlement') {
-        $settlement = factory('App\Settlement')->create();
+        $settlement = factory('App\Settlement')->create()->id;
     } elseif ($type == 'ship') {
-        $ship = factory('App\Ship')->create();
+        $ship = factory('App\Ship')->create()->id;
     } else {
         $settlement = (object)array('id' => '0');
         $ship = (object)array('id' => '0');
@@ -22,7 +22,7 @@ $factory->define(App\MapTile::class, function (Faker $faker) {
 
     return [
         'type' => $type,
-        'settlement' => $settlement->id,
-        'ship' => $ship->id,
+        'settlement' => $settlement,
+        'ship' => $ship,
     ];
 });

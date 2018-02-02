@@ -35,13 +35,6 @@ class Map extends Model
 
         $i = 0;
         // populate the map
-        foreach ($width as $row)
-        {
-            foreach($row as $tile)
-            {
-                //
-            }
-        }
 
     }
 }

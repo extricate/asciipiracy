@@ -1,0 +1,15 @@
+<?php
+
+use Faker\Generator as Faker;
+
+$factory->define(App\Map::class, function (Faker $faker) {
+
+    $type = 'small';
+    $tiles = factory('App\MapTile', 100)->create();
+    $map_id = Uuid::generate();
+
+    return [
+        'type' => $type,
+        'map_id' => $map_id,
+    ];
+});

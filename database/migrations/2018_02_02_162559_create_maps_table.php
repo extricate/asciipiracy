@@ -15,6 +15,8 @@ class CreateMapsTable extends Migration
     {
         Schema::create('maps', function (Blueprint $table) {
             $table->increments('id');
+            $table->uuid('map_id');
+
             $table->string('type');
             $table->unsignedInteger('user_id')->onDelete('cascade')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
