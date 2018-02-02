@@ -8699,6 +8699,8 @@
 
 .btn-trade {
   padding: 6px 12px;
+  width: auto;
+  display: inline-block;
   background-color: #3097D1;
   border-color: #2a88bd;
   color: #fff;
@@ -8807,6 +8809,10 @@ ul.stats-list .label {
 
 .input-trade {
   width: 70px !important;
+}
+
+.input-supplies {
+  width: 140px !important;
 }
 
 ul .ship-quicklist {
@@ -17465,6 +17471,8 @@ This is the theme for ASCIIPiracy
 
 .btn-trade {
   padding: 6px 12px;
+  width: auto;
+  display: inline-block;
   background-color: #3097D1;
   border-color: #2a88bd;
   color: #fff;
@@ -17573,6 +17581,10 @@ ul.stats-list .label {
 
 .input-trade {
   width: 70px !important;
+}
+
+.input-supplies {
+  width: 140px !important;
 }
 
 ul .ship-quicklist {

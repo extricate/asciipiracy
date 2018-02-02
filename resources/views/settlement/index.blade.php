@@ -72,7 +72,7 @@
                             <div class="settlement-icon settlement-icon-bottom-right">@svg('well', 'icon-xxl')</div>
                         </div>
 
-                    @elseif ($settlement->type == 'Metropolis')
+                    @elseif ($settlement->type == 'City')
                         <div class="settlement">
                             <div class="settlement-icon settlement-floor"></div>
                             <div class="settlement-icon settlement-sky"></div>
@@ -86,7 +86,7 @@
                             <div class="settlement-icon settlement-icon-5">@svg('palm-tree', 'icon-xxxl')</div>
                             <div class="settlement-icon settlement-icon-6">@svg('palm-tree-inverse', 'icon-xxxl')</div>
                         </div>
-                    @elseif ($settlement->type == 'City')
+                    @elseif ($settlement->type == 'Metropolis')
                         <div class="settlement">
                             <div class="settlement-icon settlement-floor"></div>
                             <div class="settlement-icon settlement-sky"></div>

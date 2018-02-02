@@ -11,7 +11,7 @@
 
 @section('store_contents')
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Supplies
@@ -22,16 +22,16 @@
                         <label class="sr-only" for="goods">Amount of goods</label>
                         <div class="input-group">
                             <div class="input-group-addon">@svg('chicken', 'icon-sm')</div>
-                            <input type="number" name="goods" class="form-control" id="goods"
+                            <input type="number" name="goods" class="form-control input-supplies" id="goods"
                                    placeholder="Amount of goods" value="{!! old('goods') !!}">
+                            {{ Form::submit('Buy for 5 each', ['class' => 'btn btn-primary input-group-addon btn-trade']) }}
                         </div>
                     </div>
-                    {{ Form::submit('Buy goods', ['class' => 'btn btn-primary']) }}
                     {{ Form::close() }}
                 </div>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Trade goods
