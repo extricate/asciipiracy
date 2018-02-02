@@ -11,6 +11,13 @@ class Map extends Model
     public $tileSet = Array();
 
     /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * Create a map
      *
      * @param int $width
