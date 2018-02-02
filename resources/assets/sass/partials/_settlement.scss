@@ -1,20 +1,27 @@
 .settlement {
-  height: 257px;
+  height: 286px;
   position: relative;
   overflow: hidden;
+  top: 0;
 }
 
 .settlement-icon {
   position: absolute;
   display: inline;
   vertical-align: bottom;
-  top: 0;
+  margin-top: 20px;
+  top: 0px;
   left: 0;
 }
 
 .settlement-primary {
   z-index: 10;
   top: 20px;
+}
+
+.settlement-centered {
+  left: 50%;
+  margin-left: -100px;
 }
 
 .settlement-icon-1 {
@@ -40,4 +47,64 @@
 .settlement-icon-6 {
   left: 25%;
   top: 25px;
+}
+
+.settlement-icon-7 {
+  left: 65%;
+  top: 20px;
+}
+
+.settlement-icon-bottom-left {
+  left: 18%;
+  top: 140px;
+}
+
+.settlement-icon-center-left {
+  left: 10%;
+  top: 50px;
+}
+
+.settlement-icon-bottom-right {
+  left: 80%;
+  right: 18%;
+  top: 150px;
+}
+
+.settlement-icon-top-right {
+  left: 80%;
+  top: 30px;
+}
+
+.settlement-icon-top-center {
+  left: 60%;
+  margin-left: -50px;
+  top: -10px;
+}
+
+.settlement-icon-bottom-center {
+  left: 40%;
+  margin-left: -50px;
+  top: 60px;
+}
+
+.settlement-sky {
+  margin-top: -20px;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  background-color: $sky-blue;
+}
+.settlement-floor {
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $sand-yellow;
 }
