@@ -22,7 +22,5 @@ $factory->define(App\MapTile::class, function (Faker $faker) {
 
     return [
         'type' => $type,
-        'settlement' => $settlement,
-        'ship' => $ship,
     ];
 });

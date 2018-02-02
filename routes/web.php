@@ -48,7 +48,6 @@ Route::get('/settlement/shipwright', 'SettlementController@shipwright')->name('s
 Route::post('/settlement/shipwright/upgrade', 'ShipsUpgradeController@upgrade')->name('ship_upgrade');
 Route::get('/settlement/tavern', 'SettlementController@tavern')->name('tavern');
 
-
 // people
 Route::get('/people', 'PeopleController@index')->name('people');
 Route::get('/people/{person}', 'PeopleController@show');
@@ -64,3 +63,6 @@ Route::get('/combat/attack', 'CombatController@attack')->name('combat_attack');
 Route::get('/combat/escape', 'CombatController@escape')->name('combat_escape');
 Route::get('/combat/end', 'CombatController@endCombat')->name('combat_end');
 
+// travel
+Route::get('/map', 'MapController@index')->name('map');
+Route::post('/map', 'MapController@travel')->name('travel');

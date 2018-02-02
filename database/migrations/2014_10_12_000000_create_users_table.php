@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('charisma')->default(1);
 
             $table->unsignedInteger('location_id')->nullable()->default(1);
+
             $table->unsignedInteger('max_ships')->default(5);
 
             $table->unsignedInteger('active_ship')->nullable()->onDelete('set null');

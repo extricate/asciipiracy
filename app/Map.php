@@ -2,13 +2,25 @@
 
 namespace App;
 
+use App\User;
+use App\MapTile;
+use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
+
+
 
 class Map extends Model
 {
     protected $mapArray = Array();
     protected $map = Array();
     public $tileSet = Array();
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'id'
+    ];
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -20,28 +32,31 @@ class Map extends Model
     /**
      * Create a map
      *
-     * @param int $width
-     * @param int $height
+     * @param int $x
+     * @param int $y
      */
-    public function generate()
+    public function generate(int $id, int $x, int $y)
     {
-        $width = 15;
-        $height = 15;
-        $x = 0;
-        $y = 0;
+        $map_id = Uuid::generate();
+        $tileAmount = $x * $y;
 
+        factory('App\Map')->create([
+            'id' => $map_id,
+            'user_id' => $id,
+        ]);
 
-        // to create a map, we first dictate its size in x and y
+        factory('App\MapTile', $tileAmount)->create([
+            'belongs_to_map' => $map_id,
+        ]);
+    }
 
-        $x = 0;
-        $y = 0;
-
-        // for the total amount of x * y we need to generate random tiles, we generate these at random using a factory.
-
-        // next, we populate the map at random with objects that we generate, these can be anything ranging from settlements to specific enemies (generating settlements and enemies alike)
-
-        $i = 0;
-        // populate the map
-
+    /**
+     * Tiles belonging to this map
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tiles()
+    {
+        return $this->hasMany(MapTile::class, 'belongs_to_map');
     }
 }

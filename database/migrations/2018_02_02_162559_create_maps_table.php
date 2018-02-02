@@ -14,12 +14,11 @@ class CreateMapsTable extends Migration
     public function up()
     {
         Schema::create('maps', function (Blueprint $table) {
-            $table->uuid('map_id');
-            $table->primary('map_id');
+            $table->uuid('id');
+            $table->primary('id');
 
-            $table->string('type');
-            $table->unsignedInteger('user_id')->onDelete('cascade')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('type')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

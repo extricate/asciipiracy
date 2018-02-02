@@ -15,9 +15,10 @@ class CreateMapTilesTable extends Migration
     {
         Schema::create('map_tiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->uuid('map_id')->onDelete('cascade');
-            $table->foreign('map_id')->references('map_id')->on('maps')->onDelete('cascade');
+            $table->string('type')->default('water');
+
+            $table->uuid('belongs_to_map')->onDelete('cascade');
+            $table->foreign('belongs_to_map')->references('id')->on('maps')->onDelete('cascade');
 
             $table->unsignedInteger('settlement')->onDelete('cascade')->nullable();
             $table->foreign('settlement')->references('id')->on('settlements')->onDelete('cascade');

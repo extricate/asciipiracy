@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             EventsSeeder::class,
+            MapSeeder::class,
         ]);
 
         if (DB::Table('users')->where(['name' => 'Herman']) == true)

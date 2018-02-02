@@ -129,4 +129,9 @@ class User extends Authenticatable
 
         return $settlement;
     }
+
+    public function onMap()
+    {
+        return $this->hasOne(Map::class, 'user_id');
+    }
 }

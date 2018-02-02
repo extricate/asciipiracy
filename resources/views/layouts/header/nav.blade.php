@@ -34,7 +34,7 @@
                     <a href="{{ route('visit_town') }}">@svg('cabin', 'icon-nav') Town</a>
                 </li>
                 <li>
-                    <a href="">@svg('map', 'icon-nav') Travel</a>
+                    <a href="{{ route('map') }}">@svg('map', 'icon-nav') Travel</a>
                 </li>
             </ul>
 
