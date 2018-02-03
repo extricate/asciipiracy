@@ -18,6 +18,9 @@ class MapController extends Controller
         $this->middleware('has.active.ship', ['except' => ['index', 'show']]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $user = Auth::user();
@@ -32,11 +35,16 @@ class MapController extends Controller
         return $map->tiles();
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function travel(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'x' => 'required|int|min:1',
-            'y' => 'required|int|min:1'
+            'x' => 'required|int|min:1|max:50',
+            'y' => 'required|int|min:1|max:50'
         ]);
 
         if ($validator->fails()) {

@@ -55,8 +55,8 @@ class Map extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tiles()
+    public function tiles(Map $map)
     {
-        return $this->hasMany(MapTile::class, 'belongs_to_map');
+        return $map->hasMany(MapTile::class, 'belongs_to_map')->getResults();
     }
 }

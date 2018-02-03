@@ -62,6 +62,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Ship')->find($user->active_ship);
     }
 
+    /**
+     * @return null
+     */
     public function getActiveShip()
     {
         $user = Auth::user();
@@ -121,6 +124,9 @@ class User extends Authenticatable
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function isIn()
     {
         $user = Auth::user();
@@ -130,8 +136,13 @@ class User extends Authenticatable
         return $settlement;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+     */
     public function onMap()
     {
-        return $this->hasOne(Map::class, 'user_id');
+        $user = Auth::user();
+
+        return $this->hasOne(Map::class, 'user_id')->find($user->on_map);
     }
 }

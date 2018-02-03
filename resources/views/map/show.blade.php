@@ -7,9 +7,13 @@
     @else
         @php
             $map = $user->onMap();
+            $tiles = $map->tiles($map);
         @endphp
-        @foreach($map->tiles() as $tile)
-            Hello
+        @foreach($tiles as $tile)
+            <div class="tile {{ $tile->type }}">
+
+            </div>
+
         @endforeach
     @endif
 @endsection
