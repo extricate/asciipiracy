@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        You are currently in the {{ $settlement->type }} "{{ $settlement->name }}"
+                        {{ $settlement->type }} "{{ $settlement->name }}"
                     </div>
 
 

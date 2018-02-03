@@ -8573,6 +8573,12 @@
   content: "\E901";
 }
 
+body {
+  min-height: 101%;
+  background: url(/images/background.jpg?8ddc8113bde96817fecc93e73b90a4d8) no-repeat center center fixed;
+  background-size: cover;
+}
+
 .btn-attack {
   color: #fff;
   background-color: #B71c1c;
@@ -8873,10 +8879,16 @@ ul .ship-quicklist .ship-quicklist-item {
   width: 14px;
 }
 
-.panel-heading {
+.panel-default .panel-heading {
   text-align: center;
   font-family: "Caveat", cursive;
-  font-size: 20px;
+  font-size: 26px;
+  font-weight: bolder;
+  color: #fff;
+  background: url(/fonts/wood_plank.svg?9654fd074b95cd22d9d2c4cec72a1045) no-repeat center center;
+  background-size: contain;
+  margin: 10px;
+  border-bottom: 0;
 }
 
 .settlement {
@@ -17427,6 +17439,12 @@ button.close {
 This is the theme for ASCIIPiracy
  */
 
+body {
+  min-height: 101%;
+  background: url(/images/background.jpg?8ddc8113bde96817fecc93e73b90a4d8) no-repeat center center fixed;
+  background-size: cover;
+}
+
 .btn-attack {
   color: #fff;
   background-color: #B71c1c;
@@ -17727,10 +17745,16 @@ ul .ship-quicklist .ship-quicklist-item {
   width: 14px;
 }
 
-.panel-heading {
+.panel-default .panel-heading {
   text-align: center;
   font-family: "Caveat", cursive;
-  font-size: 20px;
+  font-size: 26px;
+  font-weight: bolder;
+  color: #fff;
+  background: url(/fonts/wood_plank.svg?9654fd074b95cd22d9d2c4cec72a1045) no-repeat center center;
+  background-size: contain;
+  margin: 10px;
+  border-bottom: 0;
 }
 
 .settlement {

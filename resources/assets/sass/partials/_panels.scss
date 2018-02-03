@@ -1,5 +1,11 @@
-.panel-heading {
+.panel-default .panel-heading {
   text-align: center;
   font-family: $font-family-headers;
-  font-size: 20px;
+  font-size: 26px;
+  font-weight: bolder;
+  color: $white;
+  background: url('../svg/wood_plank.svg') no-repeat center center;
+  background-size: contain;
+  margin: 10px;
+  border-bottom: 0;
 }
