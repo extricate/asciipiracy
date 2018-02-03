@@ -38,7 +38,7 @@ class Map extends Model
     {
         $user = Auth::user();
         $map_id = Uuid::generate();
-        $tileAmount = $x * $y;
+        $tileAmount = ($x * $y);
 
         factory('App\Map')->create([
             'id' => $map_id,

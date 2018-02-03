@@ -27,14 +27,6 @@ $factory->define(App\MapTile::class, function (Faker $faker) {
         $settlement = $settlement->id;
     }
 
-    if ($selectedType == 'ship') {
-        $ship = factory('App\Ship')->create();
-        $generateSailorAmount = $ship->min_sailors;
-        factory('App\Person', $generateSailorAmount)->create(['ships_id' => $ship->id]);
-
-        $ship = $ship->id;
-    }
-
 
     return [
         'type' => $selectedType,

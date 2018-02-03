@@ -9,8 +9,8 @@
             $map = $user->onMap();
             $tiles = $map->tiles($map);
         @endphp
-
-
+        <div class="map-body">
+            <div class="map-inner">
                 @foreach($tiles as $tile)
                     @if ($tile->type == 'water')
                         <div class="tile {{ $tile->type }}">@svg('wave', 'tile-svg')</div>
@@ -19,7 +19,7 @@
                             <div class="tile {{ $tile->type }}-tile">@svg('villa', 'tile-svg')</div>
                         </a>
                     @elseif ($tile->type == 'ship')
-                        <a href="/ships/{{ $tile->ship }}">
+                        <a href="{{ route('greet_ship', $tile->id) }}">
                             <div class="tile {{ $tile->type }}">@svg('ship', 'tile-svg')</div>
                         </a>
                     @elseif ($tile->type == 'goods')
@@ -33,7 +33,9 @@
                             <div class="tile {{ $tile->type }}">@svg('chest', 'tile-svg')</div>
                         </a>
                     @endif
+                @endforeach
+            </div>
+        </div>
 
-        @endforeach
     @endif
 @endsection

@@ -12,7 +12,7 @@ class MapSeeder extends Seeder
     public function run()
     {
         //$map_id = Uuid::generate();
-        $tileAmount = 10 * 10;
+        $tileAmount = 5 * 5;
 
         // hardcode the Uuid
         $map_id = '99700d20-08c5-11e8-a6a2-6d79bfaed767';
@@ -20,6 +20,7 @@ class MapSeeder extends Seeder
         factory('App\Map')->create([
             'id' => $map_id,
             'user_id' => 2,
+            'type' => 'small',
         ]);
 
         factory('App\MapTile', $tileAmount)->create([

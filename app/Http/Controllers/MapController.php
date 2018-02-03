@@ -44,8 +44,8 @@ class MapController extends Controller
     public function travel(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'x' => 'required|int|min:1|max:50',
-            'y' => 'required|int|min:1|max:50'
+            'x' => 'required|int|min:5|max:5',
+            'y' => 'required|int|min:5|max:5'
         ]);
 
         if ($validator->fails()) {
@@ -55,14 +55,34 @@ class MapController extends Controller
         $x = $request->x;
         $y = $request->y;
         $user = Auth::user();
+        $totalCrew = $user->totalCrew();
+
+        if ($totalCrew > $user->goods)
+        {
+            return redirect(route('map'))->with('error', 'We do not appear to have enough goods for that journey!');
+        }
+
+        $user->goods = $user->goods - $totalCrew;
+        $user->save();
+
+        // delete previous map of user
+        $old_map_id = $user->on_map;
+        $old_map = App\Map::findOrFail($old_map_id);
+        $old_map->delete();
+
+        // continue generating new map
         $id = $user->id;
 
         $map = new Map;
         $map->generate($id, $x, $y);
 
-        return view('map.show', compact('user'));
+        return redirect(route('map'))->with('message', 'Successfully traveled to a new region. ' . $totalCrew . ' goods were used on the journey');
     }
 
+    /**
+     * @param $tileID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function travelTo($tileID)
     {
         $user = Auth::user();
@@ -75,19 +95,55 @@ class MapController extends Controller
                 $user->location_id = $tile->settlement;
                 $user->save();
 
-                // we do not reset the tile, because users are allowed to travel between towns
+                // we do not reset the tile, because users are allowed to travel between towns multiple times
                 return redirect(route('visit_town'))->with('message', 'You travelled to a new town!');
             } else {
-                return back()->with('error', 'You cheater, that is not a town');
+                return redirect(route('map'))->with('error', 'You cheater, that is not a town');
             }
         } else {
-            return back()->with('error', 'That is not your tile');
+            return redirect(route('map'))->with('error', 'That is not your tile');
         }
     }
 
+    /**
+     * @param $tileID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function greetShip($tileID)
+    {
+        // check if the tile ID matches the map that belongs to the requesting user
+        $user = Auth::user();
+        $mapID = $user->on_map;
+        $map = App\Map::findOrFail($mapID);
+        $tile = App\MapTile::findOrFail($tileID);
+
+        // greet a ship, can be a positive or negative event, or a fight
+
+        if ($map->id == $tile->belongs_to_map) {
+            if ($tile->type == 'ship') {
+                // ship greet event logic, no idea what to do here yet
+
+                // reset the tile
+                $tile->type = 'water';
+                $tile->save();
+
+                return redirect(route('map'))->with('message', 'Something something ship');
+            } else {
+                return redirect(route('map'))->with('error', 'You cheater, that is not a ship');
+            }
+        } else {
+            return redirect(route('map'))->with('error', 'That is not your tile');
+        }
+    }
+
+
+    /**
+     * @param $tileID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function findGoods($tileID)
     {
-        // Check if the tile ID matches the map that belongs to the requesting user
+        // check if the tile ID matches the map that belongs to the requesting user
         $user = Auth::user();
         $mapID = $user->on_map;
         $map = App\Map::findOrFail($mapID);
@@ -105,22 +161,23 @@ class MapController extends Controller
                 $tile->type = 'water';
                 $tile->save();
 
-                return back()->with('message', 'You find ' . $foundGoods . ' goods.');
+                return redirect(route('map'))->with('message', 'You find ' . $foundGoods . ' goods.');
             } elseif ($tile->type == 'treasure') {
                 $treasure = rand($user->level * 1000, $user->level * 2000);
                 $user->gold = $user->gold + $treasure;
                 $user->save();
 
                 // reset the tile
-                $tile->type = 'water';
+                $tile->type = 'island';
                 $tile->save();
 
-                return back()->with('message', 'You lucky rascal! You find ' . $treasure . ' gold in a buried chest!');
+                return redirect(route('map'))->with('message',
+                    'You lucky rascal! You find ' . $treasure . ' gold in a buried chest!');
             } else {
-                return back()->with('error', 'You cheater, those are not floating goods');
+                return redirect(route('map'))->with('error', 'You cheater, those are not floating goods');
             }
         } else {
-            return back()->with('error', 'That is not your tile');
+            return redirect(route('map'))->with('error', 'That is not your tile');
         }
     }
 }

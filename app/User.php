@@ -145,4 +145,16 @@ class User extends Authenticatable
 
         return $this->hasOne(Map::class, 'user_id')->find($user->on_map);
     }
+
+    public function totalCrew()
+    {
+        $ships = $this->hasMany(Ship::class)->getResults();
+        $crew = 0;
+        foreach ($ships as $ship) {
+            $sailors = $ship->crew()->count();
+            $crew = $crew + $sailors;
+        }
+
+        return $crew;
+    }
 }

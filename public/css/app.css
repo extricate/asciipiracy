@@ -8991,32 +8991,60 @@ ul .ship-quicklist .ship-quicklist-item {
   background-color: #fdef5f;
 }
 
-.map {
-  position: relative;
-}
-
-.svg-map {
+.map-body {
+  background: url(/fonts/parchment.svg?341cc0b2a1f7c96adcd3eb958389fa05) no-repeat center center;
+  background-size: contain;
+  min-height: 100%;
   width: 100%;
   height: auto;
 }
 
-.svg-map-inner {
-  position: absolute;
-  display: inline-block;
+.map-inner {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
 }
 
 .tile {
   border: 2px solid #000000;
   border-radius: 5px;
-  height: 50px;
-  width: 50px;
-  display: inline-block;
+  height: 40px;
+  width: 40px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .tile-svg {
-  height: 46px;
-  width: 46px;
+  height: 36px;
+  width: 36px;
   padding: 3px;
+}
+
+@media screen and (min-width: 1080px) {
+  .map-inner {
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .tile {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    height: 50px;
+    width: 50px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+
+  .tile-svg {
+    height: 46px;
+    width: 46px;
+    padding: 3px;
+  }
 }
 
 .settlement-tile {
@@ -9038,6 +9066,10 @@ ul .ship-quicklist .ship-quicklist-item {
 }
 
 .island {
+  background-color: #FFA000;
+}
+
+.treasure {
   background-color: #FFA000;
 }
 
@@ -17813,32 +17845,60 @@ ul .ship-quicklist .ship-quicklist-item {
   background-color: #fdef5f;
 }
 
-.map {
-  position: relative;
-}
-
-.svg-map {
+.map-body {
+  background: url(/fonts/parchment.svg?341cc0b2a1f7c96adcd3eb958389fa05) no-repeat center center;
+  background-size: contain;
+  min-height: 100%;
   width: 100%;
   height: auto;
 }
 
-.svg-map-inner {
-  position: absolute;
-  display: inline-block;
+.map-inner {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
 }
 
 .tile {
   border: 2px solid #000000;
   border-radius: 5px;
-  height: 50px;
-  width: 50px;
-  display: inline-block;
+  height: 40px;
+  width: 40px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .tile-svg {
-  height: 46px;
-  width: 46px;
+  height: 36px;
+  width: 36px;
   padding: 3px;
+}
+
+@media screen and (min-width: 1080px) {
+  .map-inner {
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .tile {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    height: 50px;
+    width: 50px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+
+  .tile-svg {
+    height: 46px;
+    width: 46px;
+    padding: 3px;
+  }
 }
 
 .settlement-tile {
@@ -17860,6 +17920,10 @@ ul .ship-quicklist .ship-quicklist-item {
 }
 
 .island {
+  background-color: #FFA000;
+}
+
+.treasure {
   background-color: #FFA000;
 }
 
