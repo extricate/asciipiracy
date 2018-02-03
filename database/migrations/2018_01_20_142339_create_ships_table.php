@@ -17,7 +17,12 @@ class CreateShipsTable extends Migration
             $table->increments('id');
             // owned by
             $table->unsignedInteger('user_id')->default(1)->nullable();
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedInteger('level')->default(1);
+            $table->unsignedInteger('experience')->default(0)->nullable();
+            $table->unsignedInteger('experience_next_level')->default(500)->nullable();
+
             $table->boolean('is_beginner_ship')->default(false);
             $table->unsignedInteger('upgrade_points')->default(0);
 

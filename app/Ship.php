@@ -369,4 +369,46 @@ class Ship extends Model
             // User doesn't have the gold to repair this ship so we do nothing, deal with it
         }
     }
+
+    /**
+     * Calculate level progress
+     *
+     * @return float|int
+     */
+    public function levelProgress(Ship $ship)
+    {
+        $levelProgress = $ship->experience / $ship->experience_next_level * 100;
+        $levelProgress = round($levelProgress, 0);
+
+        if ($levelProgress >= 100) {
+            $this->levelUp();
+        }
+
+        return $levelProgress;
+    }
+
+    /**
+     * Level up the user
+     */
+    public function levelUp()
+    {
+        $ship = Auth::user()->activeShip();
+
+        if ($ship->experience >= $ship->experience_next_level) {
+            // check how many extra levels are required
+            // each level introduces the double amount of experience required for the next one
+
+            $remaining_exp = $ship->experience - $ship->experience_next_level;
+            // set the required experience for the next level
+            $ship->experience_next_level = round($ship->experience_next_level * 1.5, 0);
+            $ship->experience = round($remaining_exp, 0);
+
+            // increase the level
+            $ship->unallocated_stats = $ship->unallocated_stats + 5;
+            $ship->level = $ship->level + 1;
+
+            // save the changes
+            $ship->save();
+        }
+    }
 }

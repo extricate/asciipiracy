@@ -75,6 +75,7 @@ class MapController extends Controller
                 $user->location_id = $tile->settlement;
                 $user->save();
 
+                // we do not reset the tile, because users are allowed to travel between towns
                 return redirect(route('visit_town'))->with('message', 'You travelled to a new town!');
             } else {
                 return back()->with('error', 'You cheater, that is not a town');
@@ -100,10 +101,21 @@ class MapController extends Controller
                 $user->goods = $user->goods + $foundGoods;
                 $user->save();
 
+                // reset the tile
                 $tile->type = 'water';
                 $tile->save();
 
                 return back()->with('message', 'You find ' . $foundGoods . ' goods.');
+            } elseif ($tile->type == 'treasure') {
+                $treasure = rand($user->level * 1000, $user->level * 2000);
+                $user->gold = $user->gold + $treasure;
+                $user->save();
+
+                // reset the tile
+                $tile->type = 'water';
+                $tile->save();
+
+                return back()->with('message', 'You lucky rascal! You find ' . $treasure . ' gold in a buried chest!');
             } else {
                 return back()->with('error', 'You cheater, those are not floating goods');
             }

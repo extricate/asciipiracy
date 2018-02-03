@@ -10,7 +10,7 @@ $factory->define(App\MapTile::class, function (Faker $faker) {
     // specific ship
 
 
-    $types = array('settlement' => 4, 'water' => 50, 'ship' => 10, 'goods' => 10, 'island' => 10);
+    $types = array('settlement' => 4, 'water' => 50, 'ship' => 10, 'goods' => 10, 'island' => 10, 'treasure' => 2);
 
     $weightedTypes = array();
     foreach ($types as $weightedType => $value) {

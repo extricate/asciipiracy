@@ -8991,6 +8991,20 @@ ul .ship-quicklist .ship-quicklist-item {
   background-color: #fdef5f;
 }
 
+.map {
+  position: relative;
+}
+
+.svg-map {
+  width: 100%;
+  height: auto;
+}
+
+.svg-map-inner {
+  position: absolute;
+  display: inline-block;
+}
+
 .tile {
   border: 2px solid #000000;
   border-radius: 5px;
@@ -9005,7 +9019,7 @@ ul .ship-quicklist .ship-quicklist-item {
   padding: 3px;
 }
 
-.settlement {
+.settlement-tile {
   background-color: #fdef5f;
 }
 
@@ -17799,6 +17813,20 @@ ul .ship-quicklist .ship-quicklist-item {
   background-color: #fdef5f;
 }
 
+.map {
+  position: relative;
+}
+
+.svg-map {
+  width: 100%;
+  height: auto;
+}
+
+.svg-map-inner {
+  position: absolute;
+  display: inline-block;
+}
+
 .tile {
   border: 2px solid #000000;
   border-radius: 5px;
@@ -17813,7 +17841,7 @@ ul .ship-quicklist .ship-quicklist-item {
   padding: 3px;
 }
 
-.settlement {
+.settlement-tile {
   background-color: #fdef5f;
 }
 
