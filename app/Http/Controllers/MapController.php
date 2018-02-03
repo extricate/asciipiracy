@@ -63,34 +63,52 @@ class MapController extends Controller
         return view('map.show', compact('user'));
     }
 
-    public function travelTo($id)
+    public function travelTo($tileID)
     {
         $user = Auth::user();
-        $user->location_id = $id;
-        $user->save();
+        $mapID = $user->on_map;
+        $map = App\Map::findOrFail($mapID);
+        $tile = App\MapTile::findOrFail($tileID);
 
-        return redirect(route('visit_town'))->with('message', 'You travelled to a new place!');
+        if ($map->id == $tile->belongs_to_map) {
+            if ($tile->type == 'settlement') {
+                $user->location_id = $tile->settlement;
+                $user->save();
+
+                return redirect(route('visit_town'))->with('message', 'You travelled to a new town!');
+            } else {
+                return back()->with('error', 'You cheater, that is not a town');
+            }
+        } else {
+            return back()->with('error', 'That is not your tile');
+        }
     }
 
     public function findGoods($tileID)
     {
-        // Change the tile type to water
+        // Check if the tile ID matches the map that belongs to the requesting user
+        $user = Auth::user();
+        $mapID = $user->on_map;
+        $map = App\Map::findOrFail($mapID);
         $tile = App\MapTile::findOrFail($tileID);
-        if ($tile->type == 'goods') {
-            $user = Auth::user();
 
-            $user->level;
-            $foundGoods = rand($user->level, $user->level*50);
+        if ($map->id == $tile->belongs_to_map) {
+            if ($tile->type == 'goods') {
+                $user->level;
+                $foundGoods = rand($user->level, $user->level * 50);
 
-            $user->goods = $user->goods + $foundGoods;
-            $user->save();
+                $user->goods = $user->goods + $foundGoods;
+                $user->save();
 
-            $tile->type = 'water';
-            $tile->save();
+                $tile->type = 'water';
+                $tile->save();
 
-            return back()->with('message', 'You find ' . $foundGoods . ' goods.');
+                return back()->with('message', 'You find ' . $foundGoods . ' goods.');
+            } else {
+                return back()->with('error', 'You cheater, those are not floating goods');
+            }
         } else {
-            return back()->with('error', 'You cheater, those are not floating goods');
+            return back()->with('error', 'That is not your tile');
         }
     }
 }

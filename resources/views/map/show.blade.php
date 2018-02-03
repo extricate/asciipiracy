@@ -14,7 +14,7 @@
             @if ($tile->type == 'water')
                 <div class="tile {{ $tile->type }}">@svg('wave', 'tile-svg')</div>
             @elseif ($tile->type == 'settlement')
-                <a href="{{ route('travel_to', $tile->settlement) }}">
+                <a href="{{ route('travel_to', $tile->id) }}">
                     <div class="tile {{ $tile->type }}">@svg('villa', 'tile-svg')</div>
                 </a>
             @elseif ($tile->type == 'ship')
