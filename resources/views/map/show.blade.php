@@ -22,6 +22,7 @@
                     <div class="tile {{ $tile->type }}">@svg('ship', 'tile-svg')</div>
                 </a>
             @elseif ($tile->type == 'goods')
+                <a href="{{ route('find_goods', $tile->id) }}">
                 <div class="tile {{ $tile->type }}">@svg('crate', 'tile-svg')</div>
             @elseif ($tile->type == 'island')
                 <div class="tile {{ $tile->type }}">@svg('palm-island', 'tile-svg')</div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Map;
 use App\User;
+use App\MapTile;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,8 +72,25 @@ class MapController extends Controller
         return redirect(route('visit_town'))->with('message', 'You travelled to a new place!');
     }
 
-    public function findGoods()
+    public function findGoods($tileID)
     {
+        // Change the tile type to water
+        $tile = App\MapTile::findOrFail($tileID);
+        if ($tile->type == 'goods') {
+            $user = Auth::user();
 
+            $user->level;
+            $foundGoods = rand($user->level, $user->level*50);
+
+            $user->goods = $user->goods + $foundGoods;
+            $user->save();
+
+            $tile->type = 'water';
+            $tile->save();
+
+            return back()->with('message', 'You find ' . $foundGoods . ' goods.');
+        } else {
+            return back()->with('error', 'You cheater, those are not floating goods');
+        }
     }
 }

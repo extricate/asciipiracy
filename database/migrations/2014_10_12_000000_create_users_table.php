@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('intelligence')->default(1);
             $table->unsignedInteger('stamina')->default(1);
             $table->unsignedInteger('charisma')->default(1);
+            $table->unsignedInteger('luck')->default(1);
 
             $table->uuid('on_map')->nullable()->default('99700d20-08c5-11e8-a6a2-6d79bfaed767');
             $table->unsignedInteger('location_id')->nullable()->default(1);
