@@ -8991,6 +8991,42 @@ ul .ship-quicklist .ship-quicklist-item {
   background-color: #fdef5f;
 }
 
+.tile {
+  border: 2px solid #000000;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.tile-svg {
+  height: 46px;
+  width: 46px;
+  padding: 3px;
+}
+
+.settlement {
+  background-color: #fdef5f;
+}
+
+.ship {
+  -webkit-box-shadow: #d32f2f;
+          box-shadow: #d32f2f;
+  background-color: #1976D2;
+}
+
+.water {
+  background-color: #1976D2;
+}
+
+.goods {
+  background-color: #d17921;
+}
+
+.island {
+  background-color: #FFA000;
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -17761,5 +17797,41 @@ ul .ship-quicklist .ship-quicklist-item {
   height: 100%;
   width: 100%;
   background-color: #fdef5f;
+}
+
+.tile {
+  border: 2px solid #000000;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.tile-svg {
+  height: 46px;
+  width: 46px;
+  padding: 3px;
+}
+
+.settlement {
+  background-color: #fdef5f;
+}
+
+.ship {
+  -webkit-box-shadow: #d32f2f;
+          box-shadow: #d32f2f;
+  background-color: #1976D2;
+}
+
+.water {
+  background-color: #1976D2;
+}
+
+.goods {
+  background-color: #d17921;
+}
+
+.island {
+  background-color: #FFA000;
 }
 

@@ -102,7 +102,18 @@
                             <div class="settlement-icon settlement-icon-bottom-center">@svg('palm-tree-inverse', 'icon-xxxl')</div>
                         </div>
                     @elseif ($settlement->type == 'Capital')
-
+                        <div class="settlement-icon settlement-floor"></div>
+                        <div class="settlement-icon settlement-sky"></div>
+                        <div class="settlement-icon settlement-icon-top-left">@svg('villa', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-6">@svg('village', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-top-center">@svg('mansion', 'icon-xxl')</div>
+                        <div class="settlement-icon settlement-icon-4">@svg('palm-island', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-center-left">@svg('fort', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-top-right">@svg('fort', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-3">@svg('villa', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-bottom-right">@svg('well', 'icon-xxl')</div>
+                        <div class="settlement-icon settlement-icon-5">@svg('palm-tree', 'icon-xxxl')</div>
+                        <div class="settlement-icon settlement-icon-bottom-center">@svg('palm-tree-inverse', 'icon-xxxl')</div>
                     @endif
                 </div>
             </div>

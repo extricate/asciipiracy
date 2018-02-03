@@ -61,4 +61,18 @@ class MapController extends Controller
 
         return view('map.show', compact('user'));
     }
+
+    public function travelTo($id)
+    {
+        $user = Auth::user();
+        $user->location_id = $id;
+        $user->save();
+
+        return redirect(route('visit_town'))->with('message', 'You travelled to a new place!');
+    }
+
+    public function findGoods()
+    {
+
+    }
 }

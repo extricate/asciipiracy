@@ -5,9 +5,8 @@ namespace App;
 use App\User;
 use App\MapTile;
 use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-
-
 
 class Map extends Model
 {
@@ -37,6 +36,7 @@ class Map extends Model
      */
     public function generate(int $id, int $x, int $y)
     {
+        $user = Auth::user();
         $map_id = Uuid::generate();
         $tileAmount = $x * $y;
 
@@ -48,6 +48,14 @@ class Map extends Model
         factory('App\MapTile', $tileAmount)->create([
             'belongs_to_map' => $map_id,
         ]);
+
+        $user->on_map = $map_id;
+        $user->save();
+    }
+
+    public function settlement(int $id)
+    {
+        $user = Auth::user();
     }
 
     /**

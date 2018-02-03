@@ -66,3 +66,5 @@ Route::get('/combat/end', 'CombatController@endCombat')->name('combat_end');
 // travel
 Route::get('/map', 'MapController@index')->name('map');
 Route::post('/map', 'MapController@travel')->name('travel');
+
+Route::get('/map/travel/{settlement}', 'MapController@travelTo')->name('travel_to');

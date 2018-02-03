@@ -3,7 +3,7 @@
 <div class="table-responsive">
     <table class="table trading-table">
         <colgroup>
-            <col class="goods"/>
+            <col class="trade-goods"/>
             <col class="stock"/>
             <col class="sell"/>
             <col class="buy"/>

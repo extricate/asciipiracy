@@ -1,0 +1,38 @@
+.map {
+
+}
+
+.tile {
+  border: 2px solid $black;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.tile-svg {
+  height: 46px;
+  width: 46px;
+  padding: 3px;
+}
+
+.settlement {
+  background-color: $sand-yellow;
+}
+
+.ship {
+  box-shadow: $red;
+  background-color: $blue;
+}
+
+.water {
+  background-color: $blue;
+}
+
+.goods {
+  background-color: $brown;
+}
+
+.island {
+  background-color: $orange;
+}
