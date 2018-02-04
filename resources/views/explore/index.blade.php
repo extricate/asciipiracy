@@ -53,9 +53,9 @@
                 @if ($ship != null)
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            The <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
+                            <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
                             @if ($ship->is_beginner_ship == true)
-                                - beginner
+                                <i class="fa fa-star"></i>
                             @endif
                             <span class="pull-right">
                                 @svg('ship', 'icon-sm')

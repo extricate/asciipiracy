@@ -33,7 +33,7 @@
                         The {{ $active->name }}
                     </div>
                     <div class="panel-body">
-                        {{ $active->draw($active) }}
+                        @include('ships.draw')
                     </div>
                 </div>
                 @endif

@@ -2,7 +2,8 @@
 .experience-bar {
   background-color: $experience-bar;
   border-radius: 50px;
-  height: 4px;
+  height: 8px;
+  margin-top: -7px;
   display: flex;
   line-height: 4px;
 }

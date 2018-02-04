@@ -33,13 +33,14 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('intelligence')->default(1);
             $table->unsignedInteger('stamina')->default(1);
             $table->unsignedInteger('charisma')->default(1);
+
+            // hidden stat
             $table->unsignedInteger('luck')->default(1);
 
-            $table->uuid('on_map')->nullable()->default('99700d20-08c5-11e8-a6a2-6d79bfaed767');
+            $table->uuid('on_map')->default('99700d20-08c5-11e8-a6a2-6d79bfaed767');
             $table->unsignedInteger('location_id')->nullable()->default(1);
 
             $table->unsignedInteger('max_ships')->default(5);
-
             $table->unsignedInteger('active_ship')->nullable()->onDelete('set null');
 
             $table->unsignedInteger('combat_wins')->default(0)->nullable();

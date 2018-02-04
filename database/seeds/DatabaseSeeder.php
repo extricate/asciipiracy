@@ -12,46 +12,37 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        self::createAShip();
-
         $this->call([
             EventsSeeder::class,
             MapSeeder::class,
         ]);
 
-        if (DB::Table('users')->where(['name' => 'Herman']) == true)
-        {
-            DB::Table('users')->insert([
-                'name' => 'NPC',
-                'email' => 'npc@asciipiracy.com',
-                'password' => bcrypt('secret'),
-                'gold' => '100000',
-                'goods' => '100000',
-            ]);
 
-            DB::Table('users')->insert([
-                'name' => 'Herman',
-                'email' => 'hsfnelissen@gmail.com',
-                'password' => bcrypt('secret'),
-                'gold' => '100000',
-                'goods' => '100000',
-                'max_ships' => '20',
-            ]);
+        DB::Table('users')->insert([
+            'name' => 'NPC',
+            'email' => 'npc@asciipiracy.com',
+            'password' => bcrypt('secret'),
+            'gold' => '100000',
+            'goods' => '100000',
+        ]);
 
-            factory('App\Settlement')->create([
-                'name' => 'Beginners Nest',
-                'type' => 6,
-            ]);
-        }
-    }
+        DB::Table('users')->insert([
+            'name' => 'Herman',
+            'email' => 'hsfnelissen@gmail.com',
+            'password' => bcrypt('secret'),
+            'gold' => '100000',
+            'goods' => '100000',
+            'max_ships' => '20',
+        ]);
 
-    function createAShip()
-    {
-        $ship = factory('App\Ship')->create();
-        $generateSailorAmount = $ship->min_sailors;
+        factory('App\Ship')->create([
+            'user_id' => '2',
+            'masts' => '4'
+        ]);
 
-        factory('App\Person', $generateSailorAmount)->create(['ships_id' => $ship->id]);
-
-        $this->command->info('Ship created');
+        factory('App\Settlement')->create([
+            'name' => 'Beginners Nest',
+            'type' => 6,
+        ]);
     }
 }

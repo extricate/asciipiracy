@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Caveat:400,700);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Caveat:400,700);@import url(https://fonts.googleapis.com/css?family=Finger+Paint);@charset "UTF-8";
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -8575,8 +8575,12 @@
 
 body {
   min-height: 101%;
-  background: url(/images/background.jpg?8ddc8113bde96817fecc93e73b90a4d8) no-repeat center center fixed;
+  background: url(/images/background.jpg?dea6c1dee31cb54bf145d31d08e92f0a) no-repeat center center fixed;
   background-size: cover;
+}
+
+.btn {
+  font-family: "Finger paint", cursive;
 }
 
 .btn-attack {
@@ -8760,6 +8764,8 @@ label {
   cursor: pointer;
   color: #fff;
   background-color: #d17921;
+  height: 25px;
+  line-height: 20px;
 }
 
 .label-no-ship {
@@ -8787,7 +8793,8 @@ ul.stats-list .label {
 .experience-bar {
   background-color: #8BC34A;
   border-radius: 50px;
-  height: 4px;
+  height: 8px;
+  margin-top: -7px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8821,6 +8828,13 @@ ul.stats-list .label {
   width: 140px !important;
 }
 
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 60px;
+  height: 60px;
+  padding-top: 0;
+}
+
 ul .ship-quicklist {
   min-width: 300px;
 }
@@ -8842,6 +8856,11 @@ ul .ship-quicklist .ship-quicklist-item {
 .icon-trade {
   height: 40px;
   width: 40px;
+}
+
+.icon-xs {
+  height: 16px;
+  width: 16px;
 }
 
 .icon-sm {
@@ -8879,17 +8898,31 @@ ul .ship-quicklist .ship-quicklist-item {
   width: 14px;
 }
 
+.icon-brown-bg {
+  background-color: #d17921;
+}
+
 .panel-default .panel-heading {
   text-align: center;
-  font-family: "Caveat", cursive;
-  font-size: 26px;
+  font-family: "Finger paint", cursive;
+  font-size: 20px;
   font-weight: bolder;
-  color: #fff;
+  color: #000000;
   background: url(/fonts/wood_plank.svg?9654fd074b95cd22d9d2c4cec72a1045) no-repeat center center;
   background-size: contain;
   margin: 10px;
   border-bottom: 0;
 }
+
+.panel-default .panel-heading a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/*.panel-default {
+  border-radius: 0;
+  border: 5px solid #402002;
+}*/
 
 .settlement {
   height: 286px;
@@ -8898,7 +8931,31 @@ ul .ship-quicklist .ship-quicklist-item {
   top: 0;
 }
 
+.settlement-sky {
+  z-index: 1;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.settlement-floor {
+  z-index: 2;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fdef5f;
+}
+
 .settlement-icon {
+  z-index: 3;
   position: absolute;
   display: inline;
   vertical-align: bottom;
@@ -8978,29 +9035,6 @@ ul .ship-quicklist .ship-quicklist-item {
   left: 40%;
   margin-left: -50px;
   top: 60px;
-}
-
-.settlement-sky {
-  margin-top: -20px;
-  position: absolute;
-  display: inline;
-  vertical-align: bottom;
-  top: 0;
-  left: 0;
-  height: 80px;
-  width: 100%;
-  background-color: #87CEEB;
-}
-
-.settlement-floor {
-  position: absolute;
-  display: inline;
-  vertical-align: bottom;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #fdef5f;
 }
 
 .map-body {
@@ -9083,6 +9117,88 @@ ul .ship-quicklist .ship-quicklist-item {
 
 .treasure {
   background-color: #FFA000;
+}
+
+.ship-svg {
+  display: block;
+  text-align: center;
+  height: 80vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.ship-svg svg {
+  margin-left: -15px;
+}
+
+/*.ship-svg-waves {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  //background: url('../img/waves.gif') repeat;
+}*/
+
+.ship-bow {
+  position: absolute;
+  max-height: 20vh;
+  z-index: 2;
+}
+
+.ship-hull {
+  position: absolute;
+  margin-top: 17vh;
+  max-height: 50vh;
+  z-index: 1;
+}
+
+.ship-fore-mast {
+  position: absolute;
+  margin-top: 13vh;
+  max-height: 18vh;
+  z-index: 3;
+}
+
+.ship-main-mast {
+  position: absolute;
+  margin-top: 32vh;
+  max-height: 8vh;
+  z-index: 3;
+}
+
+.ship-main-mast-2 {
+  position: absolute;
+  margin-top: 43vh;
+  max-height: 8vh;
+  z-index: 3;
+}
+
+.ship-aft-mast {
+  position: absolute;
+  margin-top: 52vh;
+  max-height: 16vh;
+  z-index: 3;
+}
+
+.ship-officer-deck {
+  position: absolute;
+  margin-top: 55vh;
+  max-height: 17vh;
+  z-index: 2;
+}
+
+.ship-grate-1 {
+  position: absolute;
+  margin-top: 30vh;
+  max-height: 6vh;
+  z-index: 2;
+}
+
+.ship-grate-2 {
+  position: absolute;
+  margin-top: 40vh;
+  max-height: 6vh;
+  z-index: 2;
 }
 
 /*!
@@ -17441,8 +17557,12 @@ This is the theme for ASCIIPiracy
 
 body {
   min-height: 101%;
-  background: url(/images/background.jpg?8ddc8113bde96817fecc93e73b90a4d8) no-repeat center center fixed;
+  background: url(/images/background.jpg?dea6c1dee31cb54bf145d31d08e92f0a) no-repeat center center fixed;
   background-size: cover;
+}
+
+.btn {
+  font-family: "Finger paint", cursive;
 }
 
 .btn-attack {
@@ -17626,6 +17746,8 @@ label {
   cursor: pointer;
   color: #fff;
   background-color: #d17921;
+  height: 25px;
+  line-height: 20px;
 }
 
 .label-no-ship {
@@ -17653,7 +17775,8 @@ ul.stats-list .label {
 .experience-bar {
   background-color: #8BC34A;
   border-radius: 50px;
-  height: 4px;
+  height: 8px;
+  margin-top: -7px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17687,6 +17810,13 @@ ul.stats-list .label {
   width: 140px !important;
 }
 
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 60px;
+  height: 60px;
+  padding-top: 0;
+}
+
 ul .ship-quicklist {
   min-width: 300px;
 }
@@ -17708,6 +17838,11 @@ ul .ship-quicklist .ship-quicklist-item {
 .icon-trade {
   height: 40px;
   width: 40px;
+}
+
+.icon-xs {
+  height: 16px;
+  width: 16px;
 }
 
 .icon-sm {
@@ -17745,17 +17880,31 @@ ul .ship-quicklist .ship-quicklist-item {
   width: 14px;
 }
 
+.icon-brown-bg {
+  background-color: #d17921;
+}
+
 .panel-default .panel-heading {
   text-align: center;
-  font-family: "Caveat", cursive;
-  font-size: 26px;
+  font-family: "Finger paint", cursive;
+  font-size: 20px;
   font-weight: bolder;
-  color: #fff;
+  color: #000000;
   background: url(/fonts/wood_plank.svg?9654fd074b95cd22d9d2c4cec72a1045) no-repeat center center;
   background-size: contain;
   margin: 10px;
   border-bottom: 0;
 }
+
+.panel-default .panel-heading a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/*.panel-default {
+  border-radius: 0;
+  border: 5px solid #402002;
+}*/
 
 .settlement {
   height: 286px;
@@ -17764,7 +17913,31 @@ ul .ship-quicklist .ship-quicklist-item {
   top: 0;
 }
 
+.settlement-sky {
+  z-index: 1;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.settlement-floor {
+  z-index: 2;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fdef5f;
+}
+
 .settlement-icon {
+  z-index: 3;
   position: absolute;
   display: inline;
   vertical-align: bottom;
@@ -17844,29 +18017,6 @@ ul .ship-quicklist .ship-quicklist-item {
   left: 40%;
   margin-left: -50px;
   top: 60px;
-}
-
-.settlement-sky {
-  margin-top: -20px;
-  position: absolute;
-  display: inline;
-  vertical-align: bottom;
-  top: 0;
-  left: 0;
-  height: 80px;
-  width: 100%;
-  background-color: #87CEEB;
-}
-
-.settlement-floor {
-  position: absolute;
-  display: inline;
-  vertical-align: bottom;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #fdef5f;
 }
 
 .map-body {
@@ -17949,5 +18099,87 @@ ul .ship-quicklist .ship-quicklist-item {
 
 .treasure {
   background-color: #FFA000;
+}
+
+.ship-svg {
+  display: block;
+  text-align: center;
+  height: 80vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.ship-svg svg {
+  margin-left: -15px;
+}
+
+/*.ship-svg-waves {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  //background: url('../img/waves.gif') repeat;
+}*/
+
+.ship-bow {
+  position: absolute;
+  max-height: 20vh;
+  z-index: 2;
+}
+
+.ship-hull {
+  position: absolute;
+  margin-top: 17vh;
+  max-height: 50vh;
+  z-index: 1;
+}
+
+.ship-fore-mast {
+  position: absolute;
+  margin-top: 13vh;
+  max-height: 18vh;
+  z-index: 3;
+}
+
+.ship-main-mast {
+  position: absolute;
+  margin-top: 32vh;
+  max-height: 8vh;
+  z-index: 3;
+}
+
+.ship-main-mast-2 {
+  position: absolute;
+  margin-top: 43vh;
+  max-height: 8vh;
+  z-index: 3;
+}
+
+.ship-aft-mast {
+  position: absolute;
+  margin-top: 52vh;
+  max-height: 16vh;
+  z-index: 3;
+}
+
+.ship-officer-deck {
+  position: absolute;
+  margin-top: 55vh;
+  max-height: 17vh;
+  z-index: 2;
+}
+
+.ship-grate-1 {
+  position: absolute;
+  margin-top: 30vh;
+  max-height: 6vh;
+  z-index: 2;
+}
+
+.ship-grate-2 {
+  position: absolute;
+  margin-top: 40vh;
+  max-height: 6vh;
+  z-index: 2;
 }
 

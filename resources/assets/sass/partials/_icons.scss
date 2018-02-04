@@ -3,6 +3,11 @@
   width: 40px;
 }
 
+.icon-xs {
+  height: 16px;
+  width: 16px;
+}
+
 .icon-sm {
   height: 20px;
   width: 20px;
@@ -36,4 +41,8 @@
 .icon-nav {
   height: 14px;
   width: 14px;
+}
+
+.icon-brown-bg {
+  background-color: $brown;
 }

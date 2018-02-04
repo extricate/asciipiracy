@@ -14,7 +14,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="{{ $ship->path() }}">#{{ $ship->id }}</a>
-                        {{ $ship->name }}, owned by player {{ $ship->owner->name }}
+                        {{ $ship->name }}
                     </div>
 
                     <div class="panel-body">
@@ -62,7 +62,7 @@
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            Combat characteristics
+                                            Combat
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-unstyled">
@@ -93,7 +93,7 @@
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            Trade characteristics
+                                            Trade
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-unstyled">
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            Random characteristics
+                                            Random
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-unstyled">
@@ -131,10 +131,10 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        This is what the ship looks like
+                        Top look
                     </div>
                     <div class="panel-body">
-                        {{ $ship->draw($ship) }}
+                        @include('ships.draw')
                     </div>
                 </div>
             </div>

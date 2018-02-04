@@ -1,4 +1,3 @@
-@php $user = Auth::user(); $city = $user->isIn(); $ship = $user->activeShip(); @endphp
 {{-- design inspiration http://www.manapool.co.uk/wp-content/uploads/2010/11/Patrician-4-trade.jpg --}}
 <div class="table-responsive">
     <table class="table trading-table">
@@ -29,6 +28,9 @@
             </th>
             <th>
                 Trade
+                <div class="pull-right"> @svg('crate', 'icon-xs icon-brown-bg') <label
+                            class="label label-ship">{{ $ship->free_hold }} / {{ $ship->total_hold }}</label>
+                </div>
             </th>
         </tr>
         </thead>

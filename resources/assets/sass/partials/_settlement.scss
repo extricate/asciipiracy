@@ -4,8 +4,29 @@
   overflow: hidden;
   top: 0;
 }
-
+.settlement-sky {
+  z-index: 1;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+.settlement-floor {
+  z-index: 2;
+  position: absolute;
+  display: inline;
+  vertical-align: bottom;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $sand-yellow;
+}
 .settlement-icon {
+  z-index: 3;
   position: absolute;
   display: inline;
   vertical-align: bottom;
@@ -85,26 +106,4 @@
   left: 40%;
   margin-left: -50px;
   top: 60px;
-}
-
-.settlement-sky {
-  margin-top: -20px;
-  position: absolute;
-  display: inline;
-  vertical-align: bottom;
-  top: 0;
-  left: 0;
-  height: 80px;
-  width: 100%;
-  background-color: $sky-blue;
-}
-.settlement-floor {
-  position: absolute;
-  display: inline;
-  vertical-align: bottom;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: $sand-yellow;
 }

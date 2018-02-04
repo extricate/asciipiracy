@@ -1,9 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        The <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
-        @if ($ship->is_beginner_ship == true)
-            - <i class="fa fa-child"></i>
-        @endif
+        <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
         <span class="pull-right">
             @svg('ship', 'icon-sm')
         </span>

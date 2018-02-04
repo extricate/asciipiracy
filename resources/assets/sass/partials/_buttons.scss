@@ -1,4 +1,9 @@
 // Buttons
+
+.btn {
+  font-family: $button-font;
+}
+
 .btn-attack {
   color: $white;
   background-color: $attack;

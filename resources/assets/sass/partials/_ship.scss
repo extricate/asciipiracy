@@ -1,0 +1,81 @@
+.ship-svg {
+  display: block;
+  text-align: center;
+  height: 80vh;
+  width: 80%;
+  margin: 0 auto;
+  svg {
+    margin-left: -15px;
+  }
+}
+
+/*.ship-svg-waves {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  //background: url('../img/waves.gif') repeat;
+}*/
+
+.ship-bow {
+  position: absolute;
+  max-height: 20vh;
+  z-index: 2;
+}
+
+.ship-hull {
+  position: absolute;
+  margin-top: 17vh;
+  max-height: 50vh;
+  z-index: 1;
+}
+
+.ship-fore-mast {
+  position: absolute;
+  margin-top: 13vh;
+  max-height: 18vh;
+  z-index: 3;
+}
+
+.ship-main-mast {
+  position: absolute;
+  margin-top: 32vh;
+  max-height: 8vh;
+  z-index: 3;
+}
+
+.ship-main-mast-2 {
+  position: absolute;
+  margin-top: 43vh;
+  max-height: 8vh;
+  z-index: 3;
+}
+
+.ship-aft-mast {
+  position: absolute;
+  margin-top: 52vh;
+  max-height: 16vh;
+  z-index: 3;
+}
+
+.ship-officer-deck {
+  position: absolute;
+  margin-top: 55vh;
+  max-height: 17vh;
+  z-index: 2;
+}
+
+.ship-grate-1 {
+  position: absolute;
+  margin-top: 30vh;
+  max-height: 6vh;
+  z-index: 2;
+}
+
+.ship-grate-2 {
+  position: absolute;
+  margin-top: 40vh;
+  max-height: 6vh;
+  z-index: 2;
+}
+

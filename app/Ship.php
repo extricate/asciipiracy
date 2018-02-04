@@ -50,6 +50,35 @@ class Ship extends Model
         $beam = $ship->beam;
         $cannons = $ship->cannons;
 
+        /**
+         * A ship consists out of various components, seperated into different SVG files.
+         * These files are:
+         * - hull
+         * - bow
+         * - foresail
+         * - main_mast
+         * - aft_mast
+         * - officerdeck
+         *
+         * Extra ornaments are:
+         * - grate
+         *
+         * A basic ship has the following layout:
+         * - hull + bow + main_mast
+         */
+    }
+
+    /**
+     * Old draw function
+     */
+    /*public function draw(Ship $ship)
+    {
+        $decks = $ship->decks;
+        $length = $ship->length;
+        $masts = $ship->masts;
+        $beam = $ship->beam;
+        $cannons = $ship->cannons;
+
         if ($length >= 100) {
             echo "<p class=\"text-center small\" style=\"font-size: 7px; font-family: 'Courier New', Courier, monospace; font-weight: bold;\">";
         }
@@ -209,7 +238,7 @@ class Ship extends Model
             echo "||" . str_repeat("===", ($beam / 8) + 1) . "o" . str_repeat("===", ($beam / 8) + 1) . "||";
         }
         echo "</p>";
-    }
+    }*/
 
     /**
      * Attacking

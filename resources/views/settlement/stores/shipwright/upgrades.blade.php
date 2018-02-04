@@ -1,11 +1,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        Upgrade ship @if ($active != null) <span class="pull-right label label-default">{{ $active->upgrade_points }}
-            upgrade points</span> @endif
+        Upgrade ship
     </div>
     <div class="panel-body">
         @if ($active != null)
             <div class="col-lg-6">
+                @if ($active != null) <span class="label label-default">{{ $active->upgrade_points }}
+                    upgrade points</span> @endif
                 <p>What kind of upgrades are you interested in?</p>
                 <div class="btn-group btn-group-stats" role="group" aria-label="more hold space">
                     <div class="btn btn-primary btn-upgrade">+ 2000 hold</div>

@@ -49,7 +49,7 @@ class MapController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->with('error', 'It appears you tried to make an illegal request.');
+            return redirect(route('map'))->with('error', 'It appears you tried to make an illegal request.');
         }
 
         $x = $request->x;
@@ -66,10 +66,12 @@ class MapController extends Controller
         $user->save();
 
         // delete previous map of user
-        $old_map_id = $user->on_map;
-        $old_map = App\Map::findOrFail($old_map_id);
-        $old_map->delete();
-
+        if ($user->on_map != '99700d20-08c5-11e8-a6a2-6d79bfaed767')
+        {
+            $old_map_id = $user->on_map;
+            $old_map = App\Map::findOrFail($old_map_id);
+            $old_map->delete();
+        }
         // continue generating new map
         $id = $user->id;
 

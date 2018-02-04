@@ -1,3 +1,5 @@
+@php $user = Auth::user(); $city = $user->isIn(); $ship = $user->activeShip(); @endphp
+
 @extends('settlement.stores.index')
 
 @section('title', 'General Store')
