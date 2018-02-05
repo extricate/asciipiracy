@@ -34,10 +34,9 @@ $factory->define(App\Ship::class, function (Faker $faker) {
     if ($gunports % 2 == 1) {
         $gunports++;
     } // Make gunports amount an even amount
-    $cannons = $faker->biasedNumberBetween($min = 0, $gunports, $function = 'sqrt');
-    if ($cannons % 2 == 1) {
-        $cannons++;
-    }
+
+    // add cannons
+    $cannons = $gunports;
 
     $cannon_caliber = $faker->numberBetween($min = 1, $max = 3);
     if ($gunports >= 50) {
@@ -56,6 +55,19 @@ $factory->define(App\Ship::class, function (Faker $faker) {
 
     $maximumHealth = (100 * $decks) + round((0.5 * $length), 0) + (20 * $masts);
 
+    /**
+     * Classes:
+     * Line ship
+     * - First rate (112 cannons/400 crew)
+     * - Second rate (100 cannons/350 crew)
+     * - Third rate (80 cannons/300 crew)
+     * - Fourth rate (74 cannons/250 crew)
+     * - Fifth rate (64 cannons/250 crew)
+     * - Sixth rate (54 cannons/200 crew)
+     *
+     * Frigate (48 cannons/200 crew)
+     *
+     */
     return [
         'name' => $faker->name,
         'is_beginner_ship' => false,

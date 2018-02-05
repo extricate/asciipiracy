@@ -34,28 +34,36 @@
   position: absolute;
   margin-top: 13vh;
   max-height: 18vh;
-  z-index: 3;
+  z-index: 99;
 }
 
 .ship-main-mast {
   position: absolute;
   margin-top: 32vh;
   max-height: 8vh;
-  z-index: 3;
+  z-index: 99;
 }
 
 .ship-main-mast-2 {
   position: absolute;
   margin-top: 43vh;
   max-height: 8vh;
-  z-index: 3;
+  z-index: 99;
+}
+
+.ship-main-gaff {
+  position: absolute;
+  margin-left: -4vh !important;
+  margin-top: 15vh;
+  max-height: 50vh;
+  z-index: 99;
 }
 
 .ship-aft-mast {
   position: absolute;
   margin-top: 52vh;
   max-height: 16vh;
-  z-index: 3;
+  z-index: 99;
 }
 
 .ship-officer-deck {
@@ -69,13 +77,27 @@
   position: absolute;
   margin-top: 30vh;
   max-height: 6vh;
-  z-index: 2;
+  z-index: 3;
 }
 
 .ship-grate-2 {
   position: absolute;
+  margin-top: 48vh;
+  max-height: 6vh;
+  z-index: 3;
+}
+
+.ship-rowboat-1 {
+  position: absolute;
+  margin-top: 57vh;
+  max-height: 6vh;
+  z-index: 3;
+}
+
+.ship-rowboat-2 {
+  position: absolute;
   margin-top: 40vh;
   max-height: 6vh;
-  z-index: 2;
+  z-index: 3;
 }
 
