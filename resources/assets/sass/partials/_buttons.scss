@@ -1,4 +1,10 @@
 // Buttons
+.no-link {
+  cursor: default;
+  &:hover, &:active, &:focus {
+    color: #777 !important;
+  }
+}
 
 .btn {
   font-family: $button-font;

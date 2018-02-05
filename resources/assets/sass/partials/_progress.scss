@@ -1,0 +1,36 @@
+// Progress bar
+
+progress {
+  border-radius: 0;
+}
+
+.progress-bar {
+  border-radius: 0;
+}
+.experience-bar {
+  background-color: $experience-bar;
+  height: 12px;
+  display: flex;
+  margin-top: -8px;
+}
+
+.experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: $grey;
+}
+
+.ship-experience-bar {
+  background-color: $brown;
+  height: 12px;
+  display: flex;
+  margin-top: -8px;
+}
+
+.ship-experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {
+}
+
+.ship-experience-bar::-webkit-progress-bar {
+  background-color: $grey;
+}

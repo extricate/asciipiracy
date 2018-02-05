@@ -9,6 +9,10 @@
   padding-top: 0;
 }
 
+.ship-quicklist-button {
+  text-align: center;
+  //border-bottom: 4px solid $green;
+}
 ul .ship-quicklist {
   min-width: 300px;
   .ship-quicklist-item {
@@ -17,10 +21,8 @@ ul .ship-quicklist {
 }
 
 .nav-styled {
-  border-bottom: 3px solid $black;
-  &:hover, &:focus, &:active {
-    text-shadow: 0 1px 1px currentColor;
-  }
+  border-bottom: 4px solid $black;
+  font-weight: 700;
 }
 
 .nav-explore {

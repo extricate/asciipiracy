@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-styled nav-combat">
-                    <a href="{{ route('start_combat') }}">@svg('sword', 'icon-nav') Fight
+                    <a href="{{ route('start_combat') }}">@svg('sword', 'icon-nav') Hunt
                         pirates</a>
                 </li>
                 <li class="nav-styled nav-town">
@@ -46,23 +46,28 @@
                     <li><a href="{{ route('register') }}">Register</a></li>
                     @else
                         <li>
-                            <a href="#">
+                            <a href="#" class="no-link">
                                 <label>@svg('coins', 'icon-nav') {{ Auth::user()->gold }}</label>
                                 <label>@svg('chicken', 'icon-nav') {{ Auth::user()->goods }}</label>
                             </a>
                         </li>
 
                         @php $user = Auth::user(); $active = $user->activeShip(); @endphp
-                        <li class="dropdown">
+                        <li class="dropdown ship-quicklist-button">
                             <a href="#" class="dropdown-toggle" type="button" id="ship-menu" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                @if ($user->activeShip() !== null)
+                                @if ($user->activeShip() != null)
                                     <label class="label-ship label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}">
                                         @svg('ship', 'icon-nav')
-                                        {{ Auth::user()->activeShip()->current_health }}
-                                        /{{ Auth::user()->activeShip()->maximum_health }}
+                                        {{ $user->activeShip()->current_health }}
+                                        /{{ $user->activeShip()->maximum_health }}
                                     </label>
-                                @else
+                                @php $ship = auth()->user()->activeShip(); @endphp
+                                    <progress class="experience-bar" max="100" role="progressbar"
+                                              aria-valuenow="{{ $ship->levelProgress($ship) }}" aria-valuemin="0" aria-valuemax="100" value="{{ $ship->levelProgress($ship) }}">
+                                        {{ $ship->levelProgress($ship) }} %
+                                    </progress>
+                                @elseif ($user->activeShip() == null)
                                     <label class="label-no-ship">
                                         @svg('ship', 'icon-nav') --/-- </label>
                                 @endif
@@ -96,14 +101,15 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true">
                                 Lvl {{ $user->level }} captain {{ Auth::user()->name }}
-                                <progress class="experience-bar" max="100"
-                                          value="{{ $user->levelProgress($user) }}">
+                                <progress class="experience-bar" max="100" role="progressbar"
+                                          aria-valuenow="{{ $user->levelProgress($user) }}" aria-valuemin="0" aria-valuemax="100" value="{{ $user->levelProgress($user) }}">
+                                    {{ $user->levelProgress($user) }} %
                                 </progress>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="/home">
-                                        Dashboard
+                                        Your cabin
                                     </a>
                                 </li>
                                 <li>

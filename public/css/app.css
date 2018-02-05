@@ -8579,8 +8579,18 @@ body {
   background-size: cover;
 }
 
+.no-link {
+  cursor: default;
+}
+
+.no-link:hover,
+.no-link:active,
+.no-link:focus {
+  color: #777 !important;
+}
+
 .btn {
-  font-family: "Finger paint", cursive;
+  font-family: "Raleway", Arial, sans-serif;
 }
 
 .btn-attack {
@@ -8794,26 +8804,6 @@ ul.stats-list .label {
   font-size: 13px;
 }
 
-.experience-bar {
-  background-color: #8BC34A;
-  border-radius: 50px;
-  height: 6px;
-  margin-top: -3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  line-height: 3px;
-}
-
-.experience-bar::-webkit-progress-bar,
-.experience-bar::-webkit-progress-value {
-  border-radius: 50px;
-}
-
-.experience-bar::-webkit-progress-bar {
-  background-color: #E0E0E0;
-}
-
 .form-inline {
   display: inline;
 }
@@ -8843,6 +8833,10 @@ ul.stats-list .label {
   padding-top: 0;
 }
 
+.ship-quicklist-button {
+  text-align: center;
+}
+
 ul .ship-quicklist {
   min-width: 300px;
 }
@@ -8852,13 +8846,8 @@ ul .ship-quicklist .ship-quicklist-item {
 }
 
 .nav-styled {
-  border-bottom: 3px solid #000000;
-}
-
-.nav-styled:hover,
-.nav-styled:focus,
-.nav-styled:active {
-  text-shadow: 0 1px 1px currentColor;
+  border-bottom: 4px solid #000000;
+  font-weight: 700;
 }
 
 .nav-explore {
@@ -8878,7 +8867,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .nav-combat:hover,
 .nav-combat:focus,
 .nav-combat:active {
-  background-color: #dc5959;
+  background-color: #f1bcbc;
 }
 
 .nav-town {
@@ -8888,7 +8877,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .nav-town:hover,
 .nav-town:focus,
 .nav-town:active {
-  background-color: #e19344;
+  background-color: #f3d3b4;
 }
 
 .nav-travel {
@@ -8898,7 +8887,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .nav-travel:hover,
 .nav-travel:focus,
 .nav-travel:active {
-  background-color: #378fe7;
+  background-color: #a3c8ed;
 }
 
 .table > thead > tr > th,
@@ -8981,6 +8970,12 @@ ul .ship-quicklist .ship-quicklist-item {
   border-radius: 0;
   border: 5px solid #402002;
 }*/
+
+.panel-ship {
+  background: url(/images/waves.jpg?c84c415b047aa3df7da95bd166733620) repeat center center;
+  background-color: #87CEEB;
+  background-size: 100px 100px;
+}
 
 .settlement {
   height: 286px;
@@ -9333,6 +9328,40 @@ ul .ship-quicklist .ship-quicklist-item {
   margin-top: 40vh;
   max-height: 6vh;
   z-index: 3;
+}
+
+progress {
+  border-radius: 0;
+}
+
+.progress-bar {
+  border-radius: 0;
+}
+
+.experience-bar {
+  background-color: #8BC34A;
+  height: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -8px;
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: #E0E0E0;
+}
+
+.ship-experience-bar {
+  background-color: #d17921;
+  height: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -8px;
+}
+
+.ship-experience-bar::-webkit-progress-bar {
+  background-color: #E0E0E0;
 }
 
 /*!
@@ -17695,8 +17724,18 @@ body {
   background-size: cover;
 }
 
+.no-link {
+  cursor: default;
+}
+
+.no-link:hover,
+.no-link:active,
+.no-link:focus {
+  color: #777 !important;
+}
+
 .btn {
-  font-family: "Finger paint", cursive;
+  font-family: "Raleway", Arial, sans-serif;
 }
 
 .btn-attack {
@@ -17910,26 +17949,6 @@ ul.stats-list .label {
   font-size: 13px;
 }
 
-.experience-bar {
-  background-color: #8BC34A;
-  border-radius: 50px;
-  height: 6px;
-  margin-top: -3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  line-height: 3px;
-}
-
-.experience-bar::-webkit-progress-bar,
-.experience-bar::-webkit-progress-value {
-  border-radius: 50px;
-}
-
-.experience-bar::-webkit-progress-bar {
-  background-color: #E0E0E0;
-}
-
 .form-inline {
   display: inline;
 }
@@ -17959,6 +17978,10 @@ ul.stats-list .label {
   padding-top: 0;
 }
 
+.ship-quicklist-button {
+  text-align: center;
+}
+
 ul .ship-quicklist {
   min-width: 300px;
 }
@@ -17968,13 +17991,8 @@ ul .ship-quicklist .ship-quicklist-item {
 }
 
 .nav-styled {
-  border-bottom: 3px solid #000000;
-}
-
-.nav-styled:hover,
-.nav-styled:focus,
-.nav-styled:active {
-  text-shadow: 0 1px 1px currentColor;
+  border-bottom: 4px solid #000000;
+  font-weight: 700;
 }
 
 .nav-explore {
@@ -17994,7 +18012,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .nav-combat:hover,
 .nav-combat:focus,
 .nav-combat:active {
-  background-color: #dc5959;
+  background-color: #f1bcbc;
 }
 
 .nav-town {
@@ -18004,7 +18022,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .nav-town:hover,
 .nav-town:focus,
 .nav-town:active {
-  background-color: #e19344;
+  background-color: #f3d3b4;
 }
 
 .nav-travel {
@@ -18014,7 +18032,7 @@ ul .ship-quicklist .ship-quicklist-item {
 .nav-travel:hover,
 .nav-travel:focus,
 .nav-travel:active {
-  background-color: #378fe7;
+  background-color: #a3c8ed;
 }
 
 .table > thead > tr > th,
@@ -18097,6 +18115,12 @@ ul .ship-quicklist .ship-quicklist-item {
   border-radius: 0;
   border: 5px solid #402002;
 }*/
+
+.panel-ship {
+  background: url(/images/waves.jpg?c84c415b047aa3df7da95bd166733620) repeat center center;
+  background-color: #87CEEB;
+  background-size: 100px 100px;
+}
 
 .settlement {
   height: 286px;
@@ -18449,5 +18473,39 @@ ul .ship-quicklist .ship-quicklist-item {
   margin-top: 40vh;
   max-height: 6vh;
   z-index: 3;
+}
+
+progress {
+  border-radius: 0;
+}
+
+.progress-bar {
+  border-radius: 0;
+}
+
+.experience-bar {
+  background-color: #8BC34A;
+  height: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -8px;
+}
+
+.experience-bar::-webkit-progress-bar {
+  background-color: #E0E0E0;
+}
+
+.ship-experience-bar {
+  background-color: #d17921;
+  height: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -8px;
+}
+
+.ship-experience-bar::-webkit-progress-bar {
+  background-color: #E0E0E0;
 }
 

@@ -21,9 +21,4 @@
         <i class="fa fa-arrow-up"></i> {{ $ship->upgrade_points }}
     </li>
     @endif
-    <li>
-        <progress class="experience-bar" max="100"
-                  value="{{ $ship->levelProgress($ship) }}">
-        </progress>
-    </li>
 </ul>
