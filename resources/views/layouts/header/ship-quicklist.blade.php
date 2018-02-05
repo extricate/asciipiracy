@@ -1,9 +1,6 @@
-<div class="panel panel-default">
+<div class="panel panel-default ship-quicklist">
     <div class="panel-heading">
         <a href="{{ $ship->path() }}">{{ $ship->class }} {{ $ship->name }}</a>
-        <span class="pull-right">
-            @svg('ship', 'icon-sm')
-        </span>
     </div>
     <div class="panel-body">
         <div class="row">

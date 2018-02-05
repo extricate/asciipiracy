@@ -15,9 +15,15 @@
 }
 
 ul .ship-quicklist {
+  overflow: auto;
   min-width: 300px;
+  font-size: 14px;
+  max-height: 300px;
   .ship-quicklist-item {
     margin: 6px;
+  }
+  li a {
+    line-height: 1.6;
   }
 }
 

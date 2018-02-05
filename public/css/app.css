@@ -8838,11 +8838,18 @@ ul.stats-list .label {
 }
 
 ul .ship-quicklist {
+  overflow: auto;
   min-width: 300px;
+  font-size: 14px;
+  max-height: 300px;
 }
 
 ul .ship-quicklist .ship-quicklist-item {
   margin: 6px;
+}
+
+ul .ship-quicklist li a {
+  line-height: 1.6;
 }
 
 .nav-styled {
@@ -8975,6 +8982,11 @@ ul .ship-quicklist .ship-quicklist-item {
   background: url(/images/waves.jpg?c84c415b047aa3df7da95bd166733620) repeat center center;
   background-color: #87CEEB;
   background-size: 100px 100px;
+}
+
+.panel-active-ship {
+  border-color: #87CEEB;
+  background-color: #a3c8ed;
 }
 
 .settlement {
@@ -17983,11 +17995,18 @@ ul.stats-list .label {
 }
 
 ul .ship-quicklist {
+  overflow: auto;
   min-width: 300px;
+  font-size: 14px;
+  max-height: 300px;
 }
 
 ul .ship-quicklist .ship-quicklist-item {
   margin: 6px;
+}
+
+ul .ship-quicklist li a {
+  line-height: 1.6;
 }
 
 .nav-styled {
@@ -18120,6 +18139,11 @@ ul .ship-quicklist .ship-quicklist-item {
   background: url(/images/waves.jpg?c84c415b047aa3df7da95bd166733620) repeat center center;
   background-color: #87CEEB;
   background-size: 100px 100px;
+}
+
+.panel-active-ship {
+  border-color: #87CEEB;
+  background-color: #a3c8ed;
 }
 
 .settlement {
