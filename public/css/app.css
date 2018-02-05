@@ -9173,11 +9173,58 @@ ul .ship-quicklist .ship-quicklist-item {
   z-index: 99;
 }
 
+.ship-fore-gaff {
+  position: absolute;
+  margin-left: -3.5vh !important;
+  margin-top: 2vh;
+  max-height: 43vh;
+  z-index: 99;
+}
+
 .ship-main-gaff {
   position: absolute;
   margin-left: -4vh !important;
   margin-top: 15vh;
   max-height: 50vh;
+  z-index: 99;
+}
+
+.ship-aft-gaff-1 {
+  position: absolute;
+  margin-left: -6vh !important;
+  margin-top: 45vh;
+  max-height: 35vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barque-1 {
+  position: absolute;
+  margin-left: -5vh !important;
+  margin-top: 45vh;
+  max-height: 35vh;
+  z-index: 99;
+}
+
+.ship-fore-mast-barquentine {
+  position: absolute;
+  margin-top: 10vh;
+  max-height: 18vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barquentine-1 {
+  position: absolute;
+  margin-left: -5vh !important;
+  margin-top: 38vh;
+  max-height: 28vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barquentine-2 {
+  position: absolute;
+  margin-left: -4.8vh !important;
+  margin-top: 57vh;
+  max-height: 25vh;
   z-index: 99;
 }
 
@@ -18177,11 +18224,58 @@ ul .ship-quicklist .ship-quicklist-item {
   z-index: 99;
 }
 
+.ship-fore-gaff {
+  position: absolute;
+  margin-left: -3.5vh !important;
+  margin-top: 2vh;
+  max-height: 43vh;
+  z-index: 99;
+}
+
 .ship-main-gaff {
   position: absolute;
   margin-left: -4vh !important;
   margin-top: 15vh;
   max-height: 50vh;
+  z-index: 99;
+}
+
+.ship-aft-gaff-1 {
+  position: absolute;
+  margin-left: -6vh !important;
+  margin-top: 45vh;
+  max-height: 35vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barque-1 {
+  position: absolute;
+  margin-left: -5vh !important;
+  margin-top: 45vh;
+  max-height: 35vh;
+  z-index: 99;
+}
+
+.ship-fore-mast-barquentine {
+  position: absolute;
+  margin-top: 10vh;
+  max-height: 18vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barquentine-1 {
+  position: absolute;
+  margin-left: -5vh !important;
+  margin-top: 38vh;
+  max-height: 28vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barquentine-2 {
+  position: absolute;
+  margin-left: -4.8vh !important;
+  margin-top: 57vh;
+  max-height: 25vh;
   z-index: 99;
 }
 

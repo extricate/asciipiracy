@@ -59,11 +59,12 @@ class CreateShipsTable extends Migration
             $table->longText('story')->nullable();
 
             $table->unsignedInteger('min_sailors');
+            $table->unsignedInteger('current_sailors');
             $table->unsignedInteger('max_sailors');
 
             $table->unsignedInteger('max_speed');
             $table->unsignedInteger('masts');
-            $table->unsignedInteger('propulsion');
+            $table->unsignedInteger('propulsion')->nullable();
             $table->unsignedInteger('decks');
             $table->unsignedInteger('length');
             $table->unsignedInteger('draught');

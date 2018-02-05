@@ -14,7 +14,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="{{ $ship->path() }}">#{{ $ship->id }}</a>
-                        {{ $ship->name }}
+                        {{ $ship->class }} {{ $ship->name }}
                     </div>
 
                     <div class="panel-body">

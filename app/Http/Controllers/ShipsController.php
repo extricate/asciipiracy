@@ -51,10 +51,11 @@ class ShipsController extends Controller
                 'user_id' => $user->id
             ]);
 
-            // populate the ship with crew
-
-            $generateSailorAmount = $ship->min_sailors + rand(0, $ship->max_sailors-$ship->min_sailors);
-            factory(App\Person::class, $generateSailorAmount)->create(['ships_id' => $ship->id]);
+            // populate the ship with officers
+            $generateOfficerAmount = $ship->max_sailors/15;
+            if ($generateOfficerAmount > 1) {
+                factory(App\Person::class, $generateOfficerAmount)->create(['ships_id' => $ship->id]);
+            }
             $user->active_ship = $ship->id;
             $user->save();
 
@@ -102,13 +103,11 @@ class ShipsController extends Controller
                 'current_health' => $specifications->maximum_health,
                 'maximum_health' => $specifications->maximum_health,
             ]);
-            $generateSailorAmount = $createShip->max_sailors;
-            // populate the ship with crew
-            factory(App\Person::class, $generateSailorAmount)->create([
-                'ships_id' => $createShip->id
-            ]);
-
-            $user->active_ship = $createShip->id;
+            $generateOfficerAmount = $ship->max_sailors/15;
+            if ($generateOfficerAmount > 1) {
+                factory(App\Person::class, $generateOfficerAmount)->create(['ships_id' => $ship->id]);
+            }
+            $user->active_ship = $ship->id;
             $user->save();
 
             return redirect('home')->with('message', 'Beginner ship created and set to active!');
@@ -133,6 +132,7 @@ class ShipsController extends Controller
                 'length' => 80,
                 'masts' => 2,
                 'min_sailors' => 20,
+                'current_sailors' => 20,
                 'max_sailors' => 20,
                 'decks' => 1,
                 'beam' => 20,
@@ -146,12 +146,10 @@ class ShipsController extends Controller
                 'current_health' => 100,
                 'maximum_health' => 100,
             ]);
-            $generateSailorAmount = $ship->min_sailors;
-            // populate the ship with crew
-            factory(App\Person::class, $generateSailorAmount)->create([
-                'ships_id' => $ship->id
-            ]);
-
+            $generateOfficerAmount = $ship->max_sailors/15;
+            if ($generateOfficerAmount > 1) {
+                factory(App\Person::class, $generateOfficerAmount)->create(['ships_id' => $ship->id]);
+            }
             $user->active_ship = $ship->id;
             $user->save();
 
