@@ -36,6 +36,7 @@
 .btn-group-stats {
   margin: 6px 4px;
 }
+
 .btn-strength, .btn-dexterity, .btn-intelligence, .btn-stamina, .btn-charisma, .btn-unallocated, .btn-upgrade {
   cursor: auto;
   touch-action: none;
@@ -43,6 +44,7 @@
     color: $white;
   }
 }
+
 .btn-strength {
   color: $white;
   background-color: $strength;
@@ -116,6 +118,7 @@
     border-color: #1f648b;
   }
 }
+
 .dropdown-replace {
   width: 60px;
 }

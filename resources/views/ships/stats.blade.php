@@ -17,8 +17,8 @@
         <i class="fa fa-users"></i> {{ $ship->current_sailors }}/{{ $ship->max_sailors }}
     </li>
     @if ($ship->upgrade_points > 0)
-    <li class="label label-default">
-        <i class="fa fa-arrow-up"></i> {{ $ship->upgrade_points }}
-    </li>
+        <li class="label label-default">
+            <i class="fa fa-arrow-up"></i> {{ $ship->upgrade_points }}
+        </li>
     @endif
 </ul>

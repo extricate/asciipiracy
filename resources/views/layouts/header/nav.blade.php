@@ -62,9 +62,10 @@
                                         {{ $user->activeShip()->current_health }}
                                         /{{ $user->activeShip()->maximum_health }}
                                     </label>
-                                @php $ship = auth()->user()->activeShip(); @endphp
+                                    @php $ship = auth()->user()->activeShip(); @endphp
                                     <progress class="experience-bar" max="100" role="progressbar"
-                                              aria-valuenow="{{ $ship->levelProgress($ship) }}" aria-valuemin="0" aria-valuemax="100" value="{{ $ship->levelProgress($ship) }}">
+                                              aria-valuenow="{{ $ship->levelProgress($ship) }}" aria-valuemin="0"
+                                              aria-valuemax="100" value="{{ $ship->levelProgress($ship) }}">
                                         {{ $ship->levelProgress($ship) }} %
                                     </progress>
                                 @elseif ($user->activeShip() == null)
@@ -80,9 +81,10 @@
                                     </li>
                                 @endif
                                 @if ($user->myShips()->count() == 0)
-                                        <div class="text-center">
-                                            <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a free beginner ship</a>
-                                        </div>
+                                    <div class="text-center">
+                                        <a href="{{ route('ship_create_beginner') }}" class="btn btn-primary">Create a
+                                            free beginner ship</a>
+                                    </div>
                                 @endif
                                 @foreach ($user->myShips() as $ship)
                                     @php
@@ -102,7 +104,8 @@
                                aria-expanded="false" aria-haspopup="true">
                                 Lvl {{ $user->level }} captain {{ Auth::user()->name }}
                                 <progress class="experience-bar" max="100" role="progressbar"
-                                          aria-valuenow="{{ $user->levelProgress($user) }}" aria-valuemin="0" aria-valuemax="100" value="{{ $user->levelProgress($user) }}">
+                                          aria-valuenow="{{ $user->levelProgress($user) }}" aria-valuemin="0"
+                                          aria-valuemax="100" value="{{ $user->levelProgress($user) }}">
                                     {{ $user->levelProgress($user) }} %
                                 </progress>
                             </a>
