@@ -57,8 +57,7 @@ class MapController extends Controller
         $user = Auth::user();
         $totalCrew = $user->totalCrew();
 
-        if ($totalCrew > $user->goods)
-        {
+        if ($totalCrew > $user->goods) {
             return redirect(route('map'))->with('error', 'We do not appear to have enough goods for that journey!');
         }
 
@@ -66,8 +65,7 @@ class MapController extends Controller
         $user->save();
 
         // delete previous map of user
-        if ($user->on_map != '99700d20-08c5-11e8-a6a2-6d79bfaed767')
-        {
+        if ($user->on_map != '99700d20-08c5-11e8-a6a2-6d79bfaed767') {
             $old_map_id = $user->on_map;
             $old_map = App\Map::findOrFail($old_map_id);
             $old_map->delete();
@@ -78,7 +76,8 @@ class MapController extends Controller
         $map = new Map;
         $map->generate($id, $x, $y);
 
-        return redirect(route('map'))->with('message', 'Successfully traveled to a new region. ' . $totalCrew . ' goods were used on the journey');
+        return redirect(route('map'))->with('message',
+            'Successfully traveled to a new region. ' . $totalCrew . ' goods were used on the journey');
     }
 
     /**
@@ -123,13 +122,44 @@ class MapController extends Controller
 
         if ($map->id == $tile->belongs_to_map) {
             if ($tile->type == 'ship') {
-                // ship greet event logic, no idea what to do here yet
-
                 // reset the tile
                 $tile->type = 'water';
                 $tile->save();
 
-                return redirect(route('map'))->with('message', 'Something something ship');
+                // ship greet event logic, selecting from various possibilities
+                $types = array('merchant' => 50, 'pirate' => 30, 'gambler' => 30, 'drifter' => 10);
+
+                $weightedTypes = array();
+                foreach ($types as $weightedType => $value) {
+                    $weightedTypes = array_merge($weightedTypes, array_fill(0, $value, $weightedType));
+                }
+                $selectedType = $weightedTypes[array_rand($weightedTypes)];
+
+                if ($selectedType == 'merchant') {
+                    $user->intelligence = $user->intelligence + 2;
+                    $user->save();
+
+                    return redirect(route('map'))->with('message',
+                        'You encountered a friendly merchant. He shared some trade secrets with you! ' . '<label class="label label-intelligence>Intelligence +2</label>"');
+
+                } elseif ($selectedType == 'pirate') {
+                    return redirect(route('start_combat'))->with('message',
+                        'Arg! They are pirates! Prepare for a fight!');
+
+                } elseif ($selectedType == 'gambler') {
+                    $user->gold = $user->gold + 200;
+                    $user->save();
+
+                    return redirect(route('map'))->with('message',
+                        'You encountered a friendly sailor. He invited you to play a game of dice. You won some gold. ' . '<label class="label label-gold>+ 200 gold</label>"');
+
+                } elseif ($selectedType == 'drifter') {
+                    return redirect(route('map'))->with('message',
+                        'You encountered a drifting ship, with no signs of any crew on board... you decided to leave the ship well enough alone, for you fear that whatever might be on board could potentially cause you more harm than any good.');
+
+                } else {
+                    return redirect(route('map'))->with('message', 'Something something ship');
+                }
             } else {
                 return redirect(route('map'))->with('error', 'You cheater, that is not a ship');
             }

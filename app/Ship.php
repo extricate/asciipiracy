@@ -42,32 +42,6 @@ class Ship extends Model
         return $this->hasMany(Person::class, 'ships_id');
     }
 
-    public function draw(Ship $ship)
-    {
-        $decks = $ship->decks;
-        $length = $ship->length;
-        $masts = $ship->masts;
-        $beam = $ship->beam;
-        $cannons = $ship->cannons;
-
-        /**
-         * A ship consists out of various components, seperated into different SVG files.
-         * These files are:
-         * - hull
-         * - bow
-         * - foresail
-         * - main_mast
-         * - aft_mast
-         * - officerdeck
-         *
-         * Extra ornaments are:
-         * - grate
-         *
-         * A basic ship has the following layout:
-         * - hull + bow + main_mast
-         */
-    }
-
     /**
      * Old draw function
      */
@@ -346,7 +320,7 @@ class Ship extends Model
     {
         // Calculate the cost of exploration with this ship
         $ship = Auth::user()->activeShip();
-        $cost = $ship->crew()->count();
+        $cost = $ship->current_sailors;
         return $cost;
     }
 
