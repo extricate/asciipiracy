@@ -151,7 +151,7 @@ class User extends Authenticatable
         $ships = $this->hasMany(Ship::class)->getResults();
         $crew = 0;
         foreach ($ships as $ship) {
-            $sailors = $ship->crew()->count();
+            $sailors = $ship->current_sailors;
             $crew = $crew + $sailors;
         }
 

@@ -433,7 +433,7 @@ class Ship extends Model
             $ship->experience = round($remaining_exp, 0);
 
             // increase the level
-            $ship->unallocated_stats = $ship->unallocated_stats + 5;
+            $ship->upgrade_points = $ship->upgrade_points + 5;
             $ship->level = $ship->level + 1;
 
             // save the changes

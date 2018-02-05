@@ -27,7 +27,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="ra ra-ocean-emblem"></i> You
+                        You: {{ $ship->class }} {{ $ship->name }}
                     </div>
                     <div class="panel-body text-center">
                         @yield('user_ship')
@@ -37,7 +37,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Enemy
+                        Enemy: {{ $enemy->class }} {{ $enemy->name }}
                     </div>
                     <div class="panel-body text-center">
                         @yield('enemy_ship')

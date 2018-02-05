@@ -76,8 +76,9 @@
                                                         bearing {{ $ship->cannon_caliber }} shot
                                                     </li>
                                                     <li>Gunports: {{ $ship->gunports }}</li>
+                                                    <li>Officers: {{ $ship->crew->count() }}</li>
                                                     <li>Minimum sailors: {{ $ship->min_sailors }}</li>
-                                                    <li>Current sailors: {{ $ship->crew->count() }}</li>
+                                                    <li>Current sailors: {{ $ship->current_sailors }}</li>
                                                     <li>Maximum sailors: {{ $ship->max_sailors }}</li>
                                                 </ul>
                                                 <li><i class="ra ra-cog ra-fw"></i>

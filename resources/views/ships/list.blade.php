@@ -36,7 +36,7 @@
 </div><!-- /.modal -->
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="{{ $ship->path() }}">{{ $ship->name }}</a>
+        <a href="{{ $ship->path() }}">{{ $ship->class }} {{ $ship->name }}</a>
         @if ($ship->is_beginner_ship == true)
              <i class="fa fa-star"></i>
         @endif
@@ -47,7 +47,7 @@
     <div class="panel-body">
         <p>
             She's a {{ $ship->length }} footer with {{ $ship->decks }} decks
-            and {{ $ship->crew()->count() }} sailors.
+            and {{ $ship->current_sailors }} sailors.
         </p>
         <div class="row">
             <div class="col-md-4">

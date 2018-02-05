@@ -11,6 +11,6 @@
         <i class="ra ra-cog"></i> {{ $enemy->escapeStatistics($enemy) }}
     </li>
     <li class="label label-crew">
-        <i class="fa fa-users"></i> {{ $enemy->crew->count() }}/{{ $enemy->max_sailors }}
+        <i class="fa fa-users"></i> {{ $enemy->current_sailors }}/{{ $enemy->max_sailors }}
     </li>
 </ul>

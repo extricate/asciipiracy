@@ -8782,6 +8782,10 @@ label {
   background-color: #d32f2f;
 }
 
+.label-success {
+  background-color: #388E3C;
+}
+
 ul.stats-list {
   margin-bottom: 0;
 }
@@ -8793,12 +8797,12 @@ ul.stats-list .label {
 .experience-bar {
   background-color: #8BC34A;
   border-radius: 50px;
-  height: 8px;
-  margin-top: -7px;
+  height: 6px;
+  margin-top: -3px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  line-height: 4px;
+  line-height: 3px;
 }
 
 .experience-bar::-webkit-progress-bar,
@@ -8828,6 +8832,10 @@ ul.stats-list .label {
   width: 140px !important;
 }
 
+.navbar-default {
+  border: 0;
+}
+
 .navbar-brand,
 .navbar-nav li a {
   line-height: 60px;
@@ -8841,6 +8849,56 @@ ul .ship-quicklist {
 
 ul .ship-quicklist .ship-quicklist-item {
   margin: 6px;
+}
+
+.nav-styled {
+  border-bottom: 3px solid #000000;
+}
+
+.nav-styled:hover,
+.nav-styled:focus,
+.nav-styled:active {
+  text-shadow: 0 1px 1px currentColor;
+}
+
+.nav-explore {
+  border-color: #8BC34A;
+}
+
+.nav-explore:hover,
+.nav-explore:focus,
+.nav-explore:active {
+  background-color: #b0d683;
+}
+
+.nav-combat {
+  border-color: #d32f2f;
+}
+
+.nav-combat:hover,
+.nav-combat:focus,
+.nav-combat:active {
+  background-color: #dc5959;
+}
+
+.nav-town {
+  border-color: #d17921;
+}
+
+.nav-town:hover,
+.nav-town:focus,
+.nav-town:active {
+  background-color: #e19344;
+}
+
+.nav-travel {
+  border-color: #1976D2;
+}
+
+.nav-travel:hover,
+.nav-travel:focus,
+.nav-travel:active {
+  background-color: #378fe7;
 }
 
 .table > thead > tr > th,
@@ -9197,11 +9255,18 @@ ul .ship-quicklist .ship-quicklist-item {
   z-index: 99;
 }
 
-.ship-gaff-aft-barque-1 {
+.ship-main-mast-barque {
+  position: absolute;
+  margin-top: 35vh;
+  max-height: 8vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barque {
   position: absolute;
   margin-left: -5vh !important;
-  margin-top: 45vh;
-  max-height: 35vh;
+  margin-top: 48vh;
+  max-height: 28vh;
   z-index: 99;
 }
 
@@ -17833,6 +17898,10 @@ label {
   background-color: #d32f2f;
 }
 
+.label-success {
+  background-color: #388E3C;
+}
+
 ul.stats-list {
   margin-bottom: 0;
 }
@@ -17844,12 +17913,12 @@ ul.stats-list .label {
 .experience-bar {
   background-color: #8BC34A;
   border-radius: 50px;
-  height: 8px;
-  margin-top: -7px;
+  height: 6px;
+  margin-top: -3px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  line-height: 4px;
+  line-height: 3px;
 }
 
 .experience-bar::-webkit-progress-bar,
@@ -17879,6 +17948,10 @@ ul.stats-list .label {
   width: 140px !important;
 }
 
+.navbar-default {
+  border: 0;
+}
+
 .navbar-brand,
 .navbar-nav li a {
   line-height: 60px;
@@ -17892,6 +17965,56 @@ ul .ship-quicklist {
 
 ul .ship-quicklist .ship-quicklist-item {
   margin: 6px;
+}
+
+.nav-styled {
+  border-bottom: 3px solid #000000;
+}
+
+.nav-styled:hover,
+.nav-styled:focus,
+.nav-styled:active {
+  text-shadow: 0 1px 1px currentColor;
+}
+
+.nav-explore {
+  border-color: #8BC34A;
+}
+
+.nav-explore:hover,
+.nav-explore:focus,
+.nav-explore:active {
+  background-color: #b0d683;
+}
+
+.nav-combat {
+  border-color: #d32f2f;
+}
+
+.nav-combat:hover,
+.nav-combat:focus,
+.nav-combat:active {
+  background-color: #dc5959;
+}
+
+.nav-town {
+  border-color: #d17921;
+}
+
+.nav-town:hover,
+.nav-town:focus,
+.nav-town:active {
+  background-color: #e19344;
+}
+
+.nav-travel {
+  border-color: #1976D2;
+}
+
+.nav-travel:hover,
+.nav-travel:focus,
+.nav-travel:active {
+  background-color: #378fe7;
 }
 
 .table > thead > tr > th,
@@ -18248,11 +18371,18 @@ ul .ship-quicklist .ship-quicklist-item {
   z-index: 99;
 }
 
-.ship-gaff-aft-barque-1 {
+.ship-main-mast-barque {
+  position: absolute;
+  margin-top: 35vh;
+  max-height: 8vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barque {
   position: absolute;
   margin-left: -5vh !important;
-  margin-top: 45vh;
-  max-height: 35vh;
+  margin-top: 48vh;
+  max-height: 28vh;
   z-index: 99;
 }
 

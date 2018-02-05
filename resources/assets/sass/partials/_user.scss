@@ -2,10 +2,10 @@
 .experience-bar {
   background-color: $experience-bar;
   border-radius: 50px;
-  height: 8px;
-  margin-top: -7px;
+  height: 6px;
+  margin-top: -3px;
   display: flex;
-  line-height: 4px;
+  line-height: 3px;
 }
 
 .experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {

@@ -36,9 +36,6 @@ class CombatController extends Controller
             return redirect(route('home'))->with('message',
                 'You are not yet in combat.');
         }
-
-        $baseEscapeChance = $this->escapeChance();
-        return view('combat.show', compact('user', 'ship', 'enemy', 'baseEscapeChance'));
     }
 
     public function startCombat()
@@ -68,9 +65,9 @@ class CombatController extends Controller
     {
         // create the enemy
         $enemy = factory(Ship::class)->create();
-        $generateSailorAmount = $enemy->min_sailors;
-        // populate the enemy ship with crew
-        factory(App\Person::class, $generateSailorAmount)->create([
+        $generateOfficerAmount = $enemy->max_sailors/15;
+        // populate the enemy ship with officers
+        factory(App\Person::class, $generateOfficerAmount)->create([
             'ships_id' => $enemy->id
         ]);
 
@@ -212,8 +209,12 @@ class CombatController extends Controller
             $escapeChance = $baseEscape + $escapeSkillDifference;
 
             // let's add permanent uncertainty in the mix
-            if ($escapeChance > 100) $escapeChance = 95;
-            if ($escapeChance < 0) $escapeChance = 5;
+            if ($escapeChance > 100) {
+                $escapeChance = 95;
+            }
+            if ($escapeChance < 0) {
+                $escapeChance = 5;
+            }
 
             return $escapeChance;
         }
@@ -281,6 +282,7 @@ class CombatController extends Controller
     public function rewards()
     {
         $user = Auth::user();
+        $ship = $user->activeShip();
 
         // to win the opponent must either: surrender or sink
         $user->combat_wins++;
@@ -292,12 +294,15 @@ class CombatController extends Controller
         $enemy_escape = $enemy->escapeStatistics($enemy);
         $reward_gold = mt_rand(0, $enemy_combat * 3) + 100;
         $reward_goods = mt_rand(0, $enemy_escape * 2) + 10;
-        $reward_experience = mt_rand($enemy_combat / 10, $enemy_combat / 2) + 10;
+        $reward_experience = mt_rand($enemy_combat / 10, $enemy_combat / 2) + 50;
 
         $user->gold = $user->gold + $reward_gold;
         $user->goods = $user->goods + $reward_goods;
         $user->experience = $user->experience + $reward_experience;
         $user->save();
+
+        $ship->experience = $user->experience + $reward_experience;
+        $ship->save();
 
         $rewards = array($reward_gold, $reward_goods, $reward_experience);
 

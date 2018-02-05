@@ -75,11 +75,18 @@
   z-index: 99;
 }
 
-.ship-gaff-aft-barque-1 {
+.ship-main-mast-barque {
+  position: absolute;
+  margin-top: 35vh;
+  max-height: 8vh;
+  z-index: 99;
+}
+
+.ship-gaff-aft-barque {
   position: absolute;
   margin-left: -5vh !important;
-  margin-top: 45vh;
-  max-height: 35vh;
+  margin-top: 48vh;
+  max-height: 28vh;
   z-index: 99;
 }
 

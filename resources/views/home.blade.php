@@ -20,7 +20,7 @@
                             <p>
                                 You're currently on the
                                 <a href="{{ $active->path() }}"><b>{{ $active->name }}</b></a>, and
-                                its {{ $active->crew->count() }} sailors are ready for your command.
+                                its {{ $active->current_sailors }} sailors are ready for your command.
                             </p>
                         @else
                             <p>Welcome back captain <b>{{ $user->name }}</b>. You currently have no active ship.

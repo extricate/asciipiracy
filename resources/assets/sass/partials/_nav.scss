@@ -1,12 +1,52 @@
+.navbar-default {
+  border: 0;
+}
+
 .navbar-brand,
 .navbar-nav li a {
   line-height: 60px;
   height: 60px;
   padding-top: 0;
 }
+
 ul .ship-quicklist {
   min-width: 300px;
   .ship-quicklist-item {
     margin: 6px;
+  }
+}
+
+.nav-styled {
+  border-bottom: 3px solid $black;
+  &:hover, &:focus, &:active {
+    text-shadow: 0 1px 1px currentColor;
+  }
+}
+
+.nav-explore {
+  border-color: $green;
+  &:hover, &:focus, &:active {
+    background-color: $light-green;
+  }
+}
+
+.nav-combat {
+  border-color: $red;
+  &:hover, &:focus, &:active {
+    background-color: $light-red;
+  }
+}
+
+.nav-town {
+  border-color: $brown;
+  &:hover, &:focus, &:active {
+    background-color: $light-brown;
+  }
+}
+
+.nav-travel {
+  border-color: $blue;
+  &:hover, &:focus, &:active {
+    background-color: $light-blue;
   }
 }

@@ -20,20 +20,20 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li>
+                <li class="nav-styled nav-explore">
                     <a href="{{ route('explore') }}">
                         @svg('rudder', 'icon-nav')
                         Explore
                     </a>
                 </li>
-                <li>
+                <li class="nav-styled nav-combat">
                     <a href="{{ route('start_combat') }}">@svg('sword', 'icon-nav') Fight
                         pirates</a>
                 </li>
-                <li>
+                <li class="nav-styled nav-town">
                     <a href="{{ route('visit_town') }}">@svg('cabin', 'icon-nav') Town</a>
                 </li>
-                <li>
+                <li class="nav-styled nav-travel">
                     <a href="{{ route('map') }}">@svg('map', 'icon-nav') Travel</a>
                 </li>
             </ul>
