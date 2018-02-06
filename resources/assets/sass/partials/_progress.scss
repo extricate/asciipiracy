@@ -10,9 +10,8 @@ progress {
 
 .experience-bar {
   background-color: $experience-bar;
-  height: 12px;
+  height: 4px;
   display: flex;
-  margin-top: -8px;
 }
 
 .experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {
@@ -24,9 +23,8 @@ progress {
 
 .ship-experience-bar {
   background-color: $brown;
-  height: 12px;
+  height: 4px;
   display: flex;
-  margin-top: -8px;
 }
 
 .ship-experience-bar::-webkit-progress-bar, .experience-bar::-webkit-progress-value {

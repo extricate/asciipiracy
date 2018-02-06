@@ -8,48 +8,54 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') - ASCIIPiracy</title>
+    <title>@yield('title') - Pirates!</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/anchor.png') }}">
+
+    <!-- Pace -->
+    <script data-pace-options='{ "ajax": true }'></script>
 </head>
 <body>
 <div id="app">
-    @include('layouts.header.nav')
-    <noscript>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-warning alert-dismissible" role="alert">
-                        Warning! You do not have JavaScript enabled.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </noscript>
-
-    @if (session()->has('message'))
-        <noscript>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="alert alert-info alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="fa fa-times"></i></span>
-                            </button>
-                            {!! session('message') !!}
+    <div id="barba-wrapper">
+        @include('layouts.header.nav')
+        <div class="barba-container">
+            <noscript>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                Warning! You do not have JavaScript enabled.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </noscript>
-    @endif
-    @yield('content')
-</div>
+            </noscript>
 
+            @if (session()->has('message'))
+                <noscript>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                                    </button>
+                                    {!! session('message') !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </noscript>
+            @endif
+            @yield('content')
+        </div>
+    </div>
+</div>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 @if (session()->has('message'))

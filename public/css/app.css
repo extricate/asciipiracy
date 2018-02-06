@@ -9352,11 +9352,10 @@ progress {
 
 .experience-bar {
   background-color: #8BC34A;
-  height: 12px;
+  height: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: -8px;
 }
 
 .experience-bar::-webkit-progress-bar {
@@ -9365,15 +9364,37 @@ progress {
 
 .ship-experience-bar {
   background-color: #d17921;
-  height: 12px;
+  height: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: -8px;
 }
 
 .ship-experience-bar::-webkit-progress-bar {
   background-color: #E0E0E0;
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: #29d;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 2px;
 }
 
 /*!
@@ -18509,11 +18530,10 @@ progress {
 
 .experience-bar {
   background-color: #8BC34A;
-  height: 12px;
+  height: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: -8px;
 }
 
 .experience-bar::-webkit-progress-bar {
@@ -18522,14 +18542,36 @@ progress {
 
 .ship-experience-bar {
   background-color: #d17921;
-  height: 12px;
+  height: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: -8px;
 }
 
 .ship-experience-bar::-webkit-progress-bar {
   background-color: #E0E0E0;
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: #29d;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 2px;
 }
 

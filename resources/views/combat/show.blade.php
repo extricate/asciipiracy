@@ -16,12 +16,12 @@
     <p>
         @include('ships.stats')
     </p>
-    @include('ships.draw')
+    @include('ships.draw', ['ship' => $ship])
 @endsection
 
 @section('enemy_ship')
     <p>
         @include('ships.stats--enemy')
     </p>
-    @include('ships.draw-enemy')
+    @include('ships.draw', ['ship' => $enemy])
 @endsection

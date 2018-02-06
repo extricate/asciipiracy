@@ -18,3 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::resource('companies', 'CompaniesController', ['except' => ['edit', 'store', 'destroy', 'update']]);
+});
+
+

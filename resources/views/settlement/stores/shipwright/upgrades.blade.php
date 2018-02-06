@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                @include('ships.draw')
+                @include('ships.draw', ['ship' => $active])
             </div>
         @else
             <div class="col-lg-5">

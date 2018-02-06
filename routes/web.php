@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settlement/general-store', 'SettlementController@general')->name('general_store');
     Route::post('/settlement/general-store', 'TradeController@buyGoods')->name('buy_goods');
     Route::post('/settlement/general-store/trade', 'TradeController@trade')->name('trade');
+
+    Route::get('/settlement/shipwright/ships', 'TradeController@shipsAvailable')->name('ship_store');
     Route::post('/settlement/shipwright', 'TradeController@buyCannons')->name('buy_cannons');
     Route::get('/settlement/carpenter', 'SettlementController@carpenter')->name('carpenter');
 

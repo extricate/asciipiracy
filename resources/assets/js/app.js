@@ -23,12 +23,23 @@ const app = new Vue({
 });
 
 /**
- * SmoothState
+ * Passport components
  */
 
-$(function() {
-    $('.app').smoothState();
-});
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue')
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue')
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue')
+);
 
 /**
  * Dropdown replace with value and name

@@ -1,4 +1,3 @@
-@php if (!empty($active)){ $ship = $active; } @endphp
 <div class="row">
     <div class="ship-svg">
         @svg('ship/hull', 'ship-svg ship-hull')

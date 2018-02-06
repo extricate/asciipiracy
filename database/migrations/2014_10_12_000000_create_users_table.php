@@ -37,6 +37,10 @@ class CreateUsersTable extends Migration
             // hidden stat
             $table->unsignedInteger('luck')->default(1);
 
+            // new ship rerolls
+            $table->unsignedInteger('current_ship_refreshes')->default(5);
+            $table->unsignedInteger('max_ship_refreshes')->default(5);
+
             $table->uuid('on_map')->default('99700d20-08c5-11e8-a6a2-6d79bfaed767');
             $table->unsignedInteger('location_id')->nullable()->default(1);
 

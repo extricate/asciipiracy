@@ -27,7 +27,7 @@ class CreateShipsTable extends Migration
             $table->unsignedInteger('upgrade_points')->default(0);
 
             $table->string('name');
-            $table->string('slug')->unique()->nullable();
+            //$table->string('slug')->unique()->nullable();
 
             $table->integer('current_health')->default(100);
             $table->unsignedInteger('maximum_health')->default(100);

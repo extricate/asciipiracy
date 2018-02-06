@@ -307,9 +307,10 @@ class Ship extends Model
      */
     public function shipValue(Ship $ship)
     {
-        // Value in gold is based on maximum health, gunports, cannon_caliber, total hold, max sailors, max speed and maneuverability.
 
-        $value = $ship->maximum_health + ($ship->gunports) + ($ship->total_hold / 1000) + $ship->max_sailors + $ship->max_speed * $ship->maneuverability + (($ship->gunports + $ship->cannons) * (int)$ship->cannon_caliber);
+        // Value is based on maximum health plus the current health (effectively penalizing damage)
+
+        $value = (($ship->maximum_health * 10) + ($ship->current_health * 10)) + ($ship->total_hold / 500) + $ship->max_sailors * 100 + $ship->current_sailors * 10 + ($ship->max_speed * $ship->maneuverability) + (($ship->gunports + $ship->cannons) * ((int)$ship->cannon_caliber * 10));
 
         $value = round($value, 0);
 

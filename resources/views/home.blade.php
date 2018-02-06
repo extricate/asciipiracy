@@ -33,7 +33,7 @@
                         The {{ $active->name }}
                     </div>
                     <div class="panel-body">
-                        @include('ships.draw')
+                        @include('ships.draw', ['ship' => $active])
                     </div>
                 </div>
                 @endif

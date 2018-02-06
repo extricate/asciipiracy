@@ -27,6 +27,6 @@
     "mozjpeg": "^5.0.0",
     "pusher-js": "^4.2.2",
     "rpg-awesome": "^0.1.1",
-    "smoothstate": "^0.7.2"
+    "vue-router": "^3.0.1"
   }
 }

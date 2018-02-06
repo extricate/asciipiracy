@@ -154,4 +154,11 @@ class TradeController extends Controller
         }
 
     }
+
+    public function shipsAvailable()
+    {
+        $sale = factory('App\Ship', 3)->make();
+
+        return view('settlement.stores.shipwright.ship-store', compact('sale'));
+    }
 }

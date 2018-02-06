@@ -305,7 +305,7 @@ class CombatController extends Controller
         $ship->save();
 
         $rewards = array($reward_gold, $reward_goods, $reward_experience);
-
+        
         return $rewards;
     }
 

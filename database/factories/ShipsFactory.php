@@ -5,9 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Ship::class, function (Faker $faker) {
 
 
-    $gunports = $faker->biasedNumberBetween($min = 0, $max = 132, function ($x) {
-            return 1 - sqrt($x);
-        });
+    $gunports = $faker->biasedNumberBetween($min = 0, $max = 132, $function = 'Faker\Provider\Biased::linearLow');
     // Make gunports amount an even amount
     if ($gunports % 2 == 1) {
         $gunports++;

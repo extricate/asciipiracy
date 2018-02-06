@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@php $user = Auth::user(); $city = $user->isIn(); $active = $user->activeShip(); @endphp
 
-@php $user = Auth::user(); $active = $user->activeShip() @endphp
+@extends('layouts.app')
 
 @section('title', 'Shipwright')
 @section('store_name', Auth::user()->isIn()->shipwright_name)
@@ -40,6 +40,15 @@
                                     </div>
                                 </div>
                                 @include('settlement.stores.shipwright.services')
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Ships available for purchase
+                                    </div>
+                                    <div class="panel-body">
+                                        <a href="{{ route('ship_store') }}" class="btn btn-primary">View available
+                                            ships</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-7">
                                 @include('settlement.stores.shipwright.upgrades')
