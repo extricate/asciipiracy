@@ -60,18 +60,104 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(1);
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+__webpack_require__(37);
+
+window.Vue = __webpack_require__(63);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', __webpack_require__(66));
+Vue.component('combat-component', __webpack_require__(69));
+
+var app = new Vue({
+  el: '#app'
+});
+
+/**
+ * SmoothState
+ */
+
+$(function () {
+  $('.app').smoothState();
+});
+
+/**
+ * Dropdown replace with value and name
+ * created for use in the trade page
+ */
+
+$(".dropdown-menu a").click(function () {
+  var oldText = $(this).parents('.input-group').find('.dropdown-toggle').text();
+  var selText = $(this).text();
+  $(this).text(oldText);
+  $(this).parents('.input-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+  $(this).parents('form').find('.trade-action').val(selText);
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var bind = __webpack_require__(4);
-var isBuffer = __webpack_require__(19);
+var bind = __webpack_require__(30);
+var isBuffer = __webpack_require__(43);
 
 /*global toString:true*/
 
@@ -374,7 +460,7 @@ module.exports = {
 
 
 /***/ }),
-/* 1 */
+/* 27 */
 /***/ (function(module, exports) {
 
 var g;
@@ -401,14 +487,14 @@ module.exports = g;
 
 
 /***/ }),
-/* 2 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(21);
+var utils = __webpack_require__(26);
+var normalizeHeaderName = __webpack_require__(45);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -424,10 +510,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(32);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(32);
   }
   return adapter;
 }
@@ -498,10 +584,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31)))
 
 /***/ }),
-/* 3 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10872,7 +10958,7 @@ return jQuery;
 
 
 /***/ }),
-/* 4 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10890,7 +10976,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 5 */
+/* 31 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11080,19 +11166,19 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
-var settle = __webpack_require__(22);
-var buildURL = __webpack_require__(24);
-var parseHeaders = __webpack_require__(25);
-var isURLSameOrigin = __webpack_require__(26);
-var createError = __webpack_require__(7);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
+var utils = __webpack_require__(26);
+var settle = __webpack_require__(46);
+var buildURL = __webpack_require__(48);
+var parseHeaders = __webpack_require__(49);
+var isURLSameOrigin = __webpack_require__(50);
+var createError = __webpack_require__(33);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(51);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -11189,7 +11275,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(28);
+      var cookies = __webpack_require__(52);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -11267,13 +11353,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 7 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(23);
+var enhanceError = __webpack_require__(47);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -11292,7 +11378,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 8 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11304,7 +11390,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 9 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11330,7 +11416,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 10 */
+/* 36 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -11439,64 +11525,15 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(12);
-module.exports = __webpack_require__(48);
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(13);
-
-window.Vue = __webpack_require__(39);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', __webpack_require__(42));
-Vue.component('combat-component', __webpack_require__(45));
-
-var app = new Vue({
-  el: '#app'
-});
-
-/**
- * Dropdown replace with value and name
- * created for use in the trade page
- */
-
-$(".dropdown-menu a").click(function () {
-  var oldText = $(this).parents('.input-group').find('.dropdown-toggle').text();
-  var selText = $(this).text();
-  $(this).text(oldText);
-  $(this).parents('.input-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-  $(this).parents('form').find('.trade-action').val(selText);
-});
-
-/***/ }),
-/* 13 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
 
-window._ = __webpack_require__(14);
+window._ = __webpack_require__(38);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -11505,9 +11542,9 @@ window._ = __webpack_require__(14);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(3);
+  window.$ = window.jQuery = __webpack_require__(29);
 
-  __webpack_require__(16);
+  __webpack_require__(40);
 } catch (e) {}
 
 /**
@@ -11516,7 +11553,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(17);
+window.axios = __webpack_require__(41);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -11542,7 +11579,7 @@ if (token) {
 
 
 
-window.Pusher = __webpack_require__(37);
+window.Pusher = __webpack_require__(61);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
@@ -11555,10 +11592,15 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
  * Load the bootstrap notify library
  */
 
-window._ = __webpack_require__(38);
+window._ = __webpack_require__(62);
+
+/**
+ * Load smoothState
+ */
+window._ = __webpack_require__(72);
 
 /***/ }),
-/* 14 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28647,10 +28689,10 @@ window._ = __webpack_require__(38);
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(39)(module)))
 
 /***/ }),
-/* 15 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -28678,7 +28720,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 16 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31061,22 +31103,22 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 17 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(18);
+module.exports = __webpack_require__(42);
 
 /***/ }),
-/* 18 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
-var bind = __webpack_require__(4);
-var Axios = __webpack_require__(20);
-var defaults = __webpack_require__(2);
+var utils = __webpack_require__(26);
+var bind = __webpack_require__(30);
+var Axios = __webpack_require__(44);
+var defaults = __webpack_require__(28);
 
 /**
  * Create an instance of Axios
@@ -31109,15 +31151,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(9);
-axios.CancelToken = __webpack_require__(34);
-axios.isCancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(35);
+axios.CancelToken = __webpack_require__(58);
+axios.isCancel = __webpack_require__(34);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(35);
+axios.spread = __webpack_require__(59);
 
 module.exports = axios;
 
@@ -31126,7 +31168,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 19 */
+/* 43 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31153,16 +31195,16 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 20 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
-var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(29);
-var dispatchRequest = __webpack_require__(30);
+var defaults = __webpack_require__(28);
+var utils = __webpack_require__(26);
+var InterceptorManager = __webpack_require__(53);
+var dispatchRequest = __webpack_require__(54);
 
 /**
  * Create a new instance of Axios
@@ -31239,13 +31281,13 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 21 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -31258,13 +31300,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 22 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(7);
+var createError = __webpack_require__(33);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -31291,7 +31333,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 23 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31319,13 +31361,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 24 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -31394,13 +31436,13 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 25 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -31454,13 +31496,13 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 26 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -31529,7 +31571,7 @@ module.exports = (
 
 
 /***/ }),
-/* 27 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31572,13 +31614,13 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 28 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -31632,13 +31674,13 @@ module.exports = (
 
 
 /***/ }),
-/* 29 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -31691,18 +31733,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 30 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
-var transformData = __webpack_require__(31);
-var isCancel = __webpack_require__(8);
-var defaults = __webpack_require__(2);
-var isAbsoluteURL = __webpack_require__(32);
-var combineURLs = __webpack_require__(33);
+var utils = __webpack_require__(26);
+var transformData = __webpack_require__(55);
+var isCancel = __webpack_require__(34);
+var defaults = __webpack_require__(28);
+var isAbsoluteURL = __webpack_require__(56);
+var combineURLs = __webpack_require__(57);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -31784,13 +31826,13 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 31 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(26);
 
 /**
  * Transform the data for a request or a response
@@ -31811,7 +31853,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 32 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31832,7 +31874,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 33 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31853,13 +31895,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 34 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(9);
+var Cancel = __webpack_require__(35);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -31917,7 +31959,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 35 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31951,7 +31993,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 36 */
+/* 60 */
 /***/ (function(module, exports) {
 
 var asyncGenerator = function () {
@@ -32749,7 +32791,7 @@ var Echo = function () {
 module.exports = Echo;
 
 /***/ }),
-/* 37 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -36937,7 +36979,7 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 
 /***/ }),
-/* 38 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -36953,7 +36995,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory) {
 	if (true) {
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(29)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -37363,7 +37405,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 39 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48177,10 +48219,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(40).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(64).setImmediate))
 
 /***/ }),
-/* 40 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -48233,7 +48275,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(41);
+__webpack_require__(65);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -48244,10 +48286,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ }),
-/* 41 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -48437,18 +48479,18 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(31)))
 
 /***/ }),
-/* 42 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(10)
+var normalizeComponent = __webpack_require__(36)
 /* script */
-var __vue_script__ = __webpack_require__(43)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48487,7 +48529,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 67 */
 /***/ (function(module, exports) {
 
 //
@@ -48508,7 +48550,7 @@ module.exports = Component.exports
 //
 
 /***/ }),
-/* 44 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48551,15 +48593,15 @@ if (false) {
 }
 
 /***/ }),
-/* 45 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(10)
+var normalizeComponent = __webpack_require__(36)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(70)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(71)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48598,7 +48640,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 70 */
 /***/ (function(module, exports) {
 
 //
@@ -48619,7 +48661,7 @@ module.exports = Component.exports
 //
 
 /***/ }),
-/* 47 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48662,10 +48704,692 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 72 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/**
+ * smoothState.js is a jQuery plugin to stop page load jank.
+ *
+ * This jQuery plugin progressively enhances page loads to
+ * behave more like a single-page application.
+ *
+ * @author  Miguel Ángel Pérez   reachme@miguel-perez.com
+ * @see     https://github.com/miguel-perez/jquery.smoothState.js
+ *
+ */
+
+;(function ( $, window, document, undefined ) {
+  'use strict';
+
+  /** Abort if browser does not support pushState */
+  if(!window.history.pushState) {
+    // setup a dummy fn, but don't intercept on link clicks
+    $.fn.smoothState = function() { return this; };
+    $.fn.smoothState.options = {};
+    return;
+  }
+
+  /** Abort if smoothState is already present **/
+  if($.fn.smoothState) { return; }
+
+  var
+    /** Used later to scroll page to the top */
+    $body = $('html, body'),
+
+    /** Used in debug mode to console out useful warnings */
+    consl = window.console,
+
+    /** Plugin default options, will be exposed as $fn.smoothState.options */
+    defaults = {
+
+      /** If set to true, smoothState will log useful debug information instead of aborting */
+      debug: false,
+
+      /** jQuery selector to specify which anchors smoothState should bind to */
+      anchors: 'a',
+
+      /** jQuery selector to specify which forms smoothState should bind to */
+      forms: 'form',
+
+      /** A selector that defines what should be ignored by smoothState */
+      blacklist: '.no-smoothState',
+
+      /** If set to true, smoothState will prefetch a link's contents on hover */
+      prefetch: false,
+
+      /** The number of pages smoothState will try to store in memory */
+      cacheLength: 0,
+
+      /** Class that will be applied to the body while the page is loading */
+      loadingClass: 'is-loading',
+
+      /**
+       * A function that can be used to alter the ajax request settings before it is called
+       * @param  {Object} request jQuery.ajax settings object that will be used to make the request
+       * @return {Object}         Altered request object
+       */
+      alterRequest: function (request) {
+        return request;
+      },
+
+      /** Run before a page load has been activated */
+      onBefore: function ($currentTarget, $container) {},
+
+      /** Run when a page load has been activated */
+      onStart: {
+        duration: 0,
+        render: function ($container) {}
+      },
+
+      /** Run if the page request is still pending and onStart has finished animating */
+      onProgress: {
+        duration: 0,
+        render: function ($container) {}
+      },
+
+      /** Run when requested content is ready to be injected into the page  */
+      onReady: {
+        duration: 0,
+        render: function ($container, $newContent) {
+          $container.html($newContent);
+        }
+      },
+
+      /** Run when content has been injected and all animations are complete  */
+      onAfter: function($container, $newContent) {}
+    },
+
+    /** Utility functions that are decoupled from smoothState */
+    utility = {
+
+      /**
+       * Checks to see if the url is external
+       * @param   {string}    url - url being evaluated
+       * @see     http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls
+       *
+       */
+      isExternal: function (url) {
+        var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
+        if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
+          return true;
+        }
+        if (typeof match[2] === 'string' &&
+          match[2].length > 0 &&
+          match[2].replace(new RegExp(':(' + {'http:': 80, 'https:': 443}[window.location.protocol] +
+            ')?$'), '') !== window.location.host) {
+          return true;
+        }
+        return false;
+      },
+
+      /**
+       * Strips the hash from a url and returns the new href
+       * @param   {string}    href - url being evaluated
+       *
+       */
+      stripHash: function(href) {
+        return href.replace(/#.*/, '');
+      },
+
+      /**
+       * Checks to see if the url is an internal hash
+       * @param   {string}    href - url being evaluated
+       * @param   {string}    prev - previous url (optional)
+       *
+       */
+      isHash: function (href, prev) {
+        prev = prev || window.location.href;
+
+        var hasHash = (href.indexOf('#') > -1) ? true : false,
+            samePath = (utility.stripHash(href) === utility.stripHash(prev)) ? true : false;
+
+        return (hasHash && samePath);
+      },
+
+      /**
+       * Translates a url string into a $.ajax settings obj
+       * @param  {Object|String} request url or settings obj
+       * @return {Object}        settings object
+       */
+      translate: function(request) {
+          var defaults = {
+            dataType: 'html',
+            type: 'GET'
+          };
+          if(typeof request === 'string') {
+            request = $.extend({}, defaults, { url: request });
+          } else {
+            request = $.extend({}, defaults, request);
+          }
+          return request;
+      },
+
+      /**
+       * Checks to see if we should be loading this URL
+       * @param   {string}    url - url being evaluated
+       * @param   {string}    blacklist - jquery selector
+       *
+       */
+      shouldLoadAnchor: function ($anchor, blacklist) {
+        var href = $anchor.prop('href');
+        // URL will only be loaded if it's not an external link, hash, or blacklisted
+        return (!utility.isExternal(href) && !utility.isHash(href) && !$anchor.is(blacklist) && !$anchor.prop('target'));
+      },
+
+      /**
+       * Resets an object if it has too many properties
+       *
+       * This is used to clear the 'cache' object that stores
+       * all of the html. This would prevent the client from
+       * running out of memory and allow the user to hit the
+       * server for a fresh copy of the content.
+       *
+       * @param   {object}    obj
+       * @param   {number}    cap
+       *
+       */
+      clearIfOverCapacity: function (cache, cap) {
+        // Polyfill Object.keys if it doesn't exist
+        if (!Object.keys) {
+          Object.keys = function (obj) {
+            var keys = [],
+              k;
+            for (k in obj) {
+              if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                keys.push(k);
+              }
+            }
+            return keys;
+          };
+        }
+
+        if (Object.keys(cache).length > cap) {
+          cache = {};
+        }
+
+        return cache;
+      },
+
+      /**
+       * Stores a document fragment into an object
+       * @param   {object}    object - object where it will be sotred
+       * @param   {string}    url - name of the entry
+       * @param   {string|document}    doc - entire html
+       * @param   {string}    id - the id of the fragment
+       *
+       */
+      storePageIn: function (object, url, doc, id) {
+        var $newDoc = $(doc);
+
+        object[url] = { // Content is indexed by the url
+          status: 'loaded',
+          // Stores the title of the page, .first() prevents getting svg titles
+          title: $newDoc.filter('title').first().text(),
+          html: $newDoc.filter('#' + id), // Stores the contents of the page
+        };
+        return object;
+      },
+
+      /**
+       * Triggers an 'allanimationend' event when all animations are complete
+       * @param   {object}    $element - jQuery object that should trigger event
+       * @param   {string}    resetOn - which other events to trigger allanimationend on
+       *
+       */
+      triggerAllAnimationEndEvent: function ($element, resetOn) {
+
+        resetOn = ' ' + resetOn || '';
+
+        var animationCount = 0,
+          animationstart = 'animationstart webkitAnimationStart oanimationstart MSAnimationStart',
+          animationend = 'animationend webkitAnimationEnd oanimationend MSAnimationEnd',
+          eventname = 'allanimationend',
+          onAnimationStart = function (e) {
+            if ($(e.delegateTarget).is($element)) {
+              e.stopPropagation();
+              animationCount++;
+            }
+          },
+          onAnimationEnd = function (e) {
+            if ($(e.delegateTarget).is($element)) {
+              e.stopPropagation();
+              animationCount--;
+              if(animationCount === 0) {
+                $element.trigger(eventname);
+              }
+            }
+          };
+
+        $element.on(animationstart, onAnimationStart);
+        $element.on(animationend, onAnimationEnd);
+
+        $element.on('allanimationend' + resetOn, function(){
+          animationCount = 0;
+          utility.redraw($element);
+        });
+      },
+
+      /** Forces browser to redraw elements */
+      redraw: function ($element) {
+        $element.height();
+      }
+    },
+
+    /** Handles the popstate event, like when the user hits 'back' */
+    onPopState = function ( e ) {
+      if(e.state !== null) {
+        var url = window.location.href,
+          $page = $('#' + e.state.id),
+          page = $page.data('smoothState');
+
+        if(page.href !== url && !utility.isHash(url, page.href)) {
+          page.load(url, false);
+        }
+      }
+    },
+
+    /** Constructor function */
+    Smoothstate = function ( element, options ) {
+      var
+        /** Container element smoothState is run on */
+        $container = $(element),
+
+        /** ID of the main container */
+        elementId = $container.prop('id'),
+
+        /** If a hash was clicked, we'll store it here so we
+         *  can scroll to it once the new page has been fully
+         *  loaded.
+         */
+        targetHash = null,
+
+        /** Used to prevent fetching while we transition so
+         *  that we don't mistakenly override a cache entry
+         *  we need.
+         */
+        isTransitioning = false,
+
+        /** Variable that stores pages after they are requested */
+        cache = {},
+
+        /** Url of the content that is currently displayed */
+        currentHref = window.location.href,
+
+        /**
+         * Clears a given page from the cache, if no url is provided
+         * it will clear the entire cache.
+         * @param  {String} url entry that is to be deleted.
+         */
+        clear = function(url) {
+          url = url || false;
+          if(url && cache.hasOwnProperty(url)) {
+            delete cache[url];
+          } else {
+            cache = {};
+          }
+          $container.data('smoothState').cache = cache;
+        },
+
+        /**
+         * Fetches the contents of a url and stores it in the 'cache' variable
+         * @param  {String|Object}   request  url or request settings object
+         * @param  {Function} callback function that will run as soon as it finishes
+         */
+        fetch = function (request, callback) {
+
+          // Sets a default in case a callback is not defined
+          callback = callback || $.noop;
+
+          // Allows us to accept a url string or object as the ajax settings
+          var settings = utility.translate(request);
+
+          // Don't prefetch if we have the content already or if it's a form
+          if(cache.hasOwnProperty(settings.url) && typeof settings.data === 'undefined') {
+            return;
+          }
+
+          // Check the length of the cache and clear it if needed
+          cache = utility.clearIfOverCapacity(cache, options.cacheLength);
+
+          // Let other parts of the code know we're working on getting the content
+          cache[settings.url] = { status: 'fetching' };
+
+          // Make the ajax request
+          var ajaxRequest = $.ajax(settings);
+
+          // Store contents in cache variable if successful
+          ajaxRequest.success(function (html) {
+            utility.storePageIn(cache, settings.url, html, elementId);
+            $container.data('smoothState').cache = cache;
+          });
+
+          // Mark as error to be acted on later
+          ajaxRequest.error(function () {
+            cache[settings.url].status = 'error';
+          });
+
+          // Call fetch callback
+          if(callback) {
+            ajaxRequest.complete(callback);
+          }
+        },
+
+        repositionWindow = function(){
+          // Scroll to a hash anchor on destination page
+          if(targetHash) {
+            var $targetHashEl = $(targetHash, $container);
+            if($targetHashEl.length){
+              var newPosition = $targetHashEl.offset().top;
+              document.body.scrollTop = newPosition;
+            }
+            targetHash = null;
+          }
+        },
+
+        /** Updates the contents from cache[url] */
+        updateContent = function (url) {
+          // If the content has been requested and is done:
+          var containerId = '#' + elementId,
+              $newContent = cache[url] ? $(cache[url].html.html()) : null;
+
+          if($newContent.length) {
+
+            // Update the title
+            document.title = cache[url].title;
+
+            // Update current url
+            $container.data('smoothState').href = url;
+
+            // Remove loading class
+            if(options.loadingClass) {
+              $body.removeClass(options.loadingClass);
+            }
+
+            // Call the onReady callback and set delay
+            options.onReady.render($container, $newContent);
+
+            $container.one('ss.onReadyEnd', function(){
+
+              // Allow prefetches to be made again
+              isTransitioning = false;
+
+              // Run callback
+              options.onAfter($container, $newContent);
+
+              repositionWindow();
+
+            });
+
+            window.setTimeout(function(){
+              $container.trigger('ss.onReadyEnd');
+            }, options.onReady.duration);
+
+          } else if (!$newContent && options.debug && consl) {
+            // Throw warning to help debug in debug mode
+            consl.warn('No element with an id of ' + containerId + ' in response from ' + url + ' in ' + cache);
+          } else {
+            // No content availble to update with, aborting...
+            window.location = url;
+          }
+        },
+
+        /**
+         * Loads the contents of a url into our container
+         * @param   {string}    url
+         * @param   {bool}      push - used to determine if we should
+         *                      add a new item into the history object
+         */
+        load = function (request, push) {
+
+          var settings = utility.translate(request);
+
+          /** Makes this an optional variable by setting a default */
+          if(typeof push === 'undefined') {
+            push = true;
+          }
+
+          var
+            /** Used to check if the onProgress function has been run */
+            hasRunCallback = false,
+
+            callbBackEnded = false,
+
+            /** List of responses for the states of the page request */
+            responses = {
+
+              /** Page is ready, update the content */
+              loaded: function () {
+                var eventName = hasRunCallback ? 'ss.onProgressEnd' : 'ss.onStartEnd';
+
+                if(!callbBackEnded || !hasRunCallback) {
+                  $container.one(eventName, function(){
+                    updateContent(settings.url);
+                  });
+                } else if(callbBackEnded) {
+                  updateContent(settings.url);
+                }
+
+                if(push) {
+                  window.history.pushState({ id: elementId }, cache[settings.url].title, settings.url);
+                }
+              },
+
+              /** Loading, wait 10 ms and check again */
+              fetching: function () {
+
+                if(!hasRunCallback) {
+
+                  hasRunCallback = true;
+
+                  // Run the onProgress callback and set trigger
+                  $container.one('ss.onStartEnd', function(){
+
+                    // Add loading class
+                    if(options.loadingClass) {
+                      $body.addClass(options.loadingClass);
+                    }
+
+                    options.onProgress.render($container);
+
+                    window.setTimeout(function (){
+                      $container.trigger('ss.onProgressEnd');
+                      callbBackEnded = true;
+                    }, options.onProgress.duration);
+
+                  });
+                }
+
+                window.setTimeout(function () {
+                  // Might of been canceled, better check!
+                  if(cache.hasOwnProperty(settings.url)){
+                    responses[cache[settings.url].status]();
+                  }
+                }, 10);
+              },
+
+              /** Error, abort and redirect */
+              error: function (){
+                if(options.debug && consl) {
+                  consl.log('There was an error loading: ' + settings.url);
+                } else {
+                  window.location = settings.url;
+                }
+              }
+            };
+
+          if (!cache.hasOwnProperty(settings.url)) {
+            fetch(settings);
+          }
+
+          // Run the onStart callback and set trigger
+          options.onStart.render($container);
+
+          window.setTimeout(function(){
+            $body.scrollTop(0);
+            $container.trigger('ss.onStartEnd');
+          }, options.onStart.duration);
+
+          // Start checking for the status of content
+          responses[cache[settings.url].status]();
+        },
+
+        /**
+         * Binds to the hover event of a link, used for prefetching content
+         * @param   {object}    event
+         */
+        hoverAnchor = function (event) {
+          var request,
+              $anchor = $(event.currentTarget);
+
+          if (utility.shouldLoadAnchor($anchor, options.blacklist) && !isTransitioning) {
+            event.stopPropagation();
+            request = utility.translate($anchor.prop('href'));
+            request = options.alterRequest(request);
+            fetch(request);
+          }
+        },
+
+        /**
+         * Binds to the click event of a link, used to show the content
+         * @param   {object}    event
+         */
+        clickAnchor = function (event) {
+          var $anchor = $(event.currentTarget);
+
+          // Ctrl (or Cmd) + click must open a new tab
+          if (!event.metaKey && !event.ctrlKey && utility.shouldLoadAnchor($anchor, options.blacklist)) {
+            var request = utility.translate($anchor.prop('href'));
+
+            // stopPropagation so that event doesn't fire on parent containers.
+            isTransitioning = true;
+            event.stopPropagation();
+            event.preventDefault();
+            targetHash = $anchor.prop('hash');
+
+            // Allows modifications to the request
+            request = options.alterRequest(request);
+
+            options.onBefore($anchor, $container);
+
+            load(request);
+          }
+        },
+
+        /**
+         * Binds to form submissions
+         * @param  {Event} event
+         */
+        submitForm = function (event) {
+          var $form = $(event.currentTarget);
+
+          if(!$form.is(options.blacklist)){
+            event.preventDefault();
+            event.stopPropagation();
+
+            var request = {
+                  url: $form.prop('action'),
+                  data: $form.serialize(),
+                  type: $form.prop('method')
+                };
+
+            isTransitioning = true;
+
+            request = options.alterRequest(request);
+
+            if(request.type.toLowerCase() === 'get') {
+              request.url = request.url + '?' + request.data;
+            }
+
+            // Call the onReady callback and set delay
+            options.onBefore($form, $container);
+
+            load(request);
+          }
+        },
+
+        /**
+         * Binds all events and inits functionality
+         * @param   {object}    event
+         */
+        bindEventHandlers = function ($element) {
+
+          $element.on('click', options.anchors, clickAnchor);
+
+          $element.on('submit', options.forms, submitForm);
+
+          if (options.prefetch) {
+            $element.on('mouseover touchstart', options.anchors, hoverAnchor);
+          }
+        },
+
+        /** Restart the container's css animations */
+        restartCSSAnimations = function () {
+          var classes = $container.prop('class');
+          $container.removeClass(classes);
+          utility.redraw($container);
+          $container.addClass(classes);
+        };
+
+      /** Merge defaults and global options into current configuration */
+      options = $.extend( {}, $.fn.smoothState.options, options );
+
+      /** Sets a default state */
+      if(window.history.state === null) {
+        window.history.replaceState({ id: elementId }, document.title, currentHref);
+      }
+
+      /** Stores the current page in cache variable */
+      utility.storePageIn(cache, currentHref, document.documentElement.outerHTML, elementId);
+
+      /** Bind all of the event handlers on the container, not anchors */
+      utility.triggerAllAnimationEndEvent($container, 'ss.onStartEnd ss.onProgressEnd ss.onEndEnd');
+
+      /** Bind all of the event handlers on the container, not anchors */
+      bindEventHandlers($container);
+
+      /** Public methods */
+      return {
+        href: currentHref,
+        cache: cache,
+        clear: clear,
+        load: load,
+        fetch: fetch,
+        restartCSSAnimations: restartCSSAnimations
+      };
+    },
+
+    /** Returns elements with smoothState attached to it */
+    declaresmoothState = function ( options ) {
+      return this.each(function () {
+        var tagname = this.tagName.toLowerCase();
+        // Checks to make sure the smoothState element has an id and isn't already bound
+        if(this.id && tagname !== 'body' && tagname !== 'html' && !$.data(this, 'smoothState')) {
+          // Makes public methods available via $('element').data('smoothState');
+          $.data(this, 'smoothState', new Smoothstate(this, options));
+        } else if (!this.id && consl) {
+          // Throw warning if in debug mode
+          consl.warn('Every smoothState container needs an id but the following one does not have one:', this);
+        } else if ((tagname === 'body' || tagname === 'html') && consl) {
+          // We dont support making th html or the body element the smoothstate container
+          consl.warn('The smoothstate container cannot be the ' + this.tagName + ' tag');
+        }
+      });
+    };
+
+  /** Sets the popstate function */
+  window.onpopstate = onPopState;
+
+  /** Makes utility functions public for unit tests */
+  $.smoothStateUtility = utility;
+
+  /** Defines the smoothState plugin */
+  $.fn.smoothState = declaresmoothState;
+
+  /* expose the default options */
+  $.fn.smoothState.options = defaults;
+
+})(jQuery, window, document);
+
 
 /***/ })
 /******/ ]);

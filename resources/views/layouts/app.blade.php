@@ -14,11 +14,22 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('/img/anchor.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/anchor.png') }}">
 </head>
 <body>
 <div id="app">
     @include('layouts.header.nav')
+    <noscript>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        Warning! You do not have JavaScript enabled.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </noscript>
 
     @if (session()->has('message'))
         <noscript>

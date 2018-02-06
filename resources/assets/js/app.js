@@ -23,6 +23,14 @@ const app = new Vue({
 });
 
 /**
+ * SmoothState
+ */
+
+$(function() {
+    $('.app').smoothState();
+});
+
+/**
  * Dropdown replace with value and name
  * created for use in the trade page
  */
@@ -34,3 +42,4 @@ $(".dropdown-menu a").click(function(){
     $(this).parents('.input-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
     $(this).parents('form').find('.trade-action').val(selText);
 });
+

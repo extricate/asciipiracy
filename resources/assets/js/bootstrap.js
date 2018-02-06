@@ -59,3 +59,8 @@ window.Echo = new Echo({
  */
 
 window._ = require('bootstrap-notify');
+
+/**
+ * Load smoothState
+ */
+window._ = require('smoothstate');

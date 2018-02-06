@@ -19,3 +19,5 @@ mix.options({
         enabled: false,
     }
 })
+
+mix.copy( 'resources/assets/images', 'public/images', false );

@@ -2,7 +2,7 @@
 
 @section('map')
     @if ($user->onMap() == null)
-        <p>Oh dear, it appears your map was lost! Perhaps you would like to travel to a new region instead?</p>
+        <p>You currently have no map. Perhaps you would like to travel to a new region instead?</p>
 
     @else
         @php
