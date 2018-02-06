@@ -37,7 +37,11 @@ class TradeController extends Controller
             $user->gold = $user->gold - $totalAmount;
             $user->save();
 
-            return back()->with('trade', 'You have purchased ' . $goods . ' goods for ' . $totalAmount . ' gold.');
+            $ship = $user->activeShip();
+            $ship->free_hold = $ship->free_hold - $goods;
+            $ship->save();
+
+            return back()->with('trade', 'You have purchased ' . $goods . ' goods for ' . $totalAmount . ' gold. The goods will be loaded on the ' . $ship->name);
         } else {
             return back()->with('error', 'It appears you do not have enough money for that purchase.');
         }
@@ -114,11 +118,15 @@ class TradeController extends Controller
                 $city->{$type . '_stock'} = $city->{$type . '_stock'} - $request->quantity;
                 $city->save();
 
+                // add goods to ship
                 $ship->$type = $ship->$type + $request->quantity;
+
+                // deduct goods from free hold
+                $ship->free_hold = $ship->free_hold - $request->quantity;
                 $ship->save();
 
                 return redirect(route('general_store'))->with('trade',
-                    'Thank you for your purchase sir. Your acquired goods will be loaded on your ship.');
+                    'Thank you for your purchase sir. Your acquired goods will be loaded on the ' . $ship->name);
             }
         } elseif ($request->action == 'sell') {
             $type = $request->type;
@@ -138,10 +146,11 @@ class TradeController extends Controller
             $city->save();
 
             $ship->$type = $ship->$type - $request->quantity;
+            $ship->free_hold = $ship->free_hold + $request->quantity;
             $ship->save();
 
             return redirect(route('general_store'))->with('trade',
-                'Thank you for your business, sir. Your acquired goods will be offloaded from your ship.');
+                'Thank you for your business, sir. Your acquired goods will be offloaded from the ' . $ship->name);
         }
 
     }

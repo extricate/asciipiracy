@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default panel-ship">
+                <div class="panel panel-default panel-combat">
                     <div class="panel-heading">
                         You: {{ $ship->class }} {{ $ship->name }}
                     </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="panel panel-default panel-ship">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         Enemy: {{ $enemy->class }} {{ $enemy->name }}
                     </div>
