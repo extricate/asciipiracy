@@ -43,6 +43,16 @@ class Ship extends Model
     }
 
     /**
+     * A ship can have equipment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function equipment()
+    {
+        return $this->hasMany(Equipment::class, 'ships_id');
+    }
+
+    /**
      * Old draw function
      */
     /*public function draw(Ship $ship)
@@ -287,16 +297,6 @@ class Ship extends Model
         }
 
         return $healthStatus;
-    }
-
-    /**
-     * Determine class based on various variables
-     *
-     * @param Ship $ship
-     */
-    public function shipClass(Ship $ship)
-    {
-        // Determine class based on various variables
     }
 
     /**

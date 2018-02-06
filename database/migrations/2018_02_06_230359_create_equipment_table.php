@@ -16,6 +16,9 @@ class CreateEquipmentTable extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->unsignedInteger('ship_id');
+            $table->foreign('ship_id')->references('id')->on('ships')->onDelete('cascade');
         });
     }
 
