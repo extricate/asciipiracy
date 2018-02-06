@@ -57,17 +57,17 @@
                             <a href="#" class="dropdown-toggle" type="button" id="ship-menu" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 @if ($user->activeShip() != null)
-                                    <label class="label-ship label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}">
-                                        @svg('ship', 'icon-nav')
-                                        {{ $user->activeShip()->current_health }}
-                                        /{{ $user->activeShip()->maximum_health }}
-                                    </label>
                                     @php $ship = auth()->user()->activeShip(); @endphp
                                     <progress class="experience-bar" max="100" role="progressbar"
                                               aria-valuenow="{{ $ship->levelProgress($ship) }}" aria-valuemin="0"
                                               aria-valuemax="100" value="{{ $ship->levelProgress($ship) }}">
                                         {{ $ship->levelProgress($ship) }} %
                                     </progress>
+                                    <label class="label-ship label-{{ Auth::user()->activeShip()->health(Auth::user()->activeShip()) }}">
+                                        @svg('ship', 'icon-nav')
+                                        {{ $user->activeShip()->current_health }}
+                                        /{{ $user->activeShip()->maximum_health }}
+                                    </label>
                                 @elseif ($user->activeShip() == null)
                                     <label class="label-no-ship">
                                         @svg('ship', 'icon-nav') --/-- </label>
@@ -102,12 +102,12 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true">
-                                Lvl {{ $user->level }} captain {{ Auth::user()->name }}
                                 <progress class="experience-bar" max="100" role="progressbar"
                                           aria-valuenow="{{ $user->levelProgress($user) }}" aria-valuemin="0"
                                           aria-valuemax="100" value="{{ $user->levelProgress($user) }}">
                                     {{ $user->levelProgress($user) }} %
                                 </progress>
+                                Lvl {{ $user->level }} captain {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
