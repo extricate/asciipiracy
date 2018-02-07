@@ -161,4 +161,9 @@ class TradeController extends Controller
 
         return view('settlement.stores.shipwright.ship-store', compact('sale'));
     }
+
+    public function buyShip()
+    {
+        $user = Auth::user();
+    }
 }

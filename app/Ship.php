@@ -307,10 +307,11 @@ class Ship extends Model
      */
     public function shipValue(Ship $ship)
     {
-
-        // Value is based on maximum health plus the current health (effectively penalizing damage)
-
         $value = (($ship->maximum_health * 10) + ($ship->current_health * 10)) + ($ship->total_hold / 500) + $ship->max_sailors * 100 + $ship->current_sailors * 10 + ($ship->max_speed * $ship->maneuverability) + (($ship->gunports + $ship->cannons) * ((int)$ship->cannon_caliber * 10));
+
+        if ($ship->is_beginner_ship == 1) {
+            $value = 0;
+        }
 
         $value = round($value, 0);
 

@@ -146,7 +146,7 @@ class ShipsController extends Controller
                 'current_health' => 100,
                 'maximum_health' => 100,
             ]);
-            $generateOfficerAmount = $ship->max_sailors/15;
+            $generateOfficerAmount = $ship->max_sailors/2;
             if ($generateOfficerAmount > 1) {
                 factory(App\Person::class, $generateOfficerAmount)->create(['ships_id' => $ship->id]);
             }

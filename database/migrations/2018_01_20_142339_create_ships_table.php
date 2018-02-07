@@ -56,7 +56,6 @@ class CreateShipsTable extends Migration
             $table->unsignedInteger('mahogany')->default(0);
 
             $table->unsignedInteger('constructed_at');
-            $table->longText('story')->nullable();
 
             $table->unsignedInteger('min_sailors');
             $table->unsignedInteger('current_sailors');
@@ -71,6 +70,11 @@ class CreateShipsTable extends Migration
             $table->unsignedInteger('beam');
 
             $table->unsignedInteger('maneuverability');
+
+            // equipment slots
+            $table->unsignedInteger('equipment_cannons')->default(1);
+            $table->unsignedInteger('equipment_hull')->default(1);
+            $table->unsignedInteger('equipment_sails')->default(1);
 
             $table->date('updated_at');
             $table->date('created_at');
