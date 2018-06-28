@@ -131,10 +131,10 @@ class ExplorationController extends Controller
             $affects->{$effect_on} = $affects->{$effect_on} - $effect;
             $affects->save();
         } elseif ($type == '*') {
-            $affects->{$effect_on} = $affects->{$effect_on} - $effect;
+            $affects->{$effect_on} = $affects->{$effect_on} * $effect;
             $affects->save();
         } elseif ($type == '/') {
-            $affects->{$effect_on} = $affects->{$effect_on} - $effect;
+            $affects->{$effect_on} = $affects->{$effect_on} / $effect;
             $affects->save();
         }
 
